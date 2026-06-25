@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ScrollReveal } from "./ScrollReveal";
 
 const heroTrustPoints = [
@@ -18,6 +19,9 @@ const products = [
       "Core HDPE portable toilet for construction sites, events and rental fleet supply.",
     useCase: "Best for: rental fleets and construction suppliers",
     specs: ["Rotational molded HDPE cabin", "Waste tank configuration", "Easy cleaning and service access"],
+    options: ["Urinal", "Foot pump", "Lifting points"],
+    containerNote: "Suitable for mixed-model container orders and rental fleet replenishment.",
+    href: "/products",
   },
   {
     model: "PT-370",
@@ -28,6 +32,9 @@ const products = [
       "Hand-wash portable restroom option for markets that require better on-site hygiene.",
     useCase: "Best for: job sites, events and public-use projects",
     specs: ["Integrated hand wash basin", "Fresh water and waste tank options", "Foot pump configuration available"],
+    options: ["Hand wash basin", "Fresh water tank", "Color options"],
+    containerNote: "Common choice for container supply to construction and event rental buyers.",
+    href: "/products/pt-370-portable-toilet",
   },
   {
     model: "PT-390",
@@ -38,6 +45,9 @@ const products = [
       "Reinforced cabin structure for repeated transport, outdoor storage and long-term use.",
     useCase: "Best for: heavy-use fleets and distributor stock",
     specs: ["Double-wall HDPE structure", "Durable for repeated handling", "Color and accessory options"],
+    options: ["Reinforced cabin", "Branding color", "Spare fittings"],
+    containerNote: "Built for distributors planning long-term stock and repeated fleet orders.",
+    href: "/products",
   },
   {
     model: "PDT-100",
@@ -48,6 +58,9 @@ const products = [
       "Wide-entry portable sanitation unit for inclusive sites, venues and project tenders.",
     useCase: "Best for: accessible facilities and public projects",
     specs: ["Wide-entry cabin design", "Spacious interior layout", "Suitable for project procurement"],
+    options: ["Wide door", "Handrail planning", "Accessible layout"],
+    containerNote: "Can be quoted with standard toilets for project and public venue supply.",
+    href: "/products/accessible-portable-toilet",
   },
 ];
 
@@ -108,7 +121,7 @@ const organizationSchema = {
 
 function BrandMark({ light = false }: { light?: boolean }) {
   return (
-    <a className={light ? "brand brand-light" : "brand"} href="#top" aria-label="Sunrise home">
+    <Link className={light ? "brand brand-light" : "brand"} href="/" aria-label="Sunrise home">
       <Image
         className="brand-logo"
         src="/images/brand/sunrise-symbol-tight.png"
@@ -120,7 +133,7 @@ function BrandMark({ light = false }: { light?: boolean }) {
       <span className="brand-copy">
         <strong>Sunrise</strong>
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -142,13 +155,13 @@ function CtaStrip({
         <span>{text}</span>
       </div>
       <div className="cta-strip-actions">
-        <a className="button button-primary" href="#contact">
+        <Link className="button button-primary" href="/contact">
           {primary}
-        </a>
+        </Link>
         {secondary ? (
-          <a className="button button-light" href="#factory">
+          <Link className="button button-light" href="/factory">
             {secondary}
-          </a>
+          </Link>
         ) : null}
       </div>
     </div>
@@ -179,15 +192,15 @@ export default function Home() {
           <div className="header-inner">
             <BrandMark light />
             <nav className="desktop-nav" aria-label="Primary navigation">
-              <a href="#products">Products</a>
-              <a href="#factory">Factory</a>
+              <Link href="/products">Products</Link>
+              <Link href="/factory">Factory</Link>
               <a href="#bulk-supply">Bulk Supply</a>
-              <a href="#resources">Resources</a>
-              <a href="#contact">Contact</a>
+              <Link href="/resources">Resources</Link>
+              <Link href="/contact">Contact</Link>
             </nav>
-            <a className="header-cta" href="#contact">
+            <Link className="header-cta" href="/contact">
               Request Factory Quote
-            </a>
+            </Link>
             <details className="mobile-menu">
               <summary title="Open navigation" aria-label="Open navigation">
                 <span />
@@ -195,11 +208,11 @@ export default function Home() {
                 <span />
               </summary>
               <nav aria-label="Mobile navigation">
-                <a href="#products">Products</a>
-                <a href="#factory">Factory</a>
+                <Link href="/products">Products</Link>
+                <Link href="/factory">Factory</Link>
                 <a href="#bulk-supply">Bulk Supply</a>
-                <a href="#resources">Resources</a>
-                <a href="#contact">Request Factory Quote</a>
+                <Link href="/resources">Resources</Link>
+                <Link href="/contact">Request Factory Quote</Link>
               </nav>
             </details>
           </div>
@@ -215,12 +228,12 @@ export default function Home() {
             supply for Australia, UK, US, New Zealand and global B2B markets.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#contact">
+            <Link className="button button-primary" href="/contact">
               Request Factory Quote
-            </a>
-            <a className="button button-ghost" href="#products">
+            </Link>
+            <Link className="button button-ghost" href="/products">
               View Portable Toilet Range
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -294,7 +307,16 @@ export default function Home() {
                       <li key={spec}>{spec}</li>
                     ))}
                   </ul>
-                  <a href="#contact">Request Specs</a>
+                  <div className="product-options" aria-label={`${product.model} options`}>
+                    {product.options.map((option) => (
+                      <span key={option}>{option}</span>
+                    ))}
+                  </div>
+                  <strong className="container-note">{product.containerNote}</strong>
+                  <div className="product-links">
+                    <Link href={product.href}>View Model</Link>
+                    <Link href="/contact">Request Specs</Link>
+                  </div>
                 </div>
               </article>
             ))}
@@ -386,9 +408,9 @@ export default function Home() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <a className="text-link" href="#contact">
+            <Link className="text-link" href="/contact">
               Contact Sales Team
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -446,10 +468,10 @@ export default function Home() {
           </div>
           <div className="resource-list">
             {resources.map((item, index) => (
-              <a href="#contact" key={item} data-reveal style={{ transitionDelay: `${index * 70}ms` }}>
+              <Link href="/resources" key={item} data-reveal style={{ transitionDelay: `${index * 70}ms` }}>
                 <span>{item}</span>
                 <strong>Request</strong>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -466,12 +488,12 @@ export default function Home() {
             </p>
           </div>
           <div className="contact-actions" data-reveal>
-            <a className="button button-primary" href="https://sunrisetoilet.com">
+            <Link className="button button-primary" href="/contact">
               Contact Sales Team
-            </a>
-            <a className="button button-dark" href="https://sunrisetoilet.com">
+            </Link>
+            <Link className="button button-dark" href="/resources">
               Current Catalogue
-            </a>
+            </Link>
           </div>
         </div>
       </section>
