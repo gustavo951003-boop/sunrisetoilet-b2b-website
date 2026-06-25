@@ -111,10 +111,50 @@ p {
   color: var(--white);
 }
 
-.hero-image {
+.hero-media {
+  position: absolute;
   z-index: -3;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-image {
   object-fit: cover;
   object-position: center;
+  opacity: 0;
+  animation: heroFade 18s infinite;
+}
+
+.hero-image:nth-child(1) {
+  opacity: 1;
+  animation-delay: 0s;
+}
+
+.hero-image:nth-child(2) {
+  animation-delay: 6s;
+}
+
+.hero-image:nth-child(3) {
+  animation-delay: 12s;
+}
+
+@keyframes heroFade {
+  0%,
+  30% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  38%,
+  92% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
 }
 
 .hero-overlay {
@@ -1752,6 +1792,16 @@ p {
   .reveal-list > * {
     opacity: 1;
     transform: none;
+  }
+
+  .hero-image {
+    animation: none;
+    opacity: 0;
+    transform: none;
+  }
+
+  .hero-image:first-child {
+    opacity: 1;
   }
 
   *,

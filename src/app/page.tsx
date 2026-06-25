@@ -9,6 +9,18 @@ const heroTrustPoints = [
   "Bulk orders and export documents",
 ];
 
+const heroSlides = [
+  {
+    image: "/images/site/hero-bridge-team.webp",
+  },
+  {
+    image: "/images/site/hero-yard.webp",
+  },
+  {
+    image: "/images/site/hero-verified-workshop.webp",
+  },
+];
+
 const products = [
   {
     model: "PT-360",
@@ -185,14 +197,19 @@ export default function Home() {
       />
 
       <section className="hero" aria-labelledby="hero-title">
-        <Image
-          className="hero-image"
-          src="/images/site/hero-yard.webp"
-          alt="Sunrise HDPE portable toilets prepared for export outside the factory"
-          fill
-          priority
-          sizes="100vw"
-        />
+        <div className="hero-media" aria-hidden="true">
+          {heroSlides.map((slide, index) => (
+            <Image
+              className="hero-image"
+              src={slide.image}
+              alt=""
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              key={slide.image}
+            />
+          ))}
+        </div>
         <div className="hero-overlay" />
 
         <header className="site-header">
@@ -423,8 +440,8 @@ export default function Home() {
         <div className="section-inner verify-grid">
           <div className="verify-image" data-reveal>
             <Image
-              src="/images/site/finished-units.webp"
-              alt="Finished Sunrise HDPE portable toilet units prepared for buyer inspection"
+              src="/images/site/brand-product-application.webp"
+              alt="Sunrise portable toilet and hand wash station in an outdoor application scene"
               fill
               sizes="(max-width: 900px) calc(100vw - 32px), 50vw"
             />
