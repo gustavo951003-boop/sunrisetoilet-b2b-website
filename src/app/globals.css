@@ -1072,6 +1072,272 @@ p {
   line-height: 1.45;
 }
 
+.products-index-page {
+  background: var(--surface);
+}
+
+.product-index-categories,
+.product-index-grid,
+.factory-video-section,
+.asset-map-section,
+.resource-download-grid,
+.certificate-section,
+.product-detail-hero,
+.product-detail-section {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.product-index-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.product-index-categories span,
+.product-category {
+  padding: 7px 9px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--green-dark);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.product-index-grid {
+  padding-bottom: 82px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.product-index-grid article {
+  background: var(--white);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.product-index-media {
+  position: relative;
+  min-height: 260px;
+  display: block;
+  background: #e9efeb;
+}
+
+.product-index-media img {
+  object-fit: contain;
+  padding: 22px;
+}
+
+.product-index-media > span {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 7px 9px;
+  background: var(--white);
+  color: var(--green-dark);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.product-index-grid article > div {
+  padding: 22px;
+}
+
+.product-index-grid h2 {
+  margin-top: 14px;
+  font-size: 19px;
+  line-height: 1.22;
+}
+
+.product-index-grid p {
+  margin-top: 12px;
+  min-height: 78px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.product-index-grid article a:not(.product-index-media) {
+  margin-top: 18px;
+  display: inline-flex;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.product-detail-page {
+  background: var(--white);
+}
+
+.product-detail-hero {
+  padding: 72px 0 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.68fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.product-detail-hero h1 {
+  max-width: 760px;
+  margin-top: 14px;
+  font-size: clamp(38px, 5vw, 70px);
+  line-height: 0.98;
+  font-weight: 800;
+}
+
+.product-detail-hero p,
+.product-detail-section p {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.product-detail-media {
+  position: relative;
+  min-height: 440px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.product-detail-media img {
+  object-fit: contain;
+  padding: 28px;
+}
+
+.product-detail-section {
+  padding: 58px 0;
+  border-top: 1px solid var(--line);
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.product-detail-section h2 {
+  margin-top: 14px;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+.spec-table,
+.detail-list {
+  display: grid;
+  gap: 10px;
+}
+
+.spec-table div,
+.detail-list div {
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.spec-table strong,
+.spec-table span {
+  display: block;
+}
+
+.spec-table strong {
+  color: var(--green-dark);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.spec-table span,
+.detail-list div {
+  margin-top: 8px;
+  color: #33433c;
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+.factory-video-section {
+  padding-bottom: 62px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  gap: 44px;
+  align-items: center;
+}
+
+.factory-video-section video {
+  width: 100%;
+  display: block;
+  background: #0b1814;
+}
+
+.factory-video-section h2,
+.asset-map-section h2,
+.resource-download-grid h2,
+.certificate-section h2 {
+  margin-top: 12px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.factory-video-section p,
+.asset-map-section p,
+.resource-download-grid p,
+.certificate-section p {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.asset-map-section,
+.resource-download-grid {
+  padding-bottom: 76px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.asset-map-section article,
+.resource-download-grid article,
+.certificate-section article {
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.resource-download-grid a,
+.certificate-section a {
+  margin-top: 18px;
+  display: inline-flex;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.certificate-section {
+  padding-bottom: 36px;
+  display: grid;
+  gap: 12px;
+}
+
+.certificate-section article {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.certificate-section article > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .oem-page {
   background: var(--white);
   color: var(--ink);
@@ -1256,6 +1522,19 @@ p {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .product-index-grid,
+  .asset-map-section,
+  .resource-download-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-detail-hero,
+  .product-detail-grid,
+  .factory-video-section,
+  .certificate-section article {
+    grid-template-columns: 1fr;
+  }
+
   .oem-card-grid,
   .oem-trust-list {
     grid-template-columns: repeat(2, 1fr);
@@ -1378,10 +1657,22 @@ p {
   .placeholder-hero,
   .placeholder-grid,
   .placeholder-list,
+  .product-index-categories,
+  .product-index-grid,
+  .product-detail-hero,
+  .product-detail-section,
+  .factory-video-section,
+  .asset-map-section,
+  .resource-download-grid,
+  .certificate-section,
   .oem-hero,
   .oem-section,
   .oem-final-cta {
     width: min(100% - 32px, 680px);
+  }
+
+  .certificate-section article > div:last-child {
+    justify-content: flex-start;
   }
 }
 
@@ -1417,9 +1708,16 @@ p {
   .process-grid,
   .trust-grid,
   .placeholder-grid,
+  .product-index-grid,
+  .asset-map-section,
+  .resource-download-grid,
   .oem-card-grid,
   .oem-trust-list {
     grid-template-columns: 1fr;
+  }
+
+  .product-detail-media {
+    min-height: 330px;
   }
 
   .product-media {

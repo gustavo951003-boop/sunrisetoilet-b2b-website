@@ -1,64 +1,66 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { products } from "./product-data";
 
 export const metadata: Metadata = {
   title: "Portable Toilet Products",
   description:
-    "HDPE portable toilet product range from Sunrise, including standard, hand-wash, reinforced and accessible portable toilet models.",
+    "HDPE portable toilet product range from Sunrise, including standard, hand-wash, reinforced, accessible, shower, hand wash station and waste tank models.",
   alternates: {
     canonical: "/products",
   },
 };
 
-const productLinks = [
-  {
-    model: "PT-360",
-    title: "Standard Portable Toilet",
-    text: "Core rental-fleet model for construction sites, events and distributor stock.",
-    href: "/contact",
-  },
-  {
-    model: "PT-370",
-    title: "Portable Toilet with Hand Wash",
-    text: "Hand-wash portable restroom for markets that require improved on-site hygiene.",
-    href: "/products/pt-370-portable-toilet",
-  },
-  {
-    model: "PT-390",
-    title: "Double-wall Portable Toilet",
-    text: "Reinforced HDPE cabin option for repeated handling and long-term outdoor use.",
-    href: "/contact",
-  },
-  {
-    model: "PDT-100",
-    title: "Accessible Portable Toilet",
-    text: "Wide-entry portable sanitation unit for public projects and inclusive facilities.",
-    href: "/products/accessible-portable-toilet",
-  },
-];
+const categories = ["Standard model", "Premium model", "Washbasin", "Waste tanks"];
 
 export default function ProductsPage() {
   return (
-    <main className="placeholder-page">
+    <main className="products-index-page">
       <section className="placeholder-hero">
         <Link className="back-link" href="/">
           Sunrise
         </Link>
         <span className="section-kicker">PRODUCTS</span>
-        <h1>Portable toilet product range.</h1>
+        <h1>Portable toilet product range from the Sunrise catalog.</h1>
         <p>
-          This page is prepared for future product detail expansion. Sunrise supplies HDPE
-          portable toilets for rental fleets, distributors, construction suppliers and project buyers.
+          Catalog-based product pages for B2B buyers comparing portable toilets, hand wash
+          stations, shower cabins, sewer-connect units and waste tanks for container supply.
         </p>
+        <div className="hero-actions">
+          <a className="button button-primary" href="/downloads/Sunrise-Catalog-2026.pdf">
+            Download 2026 Catalog
+          </a>
+          <Link className="button button-light" href="/contact">
+            Request Quote
+          </Link>
+        </div>
       </section>
 
-      <section className="placeholder-grid" aria-label="Portable toilet models">
-        {productLinks.map((product) => (
-          <article key={product.model}>
-            <span>{product.model}</span>
-            <h2>{product.title}</h2>
-            <p>{product.text}</p>
-            <Link href={product.href}>View details</Link>
+      <section className="product-index-categories" aria-label="Product categories">
+        {categories.map((category) => (
+          <span key={category}>{category}</span>
+        ))}
+      </section>
+
+      <section className="product-index-grid" aria-label="Portable toilet product models">
+        {products.map((product) => (
+          <article key={product.slug}>
+            <Link href={`/products/${product.slug}`} className="product-index-media">
+              <Image
+                src={product.image}
+                alt={product.alt}
+                fill
+                sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw"
+              />
+              <span>{product.model}</span>
+            </Link>
+            <div>
+              <span className="product-category">{product.category}</span>
+              <h2>{product.name}</h2>
+              <p>{product.idealFor}</p>
+              <Link href={`/products/${product.slug}`}>View specifications</Link>
+            </div>
           </article>
         ))}
       </section>

@@ -21,7 +21,7 @@ const products = [
     specs: ["Rotational molded HDPE cabin", "Waste tank configuration", "Easy cleaning and service access"],
     options: ["Urinal", "Foot pump", "Lifting points"],
     containerNote: "Suitable for mixed-model container orders and rental fleet replenishment.",
-    href: "/products",
+    href: "/products/pt-360-standard-portable-toilet",
   },
   {
     model: "PT-370",
@@ -47,7 +47,7 @@ const products = [
     specs: ["Double-wall HDPE structure", "Durable for repeated handling", "Color and accessory options"],
     options: ["Reinforced cabin", "Branding color", "Spare fittings"],
     containerNote: "Built for distributors planning long-term stock and repeated fleet orders.",
-    href: "/products",
+    href: "/products/pt-390-double-wall-portable-toilet",
   },
   {
     model: "PDT-100",
