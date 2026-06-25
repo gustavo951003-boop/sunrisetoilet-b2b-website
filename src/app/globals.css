@@ -227,6 +227,79 @@ p {
   color: var(--white);
 }
 
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown-trigger::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-left: 7px;
+  display: inline-block;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.nav-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  width: min(540px, calc(100vw - 48px));
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  visibility: hidden;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease,
+    visibility 160ms ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-panel,
+.nav-dropdown:focus-within .nav-dropdown-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+  visibility: visible;
+}
+
+.desktop-nav .nav-dropdown-panel a {
+  padding: 15px;
+  display: grid;
+  gap: 7px;
+  background: #f5f7f4;
+  color: var(--ink);
+}
+
+.desktop-nav .nav-dropdown-panel a:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+.nav-dropdown-panel strong {
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.nav-dropdown-panel span {
+  color: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
 .header-cta {
   min-height: 42px;
   padding: 0 18px;
@@ -291,6 +364,18 @@ p {
   border-bottom: 0;
   background: var(--green);
   color: var(--white);
+}
+
+.mobile-menu nav a.mobile-sub-link {
+  padding-left: 26px;
+  background: #f5f7f4;
+  color: var(--green-dark);
+  font-size: 12px;
+}
+
+.mobile-menu nav a.mobile-sub-link:last-child {
+  background: #f5f7f4;
+  color: var(--green-dark);
 }
 
 .hero-content {
@@ -1117,6 +1202,8 @@ p {
 }
 
 .product-index-categories,
+.product-model-tabs,
+.category-summary,
 .product-index-grid,
 .factory-video-section,
 .asset-map-section,
@@ -1135,7 +1222,34 @@ p {
   margin-bottom: 28px;
 }
 
-.product-index-categories span,
+.product-index-categories a {
+  min-height: 78px;
+  padding: 15px;
+  display: grid;
+  align-content: center;
+  gap: 7px;
+  flex: 1 1 210px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--green-dark);
+}
+
+.product-index-categories a:hover {
+  border-color: rgba(0, 142, 75, 0.4);
+  box-shadow: 0 14px 34px rgba(16, 46, 32, 0.08);
+}
+
+.product-index-categories strong {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.product-index-categories span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .product-category {
   padding: 7px 9px;
   background: var(--white);
@@ -1143,6 +1257,62 @@ p {
   color: var(--green-dark);
   font-size: 11px;
   font-weight: 900;
+}
+
+.product-model-tabs {
+  padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.product-model-tabs a {
+  min-width: 145px;
+  padding: 12px 14px;
+  display: grid;
+  gap: 4px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.product-model-tabs a:hover {
+  border-color: rgba(0, 142, 75, 0.45);
+  color: var(--green);
+}
+
+.product-model-tabs span {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.product-model-tabs strong {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.category-summary {
+  margin-bottom: 28px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.6fr);
+  gap: 36px;
+  align-items: end;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.category-summary h2 {
+  margin-top: 12px;
+  font-size: 28px;
+  line-height: 1.16;
+}
+
+.category-summary p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .product-index-grid {
@@ -1698,6 +1868,8 @@ p {
   .placeholder-grid,
   .placeholder-list,
   .product-index-categories,
+  .product-model-tabs,
+  .category-summary,
   .product-index-grid,
   .product-detail-hero,
   .product-detail-section,
@@ -1709,6 +1881,11 @@ p {
   .oem-section,
   .oem-final-cta {
     width: min(100% - 32px, 680px);
+  }
+
+  .category-summary {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .certificate-section article > div:last-child {

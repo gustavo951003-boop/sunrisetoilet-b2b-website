@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { productCategories } from "./products/product-categories";
 import { products } from "./products/product-data";
 
 const baseUrl = "https://sunrisetoilet.com";
@@ -11,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/oem-plastic-molding",
     "/resources",
     "/contact",
+    ...productCategories.map((category) => `/products/category/${category.slug}`),
     ...products.map((product) => `/products/${product.slug}`),
   ];
 

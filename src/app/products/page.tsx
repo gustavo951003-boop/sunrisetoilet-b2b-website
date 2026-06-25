@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { productCategories } from "./product-categories";
 import { products } from "./product-data";
 
 export const metadata: Metadata = {
@@ -11,8 +12,6 @@ export const metadata: Metadata = {
     canonical: "/products",
   },
 };
-
-const categories = ["Standard model", "Premium model", "Washbasin", "Waste tanks"];
 
 export default function ProductsPage() {
   return (
@@ -38,8 +37,11 @@ export default function ProductsPage() {
       </section>
 
       <section className="product-index-categories" aria-label="Product categories">
-        {categories.map((category) => (
-          <span key={category}>{category}</span>
+        {productCategories.map((category) => (
+          <Link href={`/products/category/${category.slug}`} key={category.slug}>
+            <strong>{category.menuLabel}</strong>
+            <span>{category.productSlugs.length} models</span>
+          </Link>
         ))}
       </section>
 

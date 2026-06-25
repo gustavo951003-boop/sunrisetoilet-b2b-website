@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "./ScrollReveal";
+import { productCategories } from "./products/product-categories";
 
 const heroTrustPoints = [
   "HDPE rotational molded toilets",
@@ -216,7 +217,19 @@ export default function Home() {
           <div className="header-inner">
             <BrandMark light />
             <nav className="desktop-nav" aria-label="Primary navigation">
-              <Link href="/products">Products</Link>
+              <div className="nav-dropdown">
+                <Link className="nav-dropdown-trigger" href="/products">
+                  Products
+                </Link>
+                <div className="nav-dropdown-panel" aria-label="Product categories">
+                  {productCategories.map((category) => (
+                    <Link href={`/products/category/${category.slug}`} key={category.slug}>
+                      <strong>{category.menuLabel}</strong>
+                      <span>{category.buyerNote}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
               <Link href="/factory">Factory</Link>
               <Link href="/oem-plastic-molding">OEM Capabilities</Link>
               <a href="#bulk-supply">Bulk Supply</a>
@@ -234,6 +247,15 @@ export default function Home() {
               </summary>
               <nav aria-label="Mobile navigation">
                 <Link href="/products">Products</Link>
+                {productCategories.map((category) => (
+                  <Link
+                    className="mobile-sub-link"
+                    href={`/products/category/${category.slug}`}
+                    key={category.slug}
+                  >
+                    {category.menuLabel}
+                  </Link>
+                ))}
                 <Link href="/factory">Factory</Link>
                 <Link href="/oem-plastic-molding">OEM Capabilities</Link>
                 <a href="#bulk-supply">Bulk Supply</a>
