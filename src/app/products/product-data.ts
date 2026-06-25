@@ -8,6 +8,8 @@ export type Product = {
   cardDescription: string;
   cardSpecs: string[];
   idealFor: string;
+  applications: string[];
+  procurementSupport: string[];
   description: string;
   keySpecifications: string[];
   advantages: string[];
@@ -27,6 +29,18 @@ export const products: Product[] = [
     cardDescription: "Standard HDPE toilet for construction sites and rental fleets.",
     cardSpecs: ["Metal skid", "370L waste tank", "HDPE cabin"],
     idealFor: "Versatile outdoor applications and long-term construction sites.",
+    applications: [
+      "Construction sites",
+      "Rental fleets",
+      "Distributor stock",
+      "Long-term outdoor projects",
+    ],
+    procurementSupport: [
+      "SGS / RoHS documents available for buyer review",
+      "Packing data for mixed-model container orders",
+      "Pre-shipment inspection support",
+      "Spare parts list for repeat fleet orders",
+    ],
     description:
       "A workhorse HDPE portable toilet for rental fleets, construction sites and distributor stock. The PT-360 balances interior space, tank capacity and transport stability for repeat field use.",
     keySpecifications: [
@@ -54,6 +68,18 @@ export const products: Product[] = [
     cardDescription: "Hand wash portable toilet for sites, events and rental fleets.",
     cardSpecs: ["Hand wash option", "Foot pump available", "HDPE cabin"],
     idealFor: "Short-term events, festivals and rental fleets.",
+    applications: [
+      "Construction sites",
+      "Short-term events",
+      "Rental fleets",
+      "Festival sanitation",
+    ],
+    procurementSupport: [
+      "Hand wash configuration files available on request",
+      "Packing data and container loading plan",
+      "Pre-shipment inspection support",
+      "Spare parts list for pump and sink options",
+    ],
     description:
       "A lightweight and adaptable portable toilet model with optional hand wash sink, urinal and recirculating flush configurations for fast deployment.",
     keySpecifications: [
@@ -82,6 +108,18 @@ export const products: Product[] = [
     cardSpecs: ["Wide entry", "Grab bars", "Large interior"],
     idealFor:
       "Public festivals, high-traffic commercial sites and inclusive outdoor venues.",
+    applications: [
+      "Public events",
+      "Accessible venues",
+      "Government projects",
+      "Inclusive outdoor facilities",
+    ],
+    procurementSupport: [
+      "Layout and dimension files available for buyer review",
+      "Accessible unit packing data on request",
+      "Pre-shipment inspection support",
+      "Compliance support for procurement review",
+    ],
     description:
       "A spacious accessible portable toilet with flush-and-wash functionality, designed for public venues and project buyers that require barrier-free sanitation.",
     keySpecifications: [
@@ -109,6 +147,18 @@ export const products: Product[] = [
     cardDescription: "High-capacity toilet for sites needing longer service intervals.",
     cardSpecs: ["390L waste tank", "Metal skid", "High traffic"],
     idealFor: "High-traffic outdoor sites and remote locations with limited servicing.",
+    applications: [
+      "Remote job sites",
+      "High-traffic events",
+      "Longer service intervals",
+      "Rental fleet upgrades",
+    ],
+    procurementSupport: [
+      "Tank capacity data available for service planning",
+      "Packing data and container loading plan",
+      "Pre-shipment inspection support",
+      "Spare parts list for high-use fleets",
+    ],
     description:
       "A high-capacity portable toilet engineered for extended service intervals and rugged outdoor environments.",
     keySpecifications: [
@@ -136,6 +186,18 @@ export const products: Product[] = [
     cardDescription: "Signature portable toilet for premium events and commercial rental.",
     cardSpecs: ["Modern profile", "Metal skid", "390L waste tank"],
     idealFor: "Premium outdoor events and versatile commercial use.",
+    applications: [
+      "Premium events",
+      "Commercial rental fleets",
+      "Public venues",
+      "Distributor showrooms",
+    ],
+    procurementSupport: [
+      "Exterior profile and specification files on request",
+      "Packing data for fleet container orders",
+      "Pre-shipment inspection support",
+      "Spare parts list for commercial rental use",
+    ],
     description:
       "A refined portable toilet model combining high-capacity performance with a more modern exterior profile for commercial rental markets.",
     keySpecifications: [
@@ -163,6 +225,18 @@ export const products: Product[] = [
     cardDescription: "Premium fleet model with strong capacity and fast deployment.",
     cardSpecs: ["400L waste tank", "Double-wall option", "Fleet use"],
     idealFor: "Premium rentals and high-demand sites requiring rapid setup.",
+    applications: [
+      "Premium rental fleets",
+      "High-demand sites",
+      "Event hire companies",
+      "Distributor repeat orders",
+    ],
+    procurementSupport: [
+      "Double-wall option details available for review",
+      "Container loading plan for repeated supply",
+      "Pre-shipment inspection support",
+      "Spare parts list for premium fleets",
+    ],
     description:
       "A premium portable toilet model known for durability, setup speed and a strong balance between interior space and tank capacity.",
     keySpecifications: [
@@ -190,6 +264,18 @@ export const products: Product[] = [
     cardDescription: "Upgraded premium toilet with simplified plumbing for fleet buyers.",
     cardSpecs: ["Internal plumbing", "Metal skid", "400L waste tank"],
     idealFor: "High-demand fleets needing simplified setup and reliable plumbing.",
+    applications: [
+      "High-demand rental fleets",
+      "Fleet replacement programs",
+      "Construction projects",
+      "Distributor premium supply",
+    ],
+    procurementSupport: [
+      "Internal plumbing details available on request",
+      "Packing data and container loading plan",
+      "Pre-shipment inspection support",
+      "Spare parts list for plumbing options",
+    ],
     description:
       "An upgraded premium model with re-engineered internal plumbing and a plug-and-play setup approach for fleet buyers.",
     keySpecifications: [
@@ -217,6 +303,18 @@ export const products: Product[] = [
     cardDescription: "Squat-style portable toilet for high-frequency public use.",
     cardSpecs: ["Squat design", "320L waste tank", "Rapid deployment"],
     idealFor: "Large public events, emergency disaster relief, construction sites and military drills.",
+    applications: [
+      "Large public events",
+      "Emergency response",
+      "Military drills",
+      "High-frequency public use",
+    ],
+    procurementSupport: [
+      "Squat-style layout files available for buyer review",
+      "Packing data for rapid deployment orders",
+      "Pre-shipment inspection support",
+      "Spare parts list for field service",
+    ],
     description:
       "A squat-style portable toilet designed for high-frequency public use and markets where squatting toilets are preferred.",
     keySpecifications: [
@@ -244,6 +342,18 @@ export const products: Product[] = [
     cardDescription: "Waterless dry toilet for cold climates and water-scarce sites.",
     cardSpecs: ["Waterless", "-30C use", "400L waste tank"],
     idealFor: "High-latitude regions, water-scarce areas and extreme winter environments.",
+    applications: [
+      "Cold climate sites",
+      "Water-scarce areas",
+      "Remote winter projects",
+      "Dry toilet programs",
+    ],
+    procurementSupport: [
+      "Waterless configuration files available on request",
+      "Cold-climate use data for buyer review",
+      "Pre-shipment inspection support",
+      "Spare parts list for dry toilet supply",
+    ],
     description:
       "A squat-style dry toilet system engineered for cold climates and water-scarce sites where flushing systems may fail.",
     keySpecifications: [
@@ -271,6 +381,18 @@ export const products: Product[] = [
     cardDescription: "Mobile shower cabin for camps, sites and outdoor facilities.",
     cardSpecs: ["Hot/cold intake", "Anti-slip floor", "Sewer outlet"],
     idealFor: "Construction sites, campgrounds, disaster relief and outdoor events.",
+    applications: [
+      "Worker camps",
+      "Disaster relief",
+      "Outdoor events",
+      "Temporary hygiene facilities",
+    ],
+    procurementSupport: [
+      "Water connection and drainage details available",
+      "Packing data for shower cabin orders",
+      "Pre-shipment inspection support",
+      "Spare parts list for fittings and floor parts",
+    ],
     description:
       "A professional mobile shower solution with external water source connection and drainage planning for temporary facilities.",
     keySpecifications: [
@@ -298,6 +420,18 @@ export const products: Product[] = [
     cardDescription: "Sewer-connect unit for long-term and semi-permanent projects.",
     cardSpecs: ["Sewer outlet", "Custom base", "Long-term use"],
     idealFor: "High-rise construction sites, long-term outdoor projects and semi-permanent installations.",
+    applications: [
+      "High-rise construction",
+      "Semi-permanent sites",
+      "Long-term outdoor projects",
+      "Sewer-connected facilities",
+    ],
+    procurementSupport: [
+      "Sewer outlet and base options available for review",
+      "Packing data for long-term project supply",
+      "Pre-shipment inspection support",
+      "Spare parts list for connection fittings",
+    ],
     description:
       "A sewer-connect sanitation unit for long-term projects requiring a more permanent facility experience in a mobile structure.",
     keySpecifications: [
@@ -325,6 +459,18 @@ export const products: Product[] = [
     cardDescription: "Compact hand wash station for events and construction sites.",
     cardSpecs: ["60L freshwater", "Foot pump", "Mobile base"],
     idealFor: "High-traffic outdoor events, festivals, concerts and remote construction sites.",
+    applications: [
+      "Outdoor events",
+      "Remote construction sites",
+      "Festival hygiene points",
+      "Temporary hand wash areas",
+    ],
+    procurementSupport: [
+      "Freshwater and wastewater data available for review",
+      "Packing data for hand wash station orders",
+      "Pre-shipment inspection support",
+      "Spare parts list for foot-pump components",
+    ],
     description:
       "A compact hand wash station for sites without restroom access, designed for hygiene support in high-frequency public use.",
     keySpecifications: [
@@ -352,6 +498,18 @@ export const products: Product[] = [
     cardDescription: "Dual stationary hand wash station for long-term high-use sites.",
     cardSpecs: ["Dual users", "100L freshwater", "Stationary base"],
     idealFor: "Long-term construction sites, public parks, industrial facilities and semi-permanent outdoor installations.",
+    applications: [
+      "Long-term construction sites",
+      "Public parks",
+      "Industrial facilities",
+      "Semi-permanent hygiene points",
+    ],
+    procurementSupport: [
+      "Dual-user layout details available on request",
+      "Packing data for stationary station supply",
+      "Pre-shipment inspection support",
+      "Spare parts list for dual foot-pump systems",
+    ],
     description:
       "A stationary double-sided hand wash station for long-term projects that need higher hand washing throughput.",
     keySpecifications: [
@@ -379,6 +537,18 @@ export const products: Product[] = [
     cardDescription: "Mobile dual-user hand wash station for large events and projects.",
     cardSpecs: ["Dual users", "Wheeled base", "100L freshwater"],
     idealFor: "Large festivals, high-traffic concerts, fairs and major construction projects.",
+    applications: [
+      "Large festivals",
+      "High-traffic concerts",
+      "Major construction projects",
+      "Mobile hygiene support",
+    ],
+    procurementSupport: [
+      "Mobile base and tank data available for review",
+      "Packing data for event rental supply",
+      "Pre-shipment inspection support",
+      "Spare parts list for wheels and pump parts",
+    ],
     description:
       "A mobile dual-user hand wash station with high tank capacity, foot-pump operation and easier repositioning.",
     keySpecifications: [
@@ -406,6 +576,18 @@ export const products: Product[] = [
     cardDescription: "Portable waste tanks for temporary sanitation without sewer access.",
     cardSpecs: ["2000-6000L", "Steel frame", "Skid design"],
     idealFor: "Large waste storage where sewer connection is not available.",
+    applications: [
+      "Temporary sanitation systems",
+      "Remote sites",
+      "Ablution blocks",
+      "Long-term project waste storage",
+    ],
+    procurementSupport: [
+      "Waste tank test reports available for buyer review",
+      "Packing and frame loading data on request",
+      "Pre-shipment inspection support",
+      "Valve and alarm option list for repeat orders",
+    ],
     description:
       "UV-resistant polyethylene waste tanks designed to sit under ablution blocks, lunchrooms or kitchens when sewer connection is unavailable.",
     keySpecifications: [

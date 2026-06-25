@@ -9,23 +9,6 @@ import { productCategories } from "./product-categories";
 import type { Product } from "./product-data";
 import { products } from "./product-data";
 
-const applications = [
-  "Rental fleets",
-  "Construction sites",
-  "Events",
-  "Public venues",
-  "Distributors",
-  "Project tenders",
-];
-
-const buyerVerification = [
-  "Certification documents available",
-  "Packing data",
-  "Container loading planning",
-  "Inspection before shipment",
-  "Spare parts support",
-];
-
 function getUniqueItems(items: string[]) {
   return Array.from(new Set(items.filter(Boolean)));
 }
@@ -101,6 +84,7 @@ export function ProductDetail({ product }: { product: Product }) {
   ]).slice(0, 5);
   const configurationOptions = getUniqueItems([
     ...mainOptions,
+    ...product.advantages,
     ...product.keySpecifications,
   ]).slice(0, 6);
   const specRows = [
@@ -188,9 +172,9 @@ export function ProductDetail({ product }: { product: Product }) {
               Ask for Factory Quote
             </Link>
           </div>
-          <div className="buyer-files-block">
-            <strong>Buyer verification files</strong>
-            {buyerVerification.slice(0, 4).map((item) => (
+          <div className="procurement-support-block">
+            <strong>Procurement Support</strong>
+            {product.procurementSupport.slice(0, 4).map((item) => (
               <span key={item}>{item}</span>
             ))}
           </div>
@@ -216,14 +200,14 @@ export function ProductDetail({ product }: { product: Product }) {
         </div>
       </section>
 
-      <section className="product-detail-section product-detail-grid">
+      <section className="product-compact-section" aria-label={`${product.model} best-fit applications`}>
         <div>
-          <span className="section-kicker">APPLICATIONS</span>
-          <h2>Use cases for rental, construction and project supply.</h2>
+          <span className="section-kicker">BEST-FIT APPLICATIONS</span>
+          <h2>Where this model fits best.</h2>
         </div>
-        <div className="application-list">
-          {applications.map((item) => (
-            <div key={item}>{item}</div>
+        <div className="application-chip-list">
+          {product.applications.slice(0, 4).map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
       </section>
@@ -239,22 +223,6 @@ export function ProductDetail({ product }: { product: Product }) {
         </div>
         <div className="detail-list">
           {configurationOptions.map((item) => (
-            <div key={item}>{item}</div>
-          ))}
-        </div>
-      </section>
-
-      <section className="product-detail-section product-detail-grid">
-        <div>
-          <span className="section-kicker">BUYER VERIFICATION</span>
-          <h2>Documents and support available before shipment.</h2>
-          <p>
-            Sunrise supports practical B2B review without overclaiming certification coverage.
-            Buyers can request compliance files, packing plans and pre-shipment review support.
-          </p>
-        </div>
-        <div className="detail-list">
-          {[...product.advantages, ...buyerVerification].map((item) => (
             <div key={item}>{item}</div>
           ))}
         </div>

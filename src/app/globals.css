@@ -1416,6 +1416,7 @@ p {
 .certification-panel,
 .section-cta,
 .product-overview-section,
+.product-compact-section,
 .category-card-grid,
 .product-index-categories,
 .product-model-tabs,
@@ -1966,7 +1967,7 @@ p {
   gap: 10px;
 }
 
-.buyer-files-block {
+.procurement-support-block {
   margin-top: 24px;
   padding: 18px;
   display: grid;
@@ -1975,12 +1976,12 @@ p {
   border: 1px solid var(--line);
 }
 
-.buyer-files-block strong {
+.procurement-support-block strong {
   color: var(--green-dark);
   font-size: 13px;
 }
 
-.buyer-files-block span {
+.procurement-support-block span {
   color: #33433c;
   font-size: 12px;
   line-height: 1.45;
@@ -1999,6 +2000,39 @@ p {
   align-items: start;
 }
 
+.product-compact-section {
+  padding: 34px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+
+.product-compact-section h2 {
+  margin-top: 10px;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.12;
+}
+
+.application-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.application-chip-list span {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #eef5f1;
+  border: 1px solid rgba(19, 54, 42, 0.09);
+  color: var(--green-dark);
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 850;
+}
+
 .product-detail-section h2 {
   margin-top: 14px;
   font-size: clamp(28px, 3vw, 44px);
@@ -2007,15 +2041,13 @@ p {
 }
 
 .spec-table,
-.detail-list,
-.application-list {
+.detail-list {
   display: grid;
   gap: 10px;
 }
 
 .spec-table div,
-.detail-list div,
-.application-list div {
+.detail-list div {
   padding: 16px 18px;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -2034,8 +2066,7 @@ p {
 }
 
 .spec-table span,
-.detail-list div,
-.application-list div {
+.detail-list div {
   margin-top: 8px;
   color: #33433c;
   font-size: 14px;
@@ -2397,6 +2428,7 @@ p {
   .section-cta,
   .site-footer-grid,
   .product-detail-hero,
+  .product-compact-section,
   .product-detail-grid,
   .factory-video-section,
   .factory-certification-section,
@@ -2538,6 +2570,7 @@ p {
   .certification-panel,
   .section-cta,
   .product-overview-section,
+  .product-compact-section,
   .category-card-grid,
   .product-index-categories,
   .product-model-tabs,
@@ -2634,6 +2667,10 @@ p {
   }
 
   .section-cta-actions {
+    justify-content: flex-start;
+  }
+
+  .application-chip-list {
     justify-content: flex-start;
   }
 
