@@ -65,20 +65,26 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
             <span />
           </summary>
           <nav aria-label="Mobile navigation">
-            {mainNavigation.map((item) => (
-              <Link href={item.href} key={item.href}>
-                {item.label}
-              </Link>
-            ))}
-            {productCategories.map((category) => (
-              <Link
-                className="mobile-sub-link"
-                href={`/products/category/${category.slug}`}
-                key={category.slug}
-              >
-                {category.menuLabel}
-              </Link>
-            ))}
+            {mainNavigation.map((item) =>
+              item.href === "/products" ? (
+                <div className="mobile-nav-group" key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                  {productCategories.map((category) => (
+                    <Link
+                      className="mobile-sub-link"
+                      href={`/products/category/${category.slug}`}
+                      key={category.slug}
+                    >
+                      {category.menuLabel}
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <Link href={item.href} key={item.href}>
+                  {item.label}
+                </Link>
+              ),
+            )}
             <Link href="/contact">Request Factory Quote</Link>
           </nav>
         </details>

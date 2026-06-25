@@ -85,7 +85,11 @@ export default function FactoryPage() {
         ))}
       </section>
 
-      <CertificationStrip />
+      <CertificationStrip
+        variant="panel"
+        title="Third-party verification files available for buyer review"
+        subtitle="Intertek, SGS, RoHS and Australian market reference documentation can support distributor, rental fleet and project procurement review."
+      />
 
       <section className="asset-map-section" aria-label="Factory asset placement">
         {assetPlacement.map((item) => (

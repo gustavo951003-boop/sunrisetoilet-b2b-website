@@ -5,6 +5,8 @@ export type Product = {
   category: string;
   image: string;
   alt: string;
+  cardDescription: string;
+  cardSpecs: string[];
   idealFor: string;
   description: string;
   keySpecifications: string[];
@@ -22,6 +24,8 @@ export const products: Product[] = [
     category: "Standard model",
     image: "/images/products/pt-360.webp",
     alt: "PT-360 standard HDPE portable toilet",
+    cardDescription: "Standard HDPE toilet for construction sites and rental fleets.",
+    cardSpecs: ["Metal skid", "370L waste tank", "HDPE cabin"],
     idealFor: "Versatile outdoor applications and long-term construction sites.",
     description:
       "A workhorse HDPE portable toilet for rental fleets, construction sites and distributor stock. The PT-360 balances interior space, tank capacity and transport stability for repeat field use.",
@@ -47,6 +51,8 @@ export const products: Product[] = [
     category: "Basic model",
     image: "/images/products/pt-370.webp",
     alt: "PT-370 portable toilet with hand wash option",
+    cardDescription: "Hand wash portable toilet for sites, events and rental fleets.",
+    cardSpecs: ["Hand wash option", "Foot pump available", "HDPE cabin"],
     idealFor: "Short-term events, festivals and rental fleets.",
     description:
       "A lightweight and adaptable portable toilet model with optional hand wash sink, urinal and recirculating flush configurations for fast deployment.",
@@ -72,6 +78,8 @@ export const products: Product[] = [
     category: "Accessible portable toilet",
     image: "/images/products/pdt-100.webp",
     alt: "PDT-100 accessible portable toilet with wide entry",
+    cardDescription: "Wide-entry accessible toilet for public venues and project tenders.",
+    cardSpecs: ["Wide entry", "Grab bars", "Large interior"],
     idealFor:
       "Public festivals, high-traffic commercial sites and inclusive outdoor venues.",
     description:
@@ -98,6 +106,8 @@ export const products: Product[] = [
     category: "Ultra model",
     image: "/images/products/pt-380.webp",
     alt: "PT-380 high capacity portable toilet",
+    cardDescription: "High-capacity toilet for sites needing longer service intervals.",
+    cardSpecs: ["390L waste tank", "Metal skid", "High traffic"],
     idealFor: "High-traffic outdoor sites and remote locations with limited servicing.",
     description:
       "A high-capacity portable toilet engineered for extended service intervals and rugged outdoor environments.",
@@ -123,6 +133,8 @@ export const products: Product[] = [
     category: "Advanced model",
     image: "/images/products/pt-381.webp",
     alt: "PT-381 signature series portable toilet",
+    cardDescription: "Signature portable toilet for premium events and commercial rental.",
+    cardSpecs: ["Modern profile", "Metal skid", "390L waste tank"],
     idealFor: "Premium outdoor events and versatile commercial use.",
     description:
       "A refined portable toilet model combining high-capacity performance with a more modern exterior profile for commercial rental markets.",
@@ -148,6 +160,8 @@ export const products: Product[] = [
     category: "Premium model",
     image: "/images/products/pt-390.webp",
     alt: "PT-390 premium double wall portable toilet",
+    cardDescription: "Premium fleet model with strong capacity and fast deployment.",
+    cardSpecs: ["400L waste tank", "Double-wall option", "Fleet use"],
     idealFor: "Premium rentals and high-demand sites requiring rapid setup.",
     description:
       "A premium portable toilet model known for durability, setup speed and a strong balance between interior space and tank capacity.",
@@ -173,6 +187,8 @@ export const products: Product[] = [
     category: "Upgraded premium model",
     image: "/images/products/pt-400.webp",
     alt: "PT-400 upgraded premium portable toilet",
+    cardDescription: "Upgraded premium toilet with simplified plumbing for fleet buyers.",
+    cardSpecs: ["Internal plumbing", "Metal skid", "400L waste tank"],
     idealFor: "High-demand fleets needing simplified setup and reliable plumbing.",
     description:
       "An upgraded premium model with re-engineered internal plumbing and a plug-and-play setup approach for fleet buyers.",
@@ -198,6 +214,8 @@ export const products: Product[] = [
     category: "Squatting toilet",
     image: "/images/products/pt-280.webp",
     alt: "PT-280 squatting portable toilet",
+    cardDescription: "Squat-style portable toilet for high-frequency public use.",
+    cardSpecs: ["Squat design", "320L waste tank", "Rapid deployment"],
     idealFor: "Large public events, emergency disaster relief, construction sites and military drills.",
     description:
       "A squat-style portable toilet designed for high-frequency public use and markets where squatting toilets are preferred.",
@@ -223,6 +241,8 @@ export const products: Product[] = [
     category: "Waterless toilet",
     image: "/images/products/pt-300.webp",
     alt: "PT-300 waterless portable toilet for cold climates",
+    cardDescription: "Waterless dry toilet for cold climates and water-scarce sites.",
+    cardSpecs: ["Waterless", "-30C use", "400L waste tank"],
     idealFor: "High-latitude regions, water-scarce areas and extreme winter environments.",
     description:
       "A squat-style dry toilet system engineered for cold climates and water-scarce sites where flushing systems may fail.",
@@ -248,6 +268,8 @@ export const products: Product[] = [
     category: "Portable shower",
     image: "/images/products/ps-330.webp",
     alt: "PS-330 mobile shower cabin",
+    cardDescription: "Mobile shower cabin for camps, sites and outdoor facilities.",
+    cardSpecs: ["Hot/cold intake", "Anti-slip floor", "Sewer outlet"],
     idealFor: "Construction sites, campgrounds, disaster relief and outdoor events.",
     description:
       "A professional mobile shower solution with external water source connection and drainage planning for temporary facilities.",
@@ -273,6 +295,8 @@ export const products: Product[] = [
     category: "Sewer connect toilet",
     image: "/images/products/sc-100.webp",
     alt: "SC-100 sewer connect portable toilet interior",
+    cardDescription: "Sewer-connect unit for long-term and semi-permanent projects.",
+    cardSpecs: ["Sewer outlet", "Custom base", "Long-term use"],
     idealFor: "High-rise construction sites, long-term outdoor projects and semi-permanent installations.",
     description:
       "A sewer-connect sanitation unit for long-term projects requiring a more permanent facility experience in a mobile structure.",
@@ -298,6 +322,8 @@ export const products: Product[] = [
     category: "Washbasin",
     image: "/images/products/ph-120.webp",
     alt: "PH-120 portable hand wash station",
+    cardDescription: "Compact hand wash station for events and construction sites.",
+    cardSpecs: ["60L freshwater", "Foot pump", "Mobile base"],
     idealFor: "High-traffic outdoor events, festivals, concerts and remote construction sites.",
     description:
       "A compact hand wash station for sites without restroom access, designed for hygiene support in high-frequency public use.",
@@ -323,6 +349,8 @@ export const products: Product[] = [
     category: "Washbasin",
     image: "/images/products/ph-200.webp",
     alt: "PH-200 dual hand wash station",
+    cardDescription: "Dual stationary hand wash station for long-term high-use sites.",
+    cardSpecs: ["Dual users", "100L freshwater", "Stationary base"],
     idealFor: "Long-term construction sites, public parks, industrial facilities and semi-permanent outdoor installations.",
     description:
       "A stationary double-sided hand wash station for long-term projects that need higher hand washing throughput.",
@@ -348,6 +376,8 @@ export const products: Product[] = [
     category: "Washbasin",
     image: "/images/products/ph-200a.webp",
     alt: "PH-200A mobile dual hand wash station",
+    cardDescription: "Mobile dual-user hand wash station for large events and projects.",
+    cardSpecs: ["Dual users", "Wheeled base", "100L freshwater"],
     idealFor: "Large festivals, high-traffic concerts, fairs and major construction projects.",
     description:
       "A mobile dual-user hand wash station with high tank capacity, foot-pump operation and easier repositioning.",
@@ -373,6 +403,8 @@ export const products: Product[] = [
     category: "Waste tanks",
     image: "/images/products/wt4000.webp",
     alt: "Portable waste tanks for temporary sanitation",
+    cardDescription: "Portable waste tanks for temporary sanitation without sewer access.",
+    cardSpecs: ["2000-6000L", "Steel frame", "Skid design"],
     idealFor: "Large waste storage where sewer connection is not available.",
     description:
       "UV-resistant polyethylene waste tanks designed to sit under ablution blocks, lunchrooms or kitchens when sewer connection is unavailable.",

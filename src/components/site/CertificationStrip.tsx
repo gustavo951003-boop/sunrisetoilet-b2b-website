@@ -4,15 +4,41 @@ import { certificationBadges } from "@/data/certifications";
 
 type CertificationStripProps = {
   compact?: boolean;
+  variant?: "band" | "panel";
   title?: string;
   subtitle?: string;
 };
 
 export function CertificationStrip({
   compact = false,
+  variant = "band",
   title = "Certification & Compliance Documents for Buyer Review",
-  subtitle = "Intertek, SGS, RoHS and Australian market reference documents are available to support distributor, rental fleet and project procurement review.",
+  subtitle = "Intertek, SGS, RoHS and Australian market reference documents are available for buyer review.",
 }: CertificationStripProps) {
+  if (variant === "band") {
+    return (
+      <section className={compact ? "certification-proof-band certification-proof-band-compact" : "certification-proof-band"}>
+        <div className="certification-proof-copy">
+          <span className="section-kicker">TRUSTED DOCUMENTATION</span>
+          <h2>Trusted documentation for B2B procurement</h2>
+          <p>{subtitle}</p>
+        </div>
+        <div className="certification-logo-row" aria-label="Certification and compliance references">
+          {certificationBadges.map((badge) => (
+            <Image
+              src={badge.image}
+              alt={badge.alt}
+              width={badge.width}
+              height={badge.height}
+              sizes="(max-width: 680px) 42vw, 140px"
+              key={badge.name}
+            />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={compact ? "certification-panel certification-panel-compact" : "certification-panel"}>
       <div className="certification-panel-head">

@@ -9,6 +9,7 @@ export const mainNavigation = [
 
 export const footerProductLinks = [
   { label: "Portable Toilets", href: "/products/category/portable-toilets" },
+  { label: "Accessible Toilets", href: "/products/category/accessible-toilets" },
   { label: "Portable Showers", href: "/products/category/portable-showers" },
   { label: "Hand Wash Stations", href: "/products/category/hand-wash-stations" },
   { label: "Waste Tanks", href: "/products/category/waste-tanks" },

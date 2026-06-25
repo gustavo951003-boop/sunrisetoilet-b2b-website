@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/site/PageHero";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -58,7 +57,7 @@ export default async function ProductCategoryPage({
       <SiteHeader />
       <PageHero
         kicker="Product Category"
-        title={`${category.title} from the Sunrise catalog`}
+        title={category.heroTitle}
         description={category.description}
         backgroundImage="/images/site/factory-workshop.webp"
         breadcrumbs={[
@@ -69,15 +68,6 @@ export default async function ProductCategoryPage({
         primaryCTA={{ label: "Request Specifications", href: "/contact" }}
         secondaryCTA={{ label: "Download Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
       />
-
-      <section className="product-model-tabs" aria-label={`${category.title} models`}>
-        {categoryProducts.map((product) => (
-          <Link href={`/products/${product.slug}`} key={product.slug}>
-            <span>{product.model}</span>
-            <strong>{product.name}</strong>
-          </Link>
-        ))}
-      </section>
 
       <section className="category-summary">
         <div>
