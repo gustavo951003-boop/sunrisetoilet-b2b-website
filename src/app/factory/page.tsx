@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { certificationBadges } from "../certification-data";
 
 export const metadata: Metadata = {
   title: "Portable Toilet Factory in China",
@@ -64,6 +66,35 @@ export default function FactoryPage() {
         {facts.map((fact) => (
           <div key={fact}>{fact}</div>
         ))}
+      </section>
+
+      <section className="factory-certification-section" aria-label="Factory certification references">
+        <div>
+          <span className="section-kicker">CERTIFICATION REFERENCES</span>
+          <h2>Quality, compliance and market-standard marks for buyer review.</h2>
+          <p>
+            Sunrise presents third-party quality assurance, SGS-related review materials,
+            RoHS compliance support and Australian market standard references alongside
+            factory video and downloadable documents.
+          </p>
+        </div>
+        <div className="factory-certification-grid">
+          {certificationBadges.map((badge) => (
+            <article key={badge.name}>
+              <div className="factory-certification-logo">
+                <Image
+                  src={badge.image}
+                  alt={badge.alt}
+                  width={badge.width}
+                  height={badge.height}
+                  sizes="(max-width: 720px) 42vw, 160px"
+                />
+              </div>
+              <h3>{badge.name}</h3>
+              <p>{badge.note}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="asset-map-section" aria-label="Factory asset placement">

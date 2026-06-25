@@ -947,6 +947,30 @@ p {
   border-radius: 50%;
 }
 
+.certification-strip {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.certification-logo {
+  min-height: 82px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.certification-logo img {
+  width: 100%;
+  max-width: 118px;
+  height: 54px;
+  object-fit: contain;
+}
+
 .text-link {
   margin-top: 24px;
   display: inline-flex;
@@ -1206,6 +1230,7 @@ p {
 .category-summary,
 .product-index-grid,
 .factory-video-section,
+.factory-certification-section,
 .asset-map-section,
 .resource-download-grid,
 .certificate-section,
@@ -1494,6 +1519,7 @@ p {
 }
 
 .factory-video-section p,
+.factory-certification-section p,
 .asset-map-section p,
 .resource-download-grid p,
 .certificate-section p {
@@ -1501,6 +1527,57 @@ p {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.7;
+}
+
+.factory-certification-section {
+  padding-bottom: 76px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(0, 1fr);
+  gap: 42px;
+  align-items: start;
+}
+
+.factory-certification-section h2 {
+  margin-top: 12px;
+  font-size: 32px;
+  line-height: 1.12;
+}
+
+.factory-certification-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.factory-certification-grid article {
+  min-height: 250px;
+  padding: 18px;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.factory-certification-logo {
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7f4;
+  border: 1px solid #e5ebe7;
+}
+
+.factory-certification-logo img {
+  width: 100%;
+  max-width: 132px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.factory-certification-grid h3 {
+  font-size: 15px;
+  line-height: 1.25;
 }
 
 .asset-map-section,
@@ -1741,8 +1818,13 @@ p {
   .product-detail-hero,
   .product-detail-grid,
   .factory-video-section,
+  .factory-certification-section,
   .certificate-section article {
     grid-template-columns: 1fr;
+  }
+
+  .factory-certification-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .oem-card-grid,
@@ -1874,6 +1956,7 @@ p {
   .product-detail-hero,
   .product-detail-section,
   .factory-video-section,
+  .factory-certification-section,
   .asset-map-section,
   .resource-download-grid,
   .certificate-section,
@@ -1924,8 +2007,10 @@ p {
   .product-grid,
   .process-grid,
   .trust-grid,
+  .certification-strip,
   .placeholder-grid,
   .product-index-grid,
+  .factory-certification-grid,
   .asset-map-section,
   .resource-download-grid,
   .oem-card-grid,

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { certificationBadges } from "./certification-data";
 import { ScrollReveal } from "./ScrollReveal";
 import { productCategories } from "./products/product-categories";
 
@@ -480,6 +481,19 @@ export default function Home() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+            <div className="certification-strip" aria-label="Certification references">
+              {certificationBadges.map((badge) => (
+                <div className="certification-logo" key={badge.name}>
+                  <Image
+                    src={badge.image}
+                    alt={badge.alt}
+                    width={badge.width}
+                    height={badge.height}
+                    sizes="(max-width: 680px) 45vw, 130px"
+                  />
+                </div>
+              ))}
+            </div>
             <Link className="text-link" href="/contact">
               Contact Sales Team
             </Link>
