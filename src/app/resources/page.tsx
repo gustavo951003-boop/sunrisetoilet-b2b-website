@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { PageHero } from "@/components/site/PageHero";
+import { SectionCta } from "@/components/site/SectionCta";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Portable Toilet Catalogs and Certificates",
@@ -71,17 +74,19 @@ const placement = [
 export default function ResourcesPage() {
   return (
     <main className="placeholder-page">
-      <section className="placeholder-hero">
-        <Link className="back-link" href="/">
-          Sunrise
-        </Link>
-        <span className="section-kicker">RESOURCES</span>
-        <h1>Portable toilet catalogs and certificates.</h1>
-        <p>
-          These files are the correct location for buyer downloads and compliance review:
-          catalog, RoHS documents, SGS material tests, waste tank reports and supplier assessment.
-        </p>
-      </section>
+      <SiteHeader />
+      <PageHero
+        kicker="Resources"
+        title="Portable toilet catalogs and certificates."
+        description="Download catalog, RoHS documents, SGS material tests, waste tank reports and supplier assessment files for buyer review."
+        backgroundImage="/images/site/hero-verified-workshop.webp"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Resources" },
+        ]}
+        primaryCTA={{ label: "Download 2026 Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
+        secondaryCTA={{ label: "Request Compliance Files", href: "/contact" }}
+      />
 
       <section className="resource-download-grid" aria-label="Catalog and supplier documents">
         {downloads.map((item) => (
@@ -116,6 +121,15 @@ export default function ResourcesPage() {
           <div key={item}>{item}</div>
         ))}
       </section>
+
+      <SectionCta
+        title="Need documents for internal procurement review?"
+        text="Ask Sunrise for product specifications, certification documents, packing data and factory review files for your target model."
+        primaryLabel="Request Buyer Documents"
+        secondaryLabel="View Product Range"
+        secondaryHref="/products"
+      />
+      <SiteFooter />
     </main>
   );
 }

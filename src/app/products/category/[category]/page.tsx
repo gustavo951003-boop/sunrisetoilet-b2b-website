@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PageHero } from "@/components/site/PageHero";
+import { ProductCard } from "@/components/site/ProductCard";
+import { SectionCta } from "@/components/site/SectionCta";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 import {
   getProductCategoryBySlug,
   getProductsByCategorySlug,
@@ -51,22 +55,20 @@ export default async function ProductCategoryPage({
 
   return (
     <main className="products-index-page">
-      <section className="placeholder-hero product-category-hero">
-        <Link className="back-link" href="/products">
-          Products
-        </Link>
-        <span className="section-kicker">PRODUCT CATEGORY</span>
-        <h1>{category.title} from the Sunrise catalog.</h1>
-        <p>{category.description}</p>
-        <div className="hero-actions">
-          <a className="button button-primary" href="/downloads/Sunrise-Catalog-2026.pdf">
-            Download Catalog
-          </a>
-          <Link className="button button-light" href="/contact">
-            Request Quote
-          </Link>
-        </div>
-      </section>
+      <SiteHeader />
+      <PageHero
+        kicker="Product Category"
+        title={`${category.title} from the Sunrise catalog`}
+        description={category.description}
+        backgroundImage="/images/site/factory-workshop.webp"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Products", href: "/products" },
+          { label: category.title },
+        ]}
+        primaryCTA={{ label: "Request Specifications", href: "/contact" }}
+        secondaryCTA={{ label: "Download Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
+      />
 
       <section className="product-model-tabs" aria-label={`${category.title} models`}>
         {categoryProducts.map((product) => (
@@ -90,25 +92,18 @@ export default async function ProductCategoryPage({
 
       <section className="product-index-grid" aria-label={`${category.title} product list`}>
         {categoryProducts.map((product) => (
-          <article key={product.slug}>
-            <Link href={`/products/${product.slug}`} className="product-index-media">
-              <Image
-                src={product.image}
-                alt={product.alt}
-                fill
-                sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw"
-              />
-              <span>{product.model}</span>
-            </Link>
-            <div>
-              <span className="product-category">{product.category}</span>
-              <h2>{product.name}</h2>
-              <p>{product.idealFor}</p>
-              <Link href={`/products/${product.slug}`}>View specifications</Link>
-            </div>
-          </article>
+          <ProductCard product={product} key={product.slug} />
         ))}
       </section>
+
+      <SectionCta
+        title={`Need help comparing ${category.title.toLowerCase()}?`}
+        text="Share your destination market, quantity and required configuration. Sunrise can recommend models, specifications and packing data for your procurement review."
+        primaryLabel="Request Category Quote"
+        secondaryLabel="Return to Product Catalog"
+        secondaryHref="/products"
+      />
+      <SiteFooter />
     </main>
   );
 }

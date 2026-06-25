@@ -1,71 +1,109 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { CertificationStrip } from "@/components/site/CertificationStrip";
+import { PageHero } from "@/components/site/PageHero";
+import { ProductCard } from "@/components/site/ProductCard";
+import { SectionCta } from "@/components/site/SectionCta";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 import { productCategories } from "./product-categories";
-import { products } from "./product-data";
+import { featuredProductSlugs, products } from "./product-data";
 
 export const metadata: Metadata = {
-  title: "Portable Toilet Products",
+  title: "Portable Toilet Product Range | HDPE Portable Toilet Supplier",
   description:
-    "HDPE portable toilet product range from Sunrise, including standard, hand-wash, reinforced, accessible, shower, hand wash station and waste tank models.",
+    "Compare Sunrise HDPE portable toilets, accessible units, shower cabins, hand wash stations and waste tanks for rental fleets, distributors and project supply.",
   alternates: {
     canonical: "/products",
+  },
+  openGraph: {
+    title: "Portable Toilet Product Range | HDPE Portable Toilet Supplier",
+    description:
+      "Catalog-based product range for B2B buyers sourcing HDPE portable toilets from China.",
+    images: [
+      {
+        url: "/images/site/pt-360.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sunrise HDPE portable toilet product range",
+      },
+    ],
   },
 };
 
 export default function ProductsPage() {
+  const featuredProducts = featuredProductSlugs
+    .map((slug) => products.find((product) => product.slug === slug))
+    .filter((product) => product !== undefined);
+
   return (
     <main className="products-index-page">
-      <section className="placeholder-hero">
-        <Link className="back-link" href="/">
-          Sunrise
-        </Link>
-        <span className="section-kicker">PRODUCTS</span>
-        <h1>Portable toilet product range from the Sunrise catalog.</h1>
+      <SiteHeader />
+      <PageHero
+        kicker="Product Catalog"
+        title="Portable Toilet Product Range for B2B Buyers"
+        description="Compare HDPE portable toilets, accessible units, shower cabins, hand wash stations and waste tanks for rental fleets, distributors and project supply."
+        backgroundImage="/images/site/hero-yard.webp"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Products" },
+        ]}
+        primaryCTA={{ label: "Request Product Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
+        secondaryCTA={{ label: "Ask for Factory Quote", href: "/contact" }}
+      />
+
+      <section className="catalog-intro">
+        <span className="section-kicker">CATALOG OVERVIEW</span>
+        <h2>Factory-direct sanitation products for export supply.</h2>
         <p>
-          Catalog-based product pages for B2B buyers comparing portable toilets, hand wash
-          stations, shower cabins, sewer-connect units and waste tanks for container supply.
+          Sunrise organizes its catalog around real procurement workflows: choose the product
+          category, compare model specifications, then request pricing, packing data and
+          container loading advice for your market.
         </p>
-        <div className="hero-actions">
-          <a className="button button-primary" href="/downloads/Sunrise-Catalog-2026.pdf">
-            Download 2026 Catalog
-          </a>
-          <Link className="button button-light" href="/contact">
-            Request Quote
-          </Link>
-        </div>
       </section>
 
       <section className="product-index-categories" aria-label="Product categories">
         {productCategories.map((category) => (
           <Link href={`/products/category/${category.slug}`} key={category.slug}>
             <strong>{category.menuLabel}</strong>
-            <span>{category.productSlugs.length} models</span>
+            <span>{category.productSlugs.length} models / {category.buyerNote}</span>
           </Link>
         ))}
       </section>
 
-      <section className="product-index-grid" aria-label="Portable toilet product models">
-        {products.map((product) => (
-          <article key={product.slug}>
-            <Link href={`/products/${product.slug}`} className="product-index-media">
-              <Image
-                src={product.image}
-                alt={product.alt}
-                fill
-                sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw"
-              />
-              <span>{product.model}</span>
-            </Link>
-            <div>
-              <span className="product-category">{product.category}</span>
-              <h2>{product.name}</h2>
-              <p>{product.idealFor}</p>
-              <Link href={`/products/${product.slug}`}>View specifications</Link>
-            </div>
-          </article>
-        ))}
+      <section className="catalog-section">
+        <div className="catalog-section-head">
+          <span className="section-kicker">FEATURED MODELS</span>
+          <h2>Common B2B starting points for fleet and distributor buyers.</h2>
+        </div>
+        <div className="product-index-grid" aria-label="Featured portable toilet models">
+          {featuredProducts.map((product, index) => (
+            <ProductCard product={product} priority={index === 0} key={product.slug} />
+          ))}
+        </div>
       </section>
+
+      <section className="catalog-section">
+        <div className="catalog-section-head">
+          <span className="section-kicker">FULL PRODUCT CATALOG</span>
+          <h2>All catalog models currently available for specification review.</h2>
+        </div>
+        <div className="product-index-grid" aria-label="Portable toilet product models">
+        {products.map((product) => (
+          <ProductCard product={product} key={product.slug} />
+        ))}
+        </div>
+      </section>
+
+      <CertificationStrip compact />
+      <SectionCta
+        title="Need price, specifications and packing data?"
+        text="Send your target models, quantity and destination market. Sunrise can prepare product specifications, MOQ, lead time and container loading support."
+        primaryLabel="Request Factory Quote"
+        secondaryLabel="View Factory Capability"
+        secondaryHref="/factory"
+      />
+      <SiteFooter />
     </main>
   );
 }

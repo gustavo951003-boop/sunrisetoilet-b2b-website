@@ -1,14 +1,29 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { certificationBadges } from "../certification-data";
+import { CertificationStrip } from "@/components/site/CertificationStrip";
+import { PageHero } from "@/components/site/PageHero";
+import { SectionCta } from "@/components/site/SectionCta";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Portable Toilet Factory in China",
+  title: "Portable Toilet Factory in China | Sunrise Manufacturing Capability",
   description:
     "Review Sunrise factory video, production capability, export support, spare parts planning and container loading for HDPE portable toilet supply.",
   alternates: {
     canonical: "/factory",
+  },
+  openGraph: {
+    title: "Portable Toilet Factory in China | Sunrise Manufacturing Capability",
+    description:
+      "Factory video, production capability and compliance documents for B2B portable toilet buyers.",
+    images: [
+      {
+        url: "/images/site/factory-line.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sunrise portable toilet factory production line",
+      },
+    ],
   },
 };
 
@@ -37,17 +52,19 @@ const assetPlacement = [
 export default function FactoryPage() {
   return (
     <main className="placeholder-page">
-      <section className="placeholder-hero">
-        <Link className="back-link" href="/">
-          Sunrise
-        </Link>
-        <span className="section-kicker">FACTORY</span>
-        <h1>Portable toilet factory capability.</h1>
-        <p>
-          Sunrise uses its factory video, production images and third-party assessment files
-          to help B2B buyers review manufacturing capability before quotation.
-        </p>
-      </section>
+      <SiteHeader />
+      <PageHero
+        kicker="Factory Capability"
+        title="Portable toilet factory capability."
+        description="Sunrise uses factory video, production images and third-party assessment files to help B2B buyers review manufacturing capability before quotation."
+        backgroundImage="/images/site/factory-line.webp"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Factory" },
+        ]}
+        primaryCTA={{ label: "Request Factory Quote", href: "/contact" }}
+        secondaryCTA={{ label: "View Product Range", href: "/products" }}
+      />
 
       <section className="factory-video-section" aria-label="Sunrise factory video">
         <video controls preload="metadata" src="/videos/sunrise-factory-video.mp4">
@@ -68,34 +85,7 @@ export default function FactoryPage() {
         ))}
       </section>
 
-      <section className="factory-certification-section" aria-label="Factory certification references">
-        <div>
-          <span className="section-kicker">CERTIFICATION REFERENCES</span>
-          <h2>Quality, compliance and market-standard marks for buyer review.</h2>
-          <p>
-            Sunrise presents third-party quality assurance, SGS-related review materials,
-            RoHS compliance support and Australian market standard references alongside
-            factory video and downloadable documents.
-          </p>
-        </div>
-        <div className="factory-certification-grid">
-          {certificationBadges.map((badge) => (
-            <article key={badge.name}>
-              <div className="factory-certification-logo">
-                <Image
-                  src={badge.image}
-                  alt={badge.alt}
-                  width={badge.width}
-                  height={badge.height}
-                  sizes="(max-width: 720px) 42vw, 160px"
-                />
-              </div>
-              <h3>{badge.name}</h3>
-              <p>{badge.note}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <CertificationStrip />
 
       <section className="asset-map-section" aria-label="Factory asset placement">
         {assetPlacement.map((item) => (
@@ -105,6 +95,15 @@ export default function FactoryPage() {
           </article>
         ))}
       </section>
+
+      <SectionCta
+        title="Review factory capability before confirming a container order."
+        text="Ask for production details, packing data, compliance files and shipment planning support for your portable toilet procurement."
+        primaryLabel="Request Factory Quote"
+        secondaryLabel="View Portable Toilet Range"
+        secondaryHref="/products"
+      />
+      <SiteFooter />
     </main>
   );
 }

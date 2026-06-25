@@ -1,26 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { certificationBadges } from "./certification-data";
+import { CertificationStrip } from "@/components/site/CertificationStrip";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 import { ScrollReveal } from "./ScrollReveal";
-import { productCategories } from "./products/product-categories";
 
 const heroTrustPoints = [
   "HDPE rotational molded toilets",
   "Factory-direct pricing",
   "Australia / UK / US focused supply",
   "Bulk orders and export documents",
-];
-
-const heroSlides = [
-  {
-    image: "/images/site/hero-bridge-team.webp",
-  },
-  {
-    image: "/images/site/hero-yard.webp",
-  },
-  {
-    image: "/images/site/hero-verified-workshop.webp",
-  },
 ];
 
 const products = [
@@ -140,24 +129,6 @@ const organizationSchema = {
   },
 };
 
-function BrandMark({ light = false }: { light?: boolean }) {
-  return (
-    <Link className={light ? "brand brand-light" : "brand"} href="/" aria-label="Sunrise home">
-      <Image
-        className="brand-logo"
-        src="/images/brand/sunrise-symbol-tight.png"
-        alt="Sunrise"
-        width={520}
-        height={396}
-        sizes="58px"
-      />
-      <span className="brand-copy">
-        <strong>Sunrise</strong>
-      </span>
-    </Link>
-  );
-}
-
 function CtaStrip({
   title,
   text,
@@ -199,73 +170,17 @@ export default function Home() {
       />
 
       <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-media" aria-hidden="true">
-          {heroSlides.map((slide, index) => (
-            <Image
-              className="hero-image"
-              src={slide.image}
-              alt=""
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              key={slide.image}
-            />
-          ))}
-        </div>
+        <Image
+          className="hero-image"
+          src="/images/site/hero-yard.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+        />
         <div className="hero-overlay" />
 
-        <header className="site-header">
-          <div className="header-inner">
-            <BrandMark light />
-            <nav className="desktop-nav" aria-label="Primary navigation">
-              <div className="nav-dropdown">
-                <Link className="nav-dropdown-trigger" href="/products">
-                  Products
-                </Link>
-                <div className="nav-dropdown-panel" aria-label="Product categories">
-                  {productCategories.map((category) => (
-                    <Link href={`/products/category/${category.slug}`} key={category.slug}>
-                      <strong>{category.menuLabel}</strong>
-                      <span>{category.buyerNote}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <Link href="/factory">Factory</Link>
-              <Link href="/oem-plastic-molding">OEM Capabilities</Link>
-              <a href="#bulk-supply">Bulk Supply</a>
-              <Link href="/resources">Resources</Link>
-              <Link href="/contact">Contact</Link>
-            </nav>
-            <Link className="header-cta" href="/contact">
-              Request Factory Quote
-            </Link>
-            <details className="mobile-menu">
-              <summary title="Open navigation" aria-label="Open navigation">
-                <span />
-                <span />
-                <span />
-              </summary>
-              <nav aria-label="Mobile navigation">
-                <Link href="/products">Products</Link>
-                {productCategories.map((category) => (
-                  <Link
-                    className="mobile-sub-link"
-                    href={`/products/category/${category.slug}`}
-                    key={category.slug}
-                  >
-                    {category.menuLabel}
-                  </Link>
-                ))}
-                <Link href="/factory">Factory</Link>
-                <Link href="/oem-plastic-molding">OEM Capabilities</Link>
-                <a href="#bulk-supply">Bulk Supply</a>
-                <Link href="/resources">Resources</Link>
-                <Link href="/contact">Request Factory Quote</Link>
-              </nav>
-            </details>
-          </div>
-        </header>
+        <SiteHeader variant="transparent" />
 
         <div className="hero-content" data-reveal>
           <span className="eyebrow">PORTABLE TOILET MANUFACTURER IN CHINA</span>
@@ -284,6 +199,9 @@ export default function Home() {
               View Portable Toilet Range
             </Link>
           </div>
+          <div className="hero-trust-line">
+            Intertek / SGS / RoHS / Australia market reference documents available
+          </div>
         </div>
 
         <div className="hero-proof" aria-label="B2B buyer trust points" data-reveal>
@@ -294,6 +212,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <CertificationStrip />
 
       <section className="section intro-section">
         <div className="section-inner intro-grid" data-reveal>
@@ -312,6 +232,30 @@ export default function Home() {
                 <span key={market}>{market}</span>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section product-strength-section">
+        <div className="section-inner strength-grid">
+          <div className="strength-image" data-reveal>
+            <Image
+              src="/images/site/hero-bridge-team.webp"
+              alt="Sunrise team testing HDPE portable toilet roof strength near bridge"
+              fill
+              sizes="(max-width: 900px) calc(100vw - 32px), 50vw"
+            />
+          </div>
+          <div data-reveal>
+            <span className="section-kicker">HDPE STRUCTURE TESTING</span>
+            <h2>HDPE Structure Tested for Rental Fleet Use</h2>
+            <p>
+              Our reinforced HDPE portable toilet cabin is designed for outdoor rental fleets,
+              repeated handling and long-term project use.
+            </p>
+            <Link className="text-link" href="/products/category/portable-toilets">
+              Explore HDPE portable toilet models
+            </Link>
           </div>
         </div>
       </section>
@@ -481,19 +425,6 @@ export default function Home() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <div className="certification-strip" aria-label="Certification references">
-              {certificationBadges.map((badge) => (
-                <div className="certification-logo" key={badge.name}>
-                  <Image
-                    src={badge.image}
-                    alt={badge.alt}
-                    width={badge.width}
-                    height={badge.height}
-                    sizes="(max-width: 680px) 45vw, 130px"
-                  />
-                </div>
-              ))}
-            </div>
             <Link className="text-link" href="/contact">
               Contact Sales Team
             </Link>
@@ -584,12 +515,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <div className="section-inner footer-inner">
-          <BrandMark light />
-          <span>Portable toilet manufacturing and export support from Ningbo, China.</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

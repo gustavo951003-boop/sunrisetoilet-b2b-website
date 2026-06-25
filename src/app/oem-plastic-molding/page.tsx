@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/site/PageHero";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Custom Rotational & Blow Molding Manufacturer in China | Sunrise",
@@ -70,13 +73,24 @@ const buyerInputs = [
 export default function OemPlasticMoldingPage() {
   return (
     <main className="oem-page">
+      <SiteHeader />
+      <PageHero
+        kicker="Secondary Factory Capability"
+        title="Custom Rotational & Blow Molding Manufacturer in China"
+        description="Sunrise remains focused on HDPE portable toilet manufacturing while supporting selected OEM plastic projects using rotational molding and blow molding."
+        backgroundImage="/images/site/factory-workshop.webp"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "OEM Capabilities" },
+        ]}
+        primaryCTA={{ label: "Discuss OEM Project", href: "/contact" }}
+        secondaryCTA={{ label: "View Portable Toilet Range", href: "/products" }}
+      />
+
       <section className="oem-hero">
         <div>
-          <Link className="back-link" href="/">
-            Sunrise
-          </Link>
           <span className="section-kicker">SECONDARY FACTORY CAPABILITY</span>
-          <h1>Custom Rotational & Blow Molding Manufacturer in China</h1>
+          <h2>OEM capability without diluting the core portable toilet business.</h2>
           <p>
             Sunrise manufactures HDPE portable toilets and large outdoor plastic products
             using rotational molding and blow molding processes. We support selected OEM
@@ -179,6 +193,7 @@ export default function OemPlasticMoldingPage() {
           </Link>
         </div>
       </section>
+      <SiteFooter />
     </main>
   );
 }
