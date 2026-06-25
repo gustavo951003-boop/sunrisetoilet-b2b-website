@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CertificationStrip } from "@/components/site/CertificationStrip";
+import { ExportCases } from "@/components/site/ExportCases";
 import { ProductCard } from "@/components/site/ProductCard";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -208,6 +209,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ExportCases />
 
       <section className="section product-strength-section">
         <div className="section-inner strength-grid">

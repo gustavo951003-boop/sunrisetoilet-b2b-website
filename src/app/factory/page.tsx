@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CertificationStrip } from "@/components/site/CertificationStrip";
+import { ExportCases } from "@/components/site/ExportCases";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -84,6 +85,8 @@ export default function FactoryPage() {
           <div key={fact}>{fact}</div>
         ))}
       </section>
+
+      <ExportCases variant="factory" />
 
       <CertificationStrip
         variant="panel"
