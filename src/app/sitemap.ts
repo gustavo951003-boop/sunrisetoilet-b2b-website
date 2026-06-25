@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products/pt-370-portable-toilet",
     "/products/accessible-portable-toilet",
     "/factory",
+    "/oem-plastic-molding",
     "/resources",
     "/contact",
   ];

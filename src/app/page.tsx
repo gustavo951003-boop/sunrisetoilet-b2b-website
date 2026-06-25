@@ -83,6 +83,13 @@ const factoryFacts = [
   },
 ];
 
+const oemCapabilities = [
+  "Rotational molded HDPE products",
+  "Blow molded tanks and containers",
+  "Custom color, logo and fittings",
+  "Export packing and container loading support",
+];
+
 const procurementSteps = [
   "Match models to your rental fleet, market rules and order volume",
   "Review HDPE material, dimensions, accessories, certificates and packing data",
@@ -194,6 +201,7 @@ export default function Home() {
             <nav className="desktop-nav" aria-label="Primary navigation">
               <Link href="/products">Products</Link>
               <Link href="/factory">Factory</Link>
+              <Link href="/oem-plastic-molding">OEM Capabilities</Link>
               <a href="#bulk-supply">Bulk Supply</a>
               <Link href="/resources">Resources</Link>
               <Link href="/contact">Contact</Link>
@@ -210,6 +218,7 @@ export default function Home() {
               <nav aria-label="Mobile navigation">
                 <Link href="/products">Products</Link>
                 <Link href="/factory">Factory</Link>
+                <Link href="/oem-plastic-molding">OEM Capabilities</Link>
                 <a href="#bulk-supply">Bulk Supply</a>
                 <Link href="/resources">Resources</Link>
                 <Link href="/contact">Request Factory Quote</Link>
@@ -354,6 +363,30 @@ export default function Home() {
                 <span>{item}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section oem-mini-section">
+        <div className="section-inner oem-mini-grid" data-reveal>
+          <div>
+            <span className="section-kicker">SECONDARY FACTORY CAPABILITY</span>
+            <h2>OEM plastic manufacturing capabilities</h2>
+            <p>
+              In addition to portable toilet manufacturing, Sunrise supports selected OEM
+              plastic projects based on rotational molding, blow molding and large HDPE
+              product development.
+            </p>
+          </div>
+          <div className="oem-mini-card">
+            <div className="oem-mini-points">
+              {oemCapabilities.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+            <Link className="button button-primary" href="/oem-plastic-molding">
+              Explore OEM Capabilities
+            </Link>
           </div>
         </div>
       </section>
