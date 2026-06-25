@@ -4,10 +4,9 @@ import type { Product } from "@/app/products/product-data";
 
 type ProductCardProps = {
   product: Product;
-  priority?: boolean;
 };
 
-export function ProductCard({ product, priority = false }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link className="product-card-modern" href={`/products/${product.slug}`}>
       <div className="product-card-image">
@@ -16,7 +15,6 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           src={product.image}
           alt={product.alt}
           fill
-          priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         />
         <span className="product-model-badge">{product.model}</span>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
+import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
@@ -175,24 +176,13 @@ export default function OemPlasticMoldingPage() {
         </div>
       </section>
 
-      <section className="oem-final-cta">
-        <div>
-          <span className="section-kicker">OEM INQUIRY</span>
-          <h2>Send your OEM plastic product inquiry.</h2>
-          <p>
-            Share your drawing, sample photo or product idea. Our team will review whether
-            it fits our rotational molding or blow molding production capabilities.
-          </p>
-        </div>
-        <div className="contact-actions">
-          <Link className="button button-primary" href="/contact">
-            Contact Sales Team
-          </Link>
-          <Link className="button button-dark" href="/products">
-            View Portable Toilet Range
-          </Link>
-        </div>
-      </section>
+      <SectionCta
+        title="Send your OEM plastic product inquiry."
+        text="Share your drawing, sample photo or product idea. Sunrise will review whether it fits rotational molding or blow molding production capabilities."
+        primaryLabel="Contact Sales Team"
+        secondaryLabel="Send Product Drawing"
+        secondaryHref="/contact"
+      />
       <SiteFooter />
     </main>
   );

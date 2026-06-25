@@ -42,7 +42,7 @@ export const productCategories: ProductCategory[] = [
     slug: "accessible-toilets",
     title: "Accessible Toilets",
     menuLabel: "Accessible Toilets",
-    heroTitle: "Accessible Toilets for Public Venues and Project Tenders",
+    heroTitle: "Accessible Portable Toilets for Events and Public Projects",
     description:
       "Accessible portable toilets for public events, project procurement and inclusive temporary sanitation planning.",
     shortNote: "Wide-entry accessible units for public and project buyers.",

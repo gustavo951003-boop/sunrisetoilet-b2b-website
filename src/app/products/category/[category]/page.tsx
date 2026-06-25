@@ -66,7 +66,7 @@ export default async function ProductCategoryPage({
           { label: category.title },
         ]}
         primaryCTA={{ label: "Request Specifications", href: "/contact" }}
-        secondaryCTA={{ label: "Download Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
+        secondaryCTA={{ label: "Ask for Container Loading Plan", href: "/contact" }}
       />
 
       <section className="category-summary">
@@ -90,8 +90,8 @@ export default async function ProductCategoryPage({
         title={`Need help comparing ${category.title.toLowerCase()}?`}
         text="Share your destination market, quantity and required configuration. Sunrise can recommend models, specifications and packing data for your procurement review."
         primaryLabel="Request Category Quote"
-        secondaryLabel="Return to Product Catalog"
-        secondaryHref="/products"
+        secondaryLabel="Contact Sales Team"
+        secondaryHref="/contact"
       />
       <SiteFooter />
     </main>

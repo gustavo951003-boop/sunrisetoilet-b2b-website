@@ -19,12 +19,40 @@ const applications = [
 ];
 
 const buyerVerification = [
-  "Material and structure review",
-  "SGS / RoHS documents available",
-  "Packing and container loading data",
-  "Inspection support before shipment",
-  "Spare parts support for repeat orders",
+  "Certification documents available",
+  "Packing data",
+  "Container loading planning",
+  "Inspection before shipment",
+  "Spare parts support",
 ];
+
+function getUniqueItems(items: string[]) {
+  return Array.from(new Set(items.filter(Boolean)));
+}
+
+function getVolumeValue(
+  product: Product,
+  keywords: string[],
+  fallback: string,
+  useAllVolumesAsFallback = false,
+) {
+  const usableVolume = product.volume.filter((item) => item.trim() && item.trim() !== "/");
+  const matched = usableVolume.find((item) => {
+    const normalizedItem = item.toLowerCase();
+
+    return keywords.some((keyword) => normalizedItem.includes(keyword));
+  });
+
+  if (matched) {
+    return matched;
+  }
+
+  if (useAllVolumesAsFallback && usableVolume.length > 0) {
+    return usableVolume.join(" / ");
+  }
+
+  return fallback;
+}
 
 function getRelatedProducts(product: Product) {
   const category = productCategories.find((item) => item.productSlugs.includes(product.slug));
@@ -51,13 +79,40 @@ function getRelatedProducts(product: Product) {
 
 export function ProductDetail({ product }: { product: Product }) {
   const relatedProducts = getRelatedProducts(product);
+  const categoryLabel = product.category.toLowerCase();
+  const waterTank = getVolumeValue(
+    product,
+    ["water tank", "clean water", "freshwater", "fresh water"],
+    categoryLabel.includes("waste") ? "Not applicable" : "External water connection or model-specific tank",
+  );
+  const wasteTank = getVolumeValue(
+    product,
+    ["waste tank", "wastewater", "waste"],
+    categoryLabel.includes("shower") || categoryLabel.includes("sewer")
+      ? "External drainage connection"
+      : "See model configuration",
+    categoryLabel.includes("waste"),
+  );
+  const mainOptions = getUniqueItems([
+    ...product.cardSpecs,
+    ...product.keySpecifications.filter((item) =>
+      /option|available|custom|skid|flush|hand wash|pump|connection|dual|waterless|sewer|tank/i.test(item),
+    ),
+  ]).slice(0, 5);
+  const configurationOptions = getUniqueItems([
+    ...mainOptions,
+    ...product.keySpecifications,
+  ]).slice(0, 6);
   const specRows = [
     ["Model", product.model],
+    ["Product name", product.name],
+    ["Ideal for", product.idealFor],
     ["Dimensions", product.dimensions],
-    ["Tank capacity", product.volume.join(" / ")],
+    ["Water tank", waterTank],
+    ["Waste tank", wasteTank],
     ["Weight", product.weight],
     ["Structure", product.keySpecifications[0]],
-    ["Options", product.keySpecifications.slice(1, 4).join(" / ")],
+    ["Main options", mainOptions.join(" / ")],
   ];
 
   return (
@@ -93,20 +148,36 @@ export function ProductDetail({ product }: { product: Product }) {
           <p>{product.idealFor}</p>
           <dl>
             <div>
-              <dt>Product name</dt>
+              <dt>Model</dt>
+              <dd>{product.model}</dd>
+            </div>
+            <div>
+              <dt>Name</dt>
               <dd>{product.name}</dd>
+            </div>
+            <div>
+              <dt>Ideal for</dt>
+              <dd>{product.idealFor}</dd>
             </div>
             <div>
               <dt>Dimensions</dt>
               <dd>{product.dimensions}</dd>
             </div>
             <div>
-              <dt>Tank volume</dt>
-              <dd>{product.volume.join(" / ")}</dd>
+              <dt>Water tank</dt>
+              <dd>{waterTank}</dd>
+            </div>
+            <div>
+              <dt>Waste tank</dt>
+              <dd>{wasteTank}</dd>
             </div>
             <div>
               <dt>Weight</dt>
               <dd>{product.weight}</dd>
+            </div>
+            <div>
+              <dt>Options</dt>
+              <dd>{mainOptions.join(" / ")}</dd>
             </div>
           </dl>
           <div className="quote-panel-actions">
@@ -159,6 +230,22 @@ export function ProductDetail({ product }: { product: Product }) {
 
       <section className="product-detail-section product-detail-grid">
         <div>
+          <span className="section-kicker">OPTIONS AND CONFIGURATION</span>
+          <h2>Configure the model for your market and service plan.</h2>
+          <p>
+            Confirm skid type, tank layout, hand wash, flush, color, fittings and other
+            model-specific options before Sunrise prepares MOQ, price and packing data.
+          </p>
+        </div>
+        <div className="detail-list">
+          {configurationOptions.map((item) => (
+            <div key={item}>{item}</div>
+          ))}
+        </div>
+      </section>
+
+      <section className="product-detail-section product-detail-grid">
+        <div>
           <span className="section-kicker">BUYER VERIFICATION</span>
           <h2>Documents and support available before shipment.</h2>
           <p>
@@ -189,8 +276,8 @@ export function ProductDetail({ product }: { product: Product }) {
         title="Request price, specifications and packing data."
         text={`Send your target quantity, destination market and configuration requirements for ${product.model}. Sunrise can prepare specifications, MOQ, lead time and container loading advice.`}
         primaryLabel="Request Product Quote"
-        secondaryLabel="Back to Product Catalog"
-        secondaryHref="/products"
+        secondaryLabel="Ask for Container Loading Plan"
+        secondaryHref="/contact"
       />
       <SiteFooter />
     </main>

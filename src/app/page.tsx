@@ -175,8 +175,8 @@ export default function Home() {
           </div>
 
           <div className="product-index-grid">
-            {featuredProducts.map((product, index) => (
-              <ProductCard product={product} priority={index === 0} key={product.slug} />
+            {featuredProducts.map((product) => (
+              <ProductCard product={product} key={product.slug} />
             ))}
           </div>
         </div>
@@ -262,7 +262,7 @@ export default function Home() {
         text="Send your target models, quantity and destination market. Sunrise can prepare model suggestions, MOQ, lead time, packing data and a B2B quotation."
         primaryLabel="Request Factory Quote"
         secondaryLabel="Get Product Specifications"
-        secondaryHref="/products"
+        secondaryHref="/contact"
       />
 
       <SiteFooter />

@@ -49,8 +49,8 @@ export default function ProductsPage() {
           { label: "Home", href: "/" },
           { label: "Products" },
         ]}
-        primaryCTA={{ label: "Request Product Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
-        secondaryCTA={{ label: "Ask for Factory Quote", href: "/contact" }}
+        primaryCTA={{ label: "Request Product Specifications", href: "/contact" }}
+        secondaryCTA={{ label: "Download Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
       />
 
       <section className="catalog-intro">
@@ -85,8 +85,8 @@ export default function ProductsPage() {
           <h2>Common B2B starting points for fleet and distributor buyers.</h2>
         </div>
         <div className="product-index-grid" aria-label="Featured portable toilet models">
-          {featuredProducts.map((product, index) => (
-            <ProductCard product={product} priority={index === 0} key={product.slug} />
+          {featuredProducts.map((product) => (
+            <ProductCard product={product} key={product.slug} />
           ))}
         </div>
       </section>
@@ -127,8 +127,8 @@ export default function ProductsPage() {
         title="Need price, specifications and packing data?"
         text="Send your target models, quantity and destination market. Sunrise can prepare product specifications, MOQ, lead time and container loading support."
         primaryLabel="Request Factory Quote"
-        secondaryLabel="View Factory Capability"
-        secondaryHref="/factory"
+        secondaryLabel="Ask for Container Loading Plan"
+        secondaryHref="/contact"
       />
       <SiteFooter />
     </main>
