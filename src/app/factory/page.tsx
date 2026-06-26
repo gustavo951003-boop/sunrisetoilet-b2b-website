@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CertificationStrip } from "@/components/site/CertificationStrip";
 import { ExportCases } from "@/components/site/ExportCases";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { FactoryVideo } from "./FactoryVideo";
 
 export const metadata: Metadata = {
   title: "Portable Toilet Factory in China | Sunrise Manufacturing Capability",
@@ -38,15 +40,15 @@ const facts = [
 const assetPlacement = [
   {
     title: "Factory video",
-    text: "Use on the Factory page as proof of production environment and buyer review material.",
+    text: "Review the workshop flow, assembly process and export preparation before supplier qualification.",
   },
   {
     title: "Factory screenshots",
-    text: "Use across Factory and homepage capability sections as still images when video is not needed.",
+    text: "Use production-line and finished-unit images for procurement review, distributor files and project discussions.",
   },
   {
     title: "Supplier assessment",
-    text: "Use under Resources / Certificates as a downloadable third-party supplier review file.",
+    text: "Download third-party supplier review files to support compliance checks and internal vendor approval.",
   },
 ];
 
@@ -68,15 +70,29 @@ export default function FactoryPage() {
       />
 
       <section className="factory-video-section" aria-label="Sunrise factory video">
-        <video controls preload="metadata" src="/videos/sunrise-factory-video.mp4">
-        </video>
-        <div>
-          <span className="section-kicker">VIDEO REVIEW</span>
-          <h2>Factory video belongs on the Factory page, not as a homepage background.</h2>
+        <FactoryVideo />
+        <div className="factory-video-copy">
+          <span className="section-kicker">FACTORY TOUR</span>
+          <h2>See how Sunrise portable toilets are built for export orders.</h2>
           <p>
-            Keeping video here preserves homepage speed while still giving procurement teams
-            a clear place to review production capability, workshop environment and export readiness.
+            Take a closer look at our production workshop, assembly process and export
+            preparation. This video helps rental companies, distributors and project buyers
+            review our manufacturing environment before requesting specifications or a
+            factory quote.
           </p>
+          <ul className="factory-video-points">
+            <li>HDPE portable toilet production and assembly</li>
+            <li>Product structure, fittings and quality checks</li>
+            <li>Packing support for bulk container shipments</li>
+          </ul>
+          <div className="factory-video-actions">
+            <Link className="button button-primary" href="/contact">
+              Request Factory Quote
+            </Link>
+            <Link className="button button-light" href="/products">
+              View Product Range
+            </Link>
+          </div>
         </div>
       </section>
 
