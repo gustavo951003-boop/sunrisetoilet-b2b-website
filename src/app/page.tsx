@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CertificationStrip } from "@/components/site/CertificationStrip";
+import { CountUpStat } from "@/components/site/CountUpStat";
 import { ExportCases } from "@/components/site/ExportCases";
 import { ProductCard } from "@/components/site/ProductCard";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { categoryNavigationAssets } from "@/data/categoryNavigation";
 import { productCategories } from "./products/product-categories";
 import { featuredProductSlugs, products } from "./products/product-data";
 import { ScrollReveal } from "./ScrollReveal";
@@ -25,11 +27,47 @@ const heroSlides = [
   },
 ];
 
-const heroTrustPoints = [
-  "HDPE rotational molded toilets",
-  "Factory-direct pricing",
-  "Australia / UK / US focused supply",
-  "Bulk orders and export documents",
+const heroTrustStats: Array<
+  | {
+      kind: "count";
+      end: number;
+      suffix: string;
+      duration: number;
+      label: string;
+      ariaLabel: string;
+    }
+  | {
+      kind: "text";
+      value: string;
+      label: string;
+    }
+> = [
+  {
+    kind: "count",
+    end: 20,
+    suffix: "+",
+    duration: 900,
+    label: "Years manufacturing",
+    ariaLabel: "20 plus years manufacturing",
+  },
+  {
+    kind: "count",
+    end: 1100,
+    suffix: "+",
+    duration: 1400,
+    label: "Global B2B customers",
+    ariaLabel: "1,100 plus global B2B customers",
+  },
+  {
+    kind: "text",
+    value: "AU / EU / US",
+    label: "Export support",
+  },
+  {
+    kind: "text",
+    value: "Documents",
+    label: "Certificates & packing data",
+  },
 ];
 
 const procurementSteps = [
@@ -72,6 +110,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
+      <SiteHeader variant="transparent" />
 
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-media">
@@ -89,34 +128,40 @@ export default function Home() {
         </div>
         <div className="hero-overlay" />
 
-        <SiteHeader variant="transparent" />
-
         <div className="hero-content" data-reveal>
           <span className="eyebrow">PORTABLE TOILET MANUFACTURER IN CHINA</span>
-          <h1 id="hero-title">
-            Professional portable toilet manufacturer for rental fleets and distributors.
-          </h1>
+          <h1 id="hero-title">Factory-direct HDPE portable toilets for rental fleets.</h1>
           <p>
-            Sunrise manufactures HDPE portable toilets in Ningbo, China, with factory-direct
-            supply for Australia, UK, US, New Zealand and global B2B markets.
+            Manufactured in Ningbo for distributors, site-service companies and project buyers
+            across Australia, the UK, the US and global markets.
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/contact">
               Request Factory Quote
             </Link>
             <Link className="button button-ghost" href="/products">
-              View Portable Toilet Range
+              View Product Range
             </Link>
-          </div>
-          <div className="hero-trust-line">
-            Intertek / SGS / RoHS / Australia market reference documents available
           </div>
         </div>
 
-        <div className="hero-proof" aria-label="B2B buyer trust points" data-reveal>
-          {heroTrustPoints.map((item) => (
-            <div key={item}>
-              <strong>{item}</strong>
+        <div className="hero-metrics" aria-label="B2B buyer trust points" data-reveal>
+          {heroTrustStats.map((item) => (
+            <div className="hero-metric" key={item.label}>
+              <strong>
+                {item.kind === "count" ? (
+                  <CountUpStat
+                    end={item.end}
+                    suffix={item.suffix}
+                    duration={item.duration}
+                    label={item.label}
+                    ariaLabel={item.ariaLabel}
+                  />
+                ) : (
+                  item.value
+                )}
+              </strong>
+              <span>{item.label}</span>
             </div>
           ))}
         </div>
@@ -137,24 +182,29 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="category-card-grid">
+          <div className="home-category-grid">
             {productCategories.map((category, index) => (
               <Link
-                className="category-card"
+                className="home-category-card"
                 href={`/products/category/${category.slug}`}
                 data-reveal
                 style={{ transitionDelay: `${index * 60}ms` }}
                 key={category.slug}
               >
-                <Image
-                  src={category.image}
-                  alt={category.alt}
-                  fill
-                  sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1100px) 50vw, 20vw"
-                />
-                <div>
-                  <strong>{category.menuLabel}</strong>
-                  <span>{category.shortNote}</span>
+                <span className="home-category-art">
+                  <Image
+                    src={categoryNavigationAssets[category.slug]?.image ?? category.image}
+                    alt={categoryNavigationAssets[category.slug]?.alt ?? category.menuLabel}
+                    fill
+                    sizes="(max-width: 560px) 44vw, (max-width: 980px) 28vw, 190px"
+                  />
+                </span>
+                <div className="home-category-content">
+                  <span className="home-category-label">CATEGORY</span>
+                  <strong className="home-category-title">{category.menuLabel}</strong>
+                  <span className="home-category-copy">
+                    {categoryNavigationAssets[category.slug]?.copy ?? category.shortNote}
+                  </span>
                 </div>
               </Link>
             ))}
@@ -261,6 +311,7 @@ export default function Home() {
       </section>
 
       <SectionCta
+        kicker="GET A FACTORY QUOTE"
         title="Request price, specifications and packing data."
         text="Send your target models, quantity and destination market. Sunrise can prepare model suggestions, MOQ, lead time, packing data and a B2B quotation."
         primaryLabel="Request Factory Quote"

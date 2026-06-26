@@ -1,134 +1,241 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
-import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Portable Toilet Catalogs and Certificates",
+  title: "Catalogs, Certificates & Buyer Documents | Sunrise Portable Toilets",
   description:
-    "Download Sunrise portable toilet catalog, RoHS reports, SGS UV ageing tests, waste tank test reports and supplier assessment documents.",
+    "Download Sunrise portable toilet catalogs, RoHS documents, SGS material test reports, waste tank reports and supplier assessment files for distributor review, rental fleet purchasing and project quotation.",
   alternates: {
     canonical: "/resources",
   },
 };
 
-const downloads = [
+const introPoints = [
+  "Product catalog and model overview",
+  "Compliance and material test files",
+  "Supplier assessment and project document support",
+];
+
+const primaryDocuments = [
   {
     title: "Sunrise Product Catalog 2026",
-    text: "Full catalog covering portable toilets, hand wash stations, shower cabin, sewer-connect model, waste tanks and accessories.",
+    text: "Portable toilets, hand wash stations, shower cabins, sewer-connect units, waste tanks and accessories.",
     href: "/downloads/Sunrise-Catalog-2026.pdf",
+    action: "Download Product Catalog",
+    meta: "PDF · 26 MB",
   },
   {
     title: "Supplier Assessment Report 2026",
-    text: "Third-party Alibaba / Intertek supplier assessment report for Ningbo Sunrise Environmental Protection Solution Co., Ltd.",
+    text: "Third-party supplier assessment file for Ningbo Sunrise Environmental Protection Solution Co., Ltd.",
     href: "/downloads/Supplier-Assessment-Report-2026.pdf",
+    action: "Download Supplier Assessment Report",
+    meta: "PDF",
   },
 ];
 
-const certificates = [
+const complianceDocuments = [
   {
     title: "RoHS - Portable Toilet",
-    text: "RoHS compliance report and certificate for portable toilet models including PT-390, PT-360, PT-370, PT-380, PT-381 and PDT-100.",
+    text: "RoHS report and certificate for portable toilet models including PT-390, PT-360, PT-370, PT-380, PT-381 and PDT-100.",
     links: [
-      ["/downloads/RoHS-Portable-Toilet-Report.pdf", "Report"],
-      ["/downloads/RoHS-Portable-Toilet-Certificate.pdf", "Certificate"],
+      {
+        href: "/downloads/RoHS-Portable-Toilet-Report.pdf",
+        label: "Download Portable Toilet RoHS Report",
+      },
+      {
+        href: "/downloads/RoHS-Portable-Toilet-Certificate.pdf",
+        label: "Download Portable Toilet RoHS Certificate",
+      },
     ],
   },
   {
     title: "RoHS - Hand Wash Station",
-    text: "RoHS compliance report and certificate for PH-120 with PH-40, PH-60, PH-200 and PH-200A reference models.",
+    text: "RoHS report and certificate for PH-120 with PH-40, PH-60, PH-200 and PH-200A reference models.",
     links: [
-      ["/downloads/RoHS-Hand-Wash-Station-Report.pdf", "Report"],
-      ["/downloads/RoHS-Hand-Wash-Station-Certificate.pdf", "Certificate"],
+      {
+        href: "/downloads/RoHS-Hand-Wash-Station-Report.pdf",
+        label: "Download Hand Wash Station RoHS Report",
+      },
+      {
+        href: "/downloads/RoHS-Hand-Wash-Station-Certificate.pdf",
+        label: "Download Hand Wash Station RoHS Certificate",
+      },
     ],
   },
+];
+
+const testReports = [
   {
     title: "SGS UV Ageing - Portable Toilet Materials",
     text: "Xenon-arc UV ageing reports for roof, door, wall and toilet base materials with 600h exposure results.",
     links: [
-      ["/downloads/SGS-UV-Ageing-Roof.pdf", "Roof"],
-      ["/downloads/SGS-UV-Ageing-Door.pdf", "Door"],
-      ["/downloads/SGS-UV-Ageing-Wall.pdf", "Wall"],
-      ["/downloads/SGS-UV-Ageing-Toilet-Base.pdf", "Base"],
+      {
+        href: "/downloads/SGS-UV-Ageing-Roof.pdf",
+        label: "Download Roof UV Ageing Report",
+      },
+      {
+        href: "/downloads/SGS-UV-Ageing-Door.pdf",
+        label: "Download Door UV Ageing Report",
+      },
+      {
+        href: "/downloads/SGS-UV-Ageing-Wall.pdf",
+        label: "Download Wall UV Ageing Report",
+      },
+      {
+        href: "/downloads/SGS-UV-Ageing-Toilet-Base.pdf",
+        label: "Download Base UV Ageing Report",
+      },
     ],
   },
   {
     title: "Waste Tank Test Reports",
     text: "SGS water tightness witness report and low-temperature drop weight impact report for wastewater tank body parts.",
     links: [
-      ["/downloads/SGS-Water-Tightness-Wastewater-Tank.pdf", "Water tightness"],
-      ["/downloads/SGS-Low-Temperature-Impact-Waste-Tank.pdf", "Low temperature impact"],
+      {
+        href: "/downloads/SGS-Water-Tightness-Wastewater-Tank.pdf",
+        label: "Download Water Tightness Report",
+      },
+      {
+        href: "/downloads/SGS-Low-Temperature-Impact-Waste-Tank.pdf",
+        label: "Download Low-Temperature Impact Report",
+      },
     ],
   },
 ];
 
-const placement = [
-  "Catalog PDF: Resources page and product-detail download CTA",
-  "RoHS portable toilet files: Resources certificates section and buyer confidence section",
-  "SGS UV ageing reports: Quality / material reliability proof",
-  "Waste tank reports: Waste tank product page and Resources page",
-  "Factory video: Factory page only, using preload metadata to protect homepage speed",
-];
+function PdfLink({ href, label }: { href: string; label: string }) {
+  return (
+    <a className="resource-link" href={href} target="_blank" rel="noopener noreferrer">
+      {label}
+    </a>
+  );
+}
 
 export default function ResourcesPage() {
   return (
-    <main className="placeholder-page">
+    <main className="resources-page">
       <SiteHeader />
       <PageHero
         kicker="Resources"
-        title="Portable toilet catalogs and certificates."
-        description="Download catalog, RoHS documents, SGS material tests, waste tank reports and supplier assessment files for buyer review."
+        title="Catalogs, Certificates & Buyer Documents"
+        description="Download Sunrise product catalogs, compliance documents, material test reports and supplier assessment files for distributor review, rental fleet purchasing and project quotation."
         backgroundImage="/images/site/hero-verified-workshop.webp"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources" },
         ]}
-        primaryCTA={{ label: "Download 2026 Catalog", href: "/downloads/Sunrise-Catalog-2026.pdf" }}
-        secondaryCTA={{ label: "Request Compliance Files", href: "/contact" }}
+        primaryCTA={{
+          label: "Download Product Catalog",
+          href: "/downloads/Sunrise-Catalog-2026.pdf",
+        }}
+        secondaryCTA={{ label: "Request Project Documents", href: "/contact" }}
       />
 
-      <section className="resource-download-grid" aria-label="Catalog and supplier documents">
-        {downloads.map((item) => (
-          <article key={item.title}>
-            <h2>{item.title}</h2>
-            <p>{item.text}</p>
-            <a href={item.href}>Download PDF</a>
-          </article>
-        ))}
+      <section className="resources-intro" aria-label="Buyer document center overview">
+        <div>
+          <span className="section-kicker">BUYER DOCUMENT CENTER</span>
+          <h2>Documents for buyer review and quotation preparation</h2>
+          <p>
+            Use these files to review product range, supplier background, material
+            reliability and compliance references before requesting model specifications,
+            packing data or a factory quote.
+          </p>
+        </div>
+        <div className="resources-intro-points">
+          {introPoints.map((point) => (
+            <span key={point}>{point}</span>
+          ))}
+        </div>
       </section>
 
-      <section className="certificate-section" aria-label="Certificates and test reports">
-        {certificates.map((item) => (
-          <article key={item.title}>
-            <div>
-              <h2>{item.title}</h2>
+      <section className="resource-section" aria-label="Product catalog and supplier files">
+        <div className="resource-section-header">
+          <span className="section-kicker">DOWNLOADS</span>
+          <h2>Product Catalog & Supplier Files</h2>
+        </div>
+        <div className="resource-card-grid resource-card-grid-featured">
+          {primaryDocuments.map((item) => (
+            <article className="resource-card resource-card-featured" key={item.title}>
+              <div>
+                <span className="resource-card-meta">{item.meta}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+              <PdfLink href={item.href} label={item.action} />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="resource-section" aria-label="Compliance documents">
+        <div className="resource-section-header">
+          <span className="section-kicker">COMPLIANCE REFERENCES</span>
+          <h2>Compliance Documents</h2>
+          <p>
+            Reference documents are available for buyer review and can support purchasing
+            checks for relevant models and destination markets.
+          </p>
+        </div>
+        <div className="resource-card-grid">
+          {complianceDocuments.map((item) => (
+            <article className="resource-card" key={item.title}>
+              <span className="resource-card-meta">PDF</span>
+              <h3>{item.title}</h3>
               <p>{item.text}</p>
-            </div>
-            <div>
-              {item.links.map(([href, label]) => (
-                <a href={href} key={href}>
-                  {label}
-                </a>
-              ))}
-            </div>
-          </article>
-        ))}
+              <div className="resource-link-list">
+                {item.links.map((link) => (
+                  <PdfLink href={link.href} label={link.label} key={link.href} />
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section className="placeholder-list" aria-label="Recommended website placement">
-        {placement.map((item) => (
-          <div key={item}>{item}</div>
-        ))}
+      <section className="resource-section" aria-label="Material and product test reports">
+        <div className="resource-section-header">
+          <span className="section-kicker">TEST REPORTS</span>
+          <h2>Material & Product Test Reports</h2>
+        </div>
+        <div className="resource-card-grid">
+          {testReports.map((item) => (
+            <article className="resource-card" key={item.title}>
+              <span className="resource-card-meta">PDF</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <div className="resource-link-list">
+                {item.links.map((link) => (
+                  <PdfLink href={link.href} label={link.label} key={link.href} />
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <SectionCta
-        title="Need documents for internal procurement review?"
-        text="Ask Sunrise for product specifications, certification documents, packing data and factory review files for your target model."
-        primaryLabel="Request Buyer Documents"
-        secondaryLabel="View Product Range"
-        secondaryHref="/products"
-      />
+      <section className="resources-final-cta" aria-label="Request project-specific documents">
+        <div>
+          <span className="section-kicker">DOCUMENT REQUEST</span>
+          <h2>Need documents for a specific model or project?</h2>
+          <p>
+            Tell us your target product model, quantity and destination market. Our team
+            can share available specifications, packing data, test files and quotation
+            documents during project review.
+          </p>
+        </div>
+        <div className="resources-final-actions">
+          <Link className="button button-primary" href="/contact">
+            Request Project Documents
+          </Link>
+          <Link className="button button-light" href="/products">
+            View Product Range
+          </Link>
+        </div>
+      </section>
+
       <SiteFooter />
     </main>
   );

@@ -5,6 +5,13 @@ export type Product = {
   category: string;
   image: string;
   alt: string;
+  cardImage?: string;
+  secondaryImage?: string;
+  secondaryAlt?: string;
+  galleryImages?: {
+    src: string;
+    alt: string;
+  }[];
   cardDescription: string;
   cardSpecs: string[];
   idealFor: string;
@@ -24,8 +31,10 @@ export const products: Product[] = [
     model: "PT-360",
     name: "Standard Pro Portable Toilet",
     category: "Standard model",
-    image: "/images/products/pt-360.webp",
+    image: "/images/products/pt-360-cutout-20260626.webp",
     alt: "PT-360 standard HDPE portable toilet",
+    secondaryImage: "/images/products/pt-360-secondary.webp",
+    secondaryAlt: "PT-360 internal tank and foot pump system",
     cardDescription: "Standard HDPE toilet for construction sites and rental fleets.",
     cardSpecs: ["Metal skid", "370L waste tank", "HDPE cabin"],
     idealFor: "Versatile outdoor applications and long-term construction sites.",
@@ -63,8 +72,10 @@ export const products: Product[] = [
     model: "PT-370",
     name: "Entry-Pro Portable Toilet",
     category: "Basic model",
-    image: "/images/products/pt-370.webp",
+    image: "/images/products/pt-370-main-20260626.webp",
     alt: "PT-370 portable toilet with hand wash option",
+    secondaryImage: "/images/products/pt-370-secondary.webp",
+    secondaryAlt: "PT-370 internal toilet tank module",
     cardDescription: "Hand wash portable toilet for sites, events and rental fleets.",
     cardSpecs: ["Hand wash option", "Foot pump available", "HDPE cabin"],
     idealFor: "Short-term events, festivals and rental fleets.",
@@ -104,6 +115,8 @@ export const products: Product[] = [
     category: "Accessible portable toilet",
     image: "/images/products/pdt-100.webp",
     alt: "PDT-100 accessible portable toilet with wide entry",
+    secondaryImage: "/images/products/pdt-100-secondary.webp",
+    secondaryAlt: "PDT-100 accessible toilet interior with grab rail",
     cardDescription: "Wide-entry accessible toilet for public venues and project tenders.",
     cardSpecs: ["Wide entry", "Grab bars", "Large interior"],
     idealFor:
@@ -142,8 +155,10 @@ export const products: Product[] = [
     model: "PT-380",
     name: "Maximum Capacity Portable Toilet",
     category: "Ultra model",
-    image: "/images/products/pt-380.webp",
+    image: "/images/products/pt-380-main-20260626.webp",
     alt: "PT-380 high capacity portable toilet",
+    secondaryImage: "/images/products/pt-380-secondary.webp",
+    secondaryAlt: "PT-380 high-capacity internal tank module",
     cardDescription: "High-capacity toilet for sites needing longer service intervals.",
     cardSpecs: ["390L waste tank", "Metal skid", "High traffic"],
     idealFor: "High-traffic outdoor sites and remote locations with limited servicing.",
@@ -220,8 +235,10 @@ export const products: Product[] = [
     model: "PT-390",
     name: "The Perfect Balance Portable Toilet",
     category: "Premium model",
-    image: "/images/products/pt-390.webp",
+    image: "/images/products/pt-390-main-20260626.webp",
     alt: "PT-390 premium double wall portable toilet",
+    secondaryImage: "/images/products/pt-390-secondary.webp",
+    secondaryAlt: "PT-390 internal tank and foot pump module",
     cardDescription: "Premium fleet model with strong capacity and fast deployment.",
     cardSpecs: ["400L waste tank", "Double-wall option", "Fleet use"],
     idealFor: "Premium rentals and high-demand sites requiring rapid setup.",
@@ -259,8 +276,11 @@ export const products: Product[] = [
     model: "PT-400",
     name: "Industry Game Changer Portable Toilet",
     category: "Upgraded premium model",
-    image: "/images/products/pt-400.webp",
+    image: "/images/products/pt-400-main-20260626.webp",
     alt: "PT-400 upgraded premium portable toilet",
+    cardImage: "/images/products/card/pt-400-upgraded-premium-portable-toilet-v2.webp",
+    secondaryImage: "/images/products/pt-400-secondary.webp",
+    secondaryAlt: "PT-400 internal tank and foot pump module",
     cardDescription: "Upgraded premium toilet with simplified plumbing for fleet buyers.",
     cardSpecs: ["Internal plumbing", "Metal skid", "400L waste tank"],
     idealFor: "High-demand fleets needing simplified setup and reliable plumbing.",
@@ -415,8 +435,16 @@ export const products: Product[] = [
     model: "SC-100",
     name: "Sewer-Connect Series",
     category: "Sewer connect toilet",
-    image: "/images/products/sc-100.webp",
+    image: "/images/products/sc-100-main-20260626.webp",
     alt: "SC-100 sewer connect portable toilet interior",
+    secondaryImage: "/images/products/sc-100-secondary.webp",
+    secondaryAlt: "SC-100 sewer connect toilet interior with ceramic toilet",
+    galleryImages: [
+      {
+        src: "/images/products/sc-100-gallery-3.webp",
+        alt: "SC-100 stainless hand wash sink and sewer connection details",
+      },
+    ],
     cardDescription: "Sewer-connect unit for long-term and semi-permanent projects.",
     cardSpecs: ["Sewer outlet", "Custom base", "Long-term use"],
     idealFor: "High-rise construction sites, long-term outdoor projects and semi-permanent installations.",
@@ -454,8 +482,16 @@ export const products: Product[] = [
     model: "PH-120",
     name: "Portable Hand Wash Station",
     category: "Washbasin",
-    image: "/images/products/ph-120.webp",
+    image: "/images/products/ph-120-cutout-20260626.webp",
     alt: "PH-120 portable hand wash station",
+    secondaryImage: "/images/products/ph-120-secondary.webp",
+    secondaryAlt: "PH-120 portable hand wash station rear and foot pump view",
+    galleryImages: [
+      {
+        src: "/images/products/ph-120-gallery-3.webp",
+        alt: "PH-120 portable hand wash station rear side view",
+      },
+    ],
     cardDescription: "Compact hand wash station for events and construction sites.",
     cardSpecs: ["60L freshwater", "Foot pump", "Mobile base"],
     idealFor: "High-traffic outdoor events, festivals, concerts and remote construction sites.",
@@ -493,8 +529,10 @@ export const products: Product[] = [
     model: "PH-200",
     name: "Dual Stationary Max Hand Wash Station",
     category: "Washbasin",
-    image: "/images/products/ph-200.webp",
+    image: "/images/products/ph-200-cutout-20260626.webp",
     alt: "PH-200 dual hand wash station",
+    secondaryImage: "/images/products/ph-200-secondary.webp",
+    secondaryAlt: "PH-200 dual hand wash station rear view",
     cardDescription: "Dual stationary hand wash station for long-term high-use sites.",
     cardSpecs: ["Dual users", "100L freshwater", "Stationary base"],
     idealFor: "Long-term construction sites, public parks, industrial facilities and semi-permanent outdoor installations.",
@@ -532,8 +570,10 @@ export const products: Product[] = [
     model: "PH-200A",
     name: "Dual-Go Hand Wash Station",
     category: "Washbasin",
-    image: "/images/products/ph-200a.webp",
+    image: "/images/products/ph-200a-cutout-20260626.webp",
     alt: "PH-200A mobile dual hand wash station",
+    secondaryImage: "/images/products/ph-200a-secondary.webp",
+    secondaryAlt: "PH-200A mobile dual hand wash station rear view",
     cardDescription: "Mobile dual-user hand wash station for large events and projects.",
     cardSpecs: ["Dual users", "Wheeled base", "100L freshwater"],
     idealFor: "Large festivals, high-traffic concerts, fairs and major construction projects.",

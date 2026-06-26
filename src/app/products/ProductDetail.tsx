@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
 import { ProductCard } from "@/components/site/ProductCard";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { ProductImageGallery } from "./ProductImageGallery";
 import { productCategories } from "./product-categories";
 import type { Product } from "./product-data";
 import { products } from "./product-data";
@@ -59,6 +59,13 @@ function getRelatedProducts(product: Product) {
     ),
   ].slice(0, 3);
 }
+
+const buyerDocuments = [
+  "Certification documents available on request",
+  "Packing data and container loading plan",
+  "Pre-shipment inspection support",
+  "Spare parts list for repeat orders",
+];
 
 export function ProductDetail({ product }: { product: Product }) {
   const relatedProducts = getRelatedProducts(product);
@@ -117,18 +124,11 @@ export function ProductDetail({ product }: { product: Product }) {
       />
 
       <section className="product-overview-section">
-        <div className="product-detail-media">
-          <Image
-            src={product.image}
-            alt={product.alt}
-            fill
-            sizes="(max-width: 900px) calc(100vw - 32px), 42vw"
-          />
-        </div>
+        <ProductImageGallery product={product} />
 
         <aside className="product-quote-panel" aria-label={`${product.model} quote and specification panel`}>
           <span className="section-kicker">{product.category}</span>
-          <h2>{product.model} procurement summary</h2>
+          <h2>{product.model} model summary</h2>
           <p>{product.idealFor}</p>
           <dl>
             <div>
@@ -172,22 +172,15 @@ export function ProductDetail({ product }: { product: Product }) {
               Ask for Factory Quote
             </Link>
           </div>
-          <div className="procurement-support-block">
-            <strong>Procurement Support</strong>
-            {product.procurementSupport.slice(0, 4).map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
         </aside>
       </section>
 
       <section className="product-detail-section product-detail-grid">
         <div>
           <span className="section-kicker">KEY SPECIFICATIONS</span>
-          <h2>Technical data for B2B procurement review.</h2>
+          <h2>Key dimensions, tank capacity and configuration details.</h2>
           <p>
-            Review dimensions, tank capacity, structure and options before requesting
-            price, MOQ and packing data.
+            Use these details to compare models before requesting price, MOQ and packing data.
           </p>
         </div>
         <div className="spec-table">
@@ -215,15 +208,27 @@ export function ProductDetail({ product }: { product: Product }) {
       <section className="product-detail-section product-detail-grid">
         <div>
           <span className="section-kicker">OPTIONS AND CONFIGURATION</span>
-          <h2>Configure the model for your market and service plan.</h2>
+          <h2>Select fittings, tank layout, color and spare parts based on your rental or project needs.</h2>
           <p>
-            Confirm skid type, tank layout, hand wash, flush, color, fittings and other
-            model-specific options before Sunrise prepares MOQ, price and packing data.
+            Confirm the required setup before Sunrise prepares MOQ, price and packing data
+            for your order.
           </p>
         </div>
         <div className="detail-list">
           {configurationOptions.map((item) => (
             <div key={item}>{item}</div>
+          ))}
+        </div>
+      </section>
+
+      <section className="product-compact-section" aria-label={`${product.model} available buyer documents`}>
+        <div>
+          <span className="section-kicker">BUYER DOCUMENTS</span>
+          <h2>Available Buyer Documents</h2>
+        </div>
+        <div className="application-chip-list">
+          {buyerDocuments.map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
       </section>
@@ -241,6 +246,7 @@ export function ProductDetail({ product }: { product: Product }) {
       </section>
 
       <SectionCta
+        kicker="REQUEST SPECIFICATIONS"
         title="Request price, specifications and packing data."
         text={`Send your target quantity, destination market and configuration requirements for ${product.model}. Sunrise can prepare specifications, MOQ, lead time and container loading advice.`}
         primaryLabel="Request Product Quote"

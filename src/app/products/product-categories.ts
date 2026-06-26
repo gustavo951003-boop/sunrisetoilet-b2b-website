@@ -7,7 +7,8 @@ export type ProductCategory = {
   heroTitle: string;
   description: string;
   shortNote: string;
-  buyerNote: string;
+  categoryIntro: string;
+  categoryHighlights: string[];
   image: string;
   alt: string;
   productSlugs: string[];
@@ -22,8 +23,13 @@ export const productCategories: ProductCategory[] = [
     description:
       "HDPE portable toilet cabins for rental fleets, construction sites, events, public projects and distributor stock.",
     shortNote: "Core HDPE portable toilets for fleet and distributor supply.",
-    buyerNote:
-      "Compare standard, premium, waterless and sewer-connect portable toilet models for container supply.",
+    categoryIntro:
+      "Compare HDPE portable toilet models for rental fleets, construction sites, events and distributor stock. Review tank capacity, base type, flushing options and container-loading requirements before requesting a quote.",
+    categoryHighlights: [
+      "Rental fleet supply",
+      "Tank capacity options",
+      "Container loading support",
+    ],
     image: "/images/site/pt-360.webp",
     alt: "Sunrise HDPE portable toilet category",
     productSlugs: [
@@ -46,8 +52,13 @@ export const productCategories: ProductCategory[] = [
     description:
       "Accessible portable toilets for public events, project procurement and inclusive temporary sanitation planning.",
     shortNote: "Wide-entry accessible units for public and project buyers.",
-    buyerNote:
-      "Review accessible portable toilet layouts, wide entry planning and public venue supply options.",
+    categoryIntro:
+      "Accessible portable toilets for public events, project procurement and inclusive temporary sanitation. Compare cabin size, wide-entry access, internal layout and hand-wash options.",
+    categoryHighlights: [
+      "Wide-entry cabin",
+      "Public event use",
+      "Inclusive project supply",
+    ],
     image: "/images/site/pdt-100.webp",
     alt: "Sunrise accessible portable toilet category",
     productSlugs: ["accessible-portable-toilet"],
@@ -60,8 +71,13 @@ export const productCategories: ProductCategory[] = [
     description:
       "Mobile shower cabins for temporary camps, construction sites, disaster relief and outdoor sanitation projects.",
     shortNote: "Mobile shower cabins for camps, projects and outdoor facilities.",
-    buyerNote:
-      "Review shower cabin specifications for water connection, drainage planning and outdoor deployment.",
+    categoryIntro:
+      "Portable shower cabins for temporary camps, construction sites, disaster relief and outdoor projects. Compare models by water connection, drainage layout, cabin structure and export packing requirements.",
+    categoryHighlights: [
+      "Water connection",
+      "Drainage planning",
+      "Outdoor deployment",
+    ],
     image: "/images/products/ps-330.webp",
     alt: "Sunrise portable shower category",
     productSlugs: ["ps-330-mobile-shower-cabin"],
@@ -74,8 +90,13 @@ export const productCategories: ProductCategory[] = [
     description:
       "Single and dual portable hand wash stations for events, rental fleets and hygiene support at temporary sites.",
     shortNote: "Single and dual hand wash stations for hygiene support.",
-    buyerNote:
-      "Compare freshwater capacity, wastewater capacity, mobility and double-sided hand wash station options.",
+    categoryIntro:
+      "Single and dual portable hand wash stations for events, rental fleets and temporary sites. Compare freshwater capacity, wastewater capacity, foot-pump operation and mobility.",
+    categoryHighlights: [
+      "Freshwater capacity",
+      "Foot-pump operation",
+      "Event hygiene support",
+    ],
     image: "/images/products/ph-200a.webp",
     alt: "Sunrise portable hand wash station category",
     productSlugs: [
@@ -92,8 +113,13 @@ export const productCategories: ProductCategory[] = [
     description:
       "Portable polyethylene waste tanks for temporary sanitation projects where sewer connection is unavailable.",
     shortNote: "Large waste storage for sites without sewer connection.",
-    buyerNote:
-      "Review 2000L, 4000L and 6000L waste tank options for site waste storage and transport planning.",
+    categoryIntro:
+      "Portable waste tanks for temporary sanitation projects where sewer connection is unavailable. Compare 2000L, 4000L and 6000L options by capacity, steel frame rating and site transport needs.",
+    categoryHighlights: [
+      "2000L / 4000L / 6000L",
+      "Steel frame support",
+      "Off-grid sanitation",
+    ],
     image: "/images/products/wt4000.webp",
     alt: "Sunrise portable waste tank category",
     productSlugs: ["portable-waste-tanks"],

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 type SectionCtaProps = {
+  kicker?: string;
   title: string;
   text: string;
   primaryLabel?: string;
@@ -10,6 +11,7 @@ type SectionCtaProps = {
 };
 
 export function SectionCta({
+  kicker,
   title,
   text,
   primaryLabel = "Request Factory Quote",
@@ -20,7 +22,7 @@ export function SectionCta({
   return (
     <section className="section-cta">
       <div>
-        <span className="section-kicker">PROCUREMENT SUPPORT</span>
+        {kicker ? <span className="section-kicker">{kicker}</span> : null}
         <h2>{title}</h2>
         <p>{text}</p>
       </div>

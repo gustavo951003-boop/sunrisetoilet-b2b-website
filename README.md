@@ -20,6 +20,28 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact Form Email Settings
+
+The contact form sends inquiries from the server-side API route at `/api/contact`. Do not put SMTP passwords or email API keys in client-side code.
+
+Required production environment variables:
+
+```bash
+SMTP_HOST=smtp.exmail.qq.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=your-verified-sender@sunrise-moulding.com
+SMTP_PASS=your-email-smtp-password-or-authorization-code
+CONTACT_FROM_EMAIL=your-verified-sender@sunrise-moulding.com
+```
+
+Notes:
+
+- Website inquiries are sent to `Sales@sunrise-moulding.com`.
+- `CONTACT_FROM_EMAIL` must be a sender address verified by the SMTP mailbox provider.
+- Customer replies use the submitted email address through the message `Reply-To` header.
+- `.env.local` is for local development only and must not be committed.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

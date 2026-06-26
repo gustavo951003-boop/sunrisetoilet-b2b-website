@@ -5,7 +5,7 @@ export const certificationBadges = [
     alt: "Intertek Total Quality Assured certification mark",
     width: 740,
     height: 400,
-    note: "Third-party quality assurance reference for buyer review.",
+    note: "Third-party quality assurance reference available for order documentation.",
   },
   {
     name: "SGS System Certification",

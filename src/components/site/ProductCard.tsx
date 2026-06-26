@@ -7,16 +7,33 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const hasSecondaryImage = Boolean(product.secondaryImage && product.secondaryAlt);
+  const cardImage = product.cardImage ?? `/images/products/card/${product.slug}.webp`;
+  const cardSecondaryImage = `/images/products/card/${product.slug}-secondary.webp`;
+
   return (
     <Link className="product-card-modern" href={`/products/${product.slug}`}>
-      <div className="product-card-image">
+      <div
+        className={
+          hasSecondaryImage ? "product-card-image product-card-image-has-secondary" : "product-card-image"
+        }
+      >
         <Image
-          className="product-card-img"
-          src={product.image}
+          className="product-card-img product-card-img-primary"
+          src={cardImage}
           alt={product.alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         />
+        {hasSecondaryImage ? (
+          <Image
+            className="product-card-img product-card-img-secondary"
+            src={cardSecondaryImage}
+            alt={product.secondaryAlt ?? product.alt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          />
+        ) : null}
         <span className="product-model-badge">{product.model}</span>
       </div>
       <div className="product-card-body">

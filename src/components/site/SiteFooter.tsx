@@ -12,8 +12,8 @@ export function SiteFooter() {
             Sunrise manufactures HDPE portable toilets for rental fleets, distributors,
             construction projects and event supply from Ningbo, China.
           </p>
-          <Link className="button button-primary" href="/contact">
-            Request portable toilet factory quote
+          <Link className="footer-cta" href="/contact">
+            Request Factory Quote
           </Link>
         </div>
         <div>

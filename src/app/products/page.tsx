@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { categoryNavigationAssets } from "@/data/categoryNavigation";
 import { getProductsByCategorySlug, productCategories } from "./product-categories";
 import { featuredProductSlugs, products } from "./product-data";
 
@@ -62,18 +63,27 @@ export default function ProductsPage() {
         </p>
       </section>
 
-      <section className="category-card-grid product-category-cards" aria-label="Product categories">
+      <section className="home-category-grid product-category-cards" aria-label="Product categories">
         {productCategories.map((category) => (
-          <Link className="category-card" href={`/products/category/${category.slug}`} key={category.slug}>
-            <Image
-              src={category.image}
-              alt={category.alt}
-              fill
-              sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1100px) 50vw, 20vw"
-            />
-            <div>
-              <strong>{category.menuLabel}</strong>
-              <span>{category.shortNote}</span>
+          <Link
+            className="home-category-card"
+            href={`/products/category/${category.slug}`}
+            key={category.slug}
+          >
+            <span className="home-category-art">
+              <Image
+                src={categoryNavigationAssets[category.slug]?.image ?? category.image}
+                alt={categoryNavigationAssets[category.slug]?.alt ?? category.alt}
+                fill
+                sizes="(max-width: 560px) 44vw, (max-width: 980px) 28vw, 190px"
+              />
+            </span>
+            <div className="home-category-content">
+              <span className="home-category-label">CATEGORY</span>
+              <strong className="home-category-title">{category.menuLabel}</strong>
+              <span className="home-category-copy">
+                {categoryNavigationAssets[category.slug]?.copy ?? category.shortNote}
+              </span>
             </div>
           </Link>
         ))}
@@ -124,6 +134,7 @@ export default function ProductsPage() {
 
       <CertificationStrip compact />
       <SectionCta
+        kicker="REQUEST SPECIFICATIONS"
         title="Need price, specifications and packing data?"
         text="Send your target models, quantity and destination market. Sunrise can prepare product specifications, MOQ, lead time and container loading support."
         primaryLabel="Request Factory Quote"

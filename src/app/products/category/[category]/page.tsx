@@ -69,15 +69,18 @@ export default async function ProductCategoryPage({
         secondaryCTA={{ label: "Ask for Container Loading Plan", href: "/contact" }}
       />
 
-      <section className="category-summary">
+      <section className="category-overview" aria-labelledby="category-overview-title">
         <div>
-          <span className="section-kicker">BUYER NOTE</span>
-          <h2>{category.buyerNote}</h2>
+          <span className="section-kicker" id="category-overview-title">
+            Category Overview
+          </span>
+          <p className="category-overview-text">{category.categoryIntro}</p>
         </div>
-        <p>
-          Select a model to view specifications, dimensions, tank capacity, application notes
-          and export-ready supply details.
-        </p>
+        <div className="category-highlight-chips" aria-label={`${category.title} highlights`}>
+          {category.categoryHighlights.map((highlight) => (
+            <span key={highlight}>{highlight}</span>
+          ))}
+        </div>
       </section>
 
       <section className="product-index-grid" aria-label={`${category.title} product list`}>
@@ -87,8 +90,9 @@ export default async function ProductCategoryPage({
       </section>
 
       <SectionCta
+        kicker="REQUEST SPECIFICATIONS"
         title={`Need help comparing ${category.title.toLowerCase()}?`}
-        text="Share your destination market, quantity and required configuration. Sunrise can recommend models, specifications and packing data for your procurement review."
+        text="Share your destination market, quantity and required configuration. Sunrise can recommend models, specifications and packing data for your order review."
         primaryLabel="Request Category Quote"
         secondaryLabel="Contact Sales Team"
         secondaryHref="/contact"

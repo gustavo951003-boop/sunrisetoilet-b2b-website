@@ -1,74 +1,83 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Custom Rotational & Blow Molding Manufacturer in China | Sunrise",
+  title: "Custom Rotational & Blow Molding Support for Large HDPE Products | Sunrise",
   description:
-    "Sunrise supports OEM plastic manufacturing projects using rotational molding and blow molding for large HDPE products, tanks, containers, outdoor housings and custom molded components.",
-  keywords: [
-    "rotational molding manufacturer China",
-    "blow molding manufacturer China",
-    "OEM plastic molding",
-    "custom HDPE plastic products",
-    "large plastic product manufacturer",
-    "plastic tank manufacturer China",
-  ],
+    "Sunrise supports selected OEM plastic projects for overseas buyers who need durable HDPE tanks, containers, outdoor housings and large molded plastic components using rotational molding and blow molding.",
   alternates: {
     canonical: "/oem-plastic-molding",
   },
 };
 
-const processes = [
+const capabilityTags = [
+  "Rotational molding",
+  "Blow molding",
+  "Export packing support",
+];
+
+const supportCapabilities = [
   {
-    title: "Rotational molding",
-    text: "Suitable for large hollow plastic products, outdoor housings, tanks and durable HDPE structures.",
+    title: "Rotational Molded HDPE Products",
+    text: "Large hollow plastic structures, outdoor housings, tanks and durable HDPE cabins for outdoor and rental-market applications.",
   },
   {
-    title: "Blow molding",
-    text: "Suitable for plastic tanks, containers and selected hollow plastic components.",
+    title: "Blow Molded Tanks & Containers",
+    text: "Selected hollow plastic tanks, containers and compatible project parts based on product size, material and quantity.",
   },
   {
-    title: "Plastic assembly and OEM support",
-    text: "Logo, color, fitting, packaging and export support for compatible B2B projects.",
-  },
-  {
-    title: "Selected plastic components",
-    text: "Support for compatible plastic parts and assembly requirements without overclaiming full injection molding specialization.",
+    title: "Assembly, Color & Private Label Support",
+    text: "Color matching, logo options, fittings, packaging and export preparation for compatible OEM projects.",
   },
 ];
 
 const suitableProjects = [
-  "Large hollow plastic products",
-  "HDPE water and waste tanks",
-  "Outdoor plastic enclosures",
+  "Large hollow HDPE plastic products",
+  "Water and waste tanks",
+  "Outdoor plastic housings and enclosures",
   "Portable sanitation components",
-  "Industrial plastic containers",
-  "Custom molded plastic housings",
-  "Private label plastic products for rental and construction markets",
+  "Private label products for rental, construction and outdoor markets",
 ];
 
-const trustPoints = [
-  "Experience exporting to Australia, UK, US and other markets",
-  "Factory-direct communication",
-  "Experience with HDPE outdoor products",
-  "Support for bulk container loading",
-  "OEM color, logo and fitting customization",
-  "Spare parts and repeat-order support",
-  "Practical packing and shipping support",
+const buyerReasons = [
+  {
+    title: "Experience with HDPE outdoor products",
+    text: "Portable toilets and related outdoor products give Sunrise practical experience with durable HDPE structures and repeated handling.",
+  },
+  {
+    title: "Export packing and container planning",
+    text: "Support for packing method, container loading discussion and export documentation.",
+  },
+  {
+    title: "Color, logo and fitting options",
+    text: "Selected private label options can be reviewed based on product structure and order quantity.",
+  },
+  {
+    title: "Spare parts and repeat-order support",
+    text: "Useful for rental, construction and sanitation projects that require repeat supply.",
+  },
 ];
 
-const buyerInputs = [
-  "Product drawing or sample photo",
-  "Approximate dimensions",
-  "Material requirement",
-  "Target quantity",
-  "Destination market",
-  "Application scenario",
-  "Target price range if available",
+const reviewGroups = [
+  {
+    title: "Product information",
+    items: [
+      "Drawing, sample photo or product concept",
+      "Approximate dimensions",
+      "Material and usage environment",
+    ],
+  },
+  {
+    title: "Commercial information",
+    items: [
+      "Estimated quantity",
+      "Destination market",
+      "Packaging or private label request",
+    ],
+  },
 ];
 
 export default function OemPlasticMoldingPage() {
@@ -76,56 +85,38 @@ export default function OemPlasticMoldingPage() {
     <main className="oem-page">
       <SiteHeader />
       <PageHero
-        kicker="Secondary Factory Capability"
-        title="Custom Rotational & Blow Molding Manufacturer in China"
-        description="Sunrise remains focused on HDPE portable toilet manufacturing while supporting selected OEM plastic projects using rotational molding and blow molding."
+        kicker="OEM CAPABILITIES"
+        title="Custom Rotational & Blow Molding Support for Large HDPE Products"
+        description="Sunrise supports selected OEM plastic projects for overseas buyers who need durable HDPE tanks, housings, containers and outdoor molded components. Projects are reviewed based on drawings, sample photos, material, quantity and export feasibility."
         backgroundImage="/images/site/factory-workshop.webp"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "OEM Capabilities" },
         ]}
         primaryCTA={{ label: "Discuss OEM Project", href: "/contact" }}
-        secondaryCTA={{ label: "View Portable Toilet Range", href: "/products" }}
+        secondaryCTA={{ label: "Send Product Drawing", href: "/contact" }}
       />
-
-      <section className="oem-hero">
-        <div>
-          <span className="section-kicker">SECONDARY FACTORY CAPABILITY</span>
-          <h2>OEM capability without diluting the core portable toilet business.</h2>
-          <p>
-            Sunrise manufactures HDPE portable toilets and large outdoor plastic products
-            using rotational molding and blow molding processes. We support selected OEM
-            plastic manufacturing projects for overseas buyers who need durable plastic
-            housings, tanks, containers and custom molded components.
-          </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/contact">
-              Discuss OEM Project
-            </Link>
-            <Link className="button button-light" href="/contact">
-              Send Product Drawing
-            </Link>
-          </div>
-        </div>
-        <aside aria-label="Primary business reminder">
-          <strong>Primary focus</strong>
-          <span>
-            Sunrise remains focused on HDPE portable toilet manufacturing. OEM plastic
-            molding is offered as a selected factory capability for compatible projects.
-          </span>
-        </aside>
-      </section>
 
       <section className="oem-section">
         <div className="oem-section-head">
-          <span className="section-kicker">MANUFACTURING PROCESSES</span>
-          <h2>Rotational molding, blow molding and practical OEM support.</h2>
+          <span className="section-kicker">WHAT WE CAN SUPPORT</span>
+          <h2>Selected OEM plastic molding support for compatible B2B projects.</h2>
+          <p>
+            Custom rotational and blow molding support is available for large HDPE
+            products where the product size, material, tooling feasibility, quantity and
+            export requirements fit Sunrise capabilities.
+          </p>
+          <div className="oem-capability-tags" aria-label="OEM capability tags">
+            {capabilityTags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
         </div>
-        <div className="oem-card-grid">
-          {processes.map((process) => (
-            <article key={process.title}>
-              <h3>{process.title}</h3>
-              <p>{process.text}</p>
+        <div className="oem-card-grid oem-card-grid-three">
+          {supportCapabilities.map((capability) => (
+            <article key={capability.title}>
+              <h3>{capability.title}</h3>
+              <p>{capability.text}</p>
             </article>
           ))}
         </div>
@@ -134,11 +125,10 @@ export default function OemPlasticMoldingPage() {
       <section className="oem-section oem-split">
         <div>
           <span className="section-kicker">SUITABLE OEM PROJECTS</span>
-          <h2>Large HDPE plastic products and compatible molded components.</h2>
+          <h2>Suitable OEM Project Types</h2>
           <p>
-            Sunrise is a practical fit for buyers comparing a custom rotational molding
-            manufacturer, blow molding supplier China or OEM plastic manufacturing partner
-            for outdoor and rental-market plastic products.
+            Sunrise is a better fit for large HDPE outdoor products than small precision
+            plastic parts.
           </p>
         </div>
         <div className="oem-list">
@@ -150,38 +140,59 @@ export default function OemPlasticMoldingPage() {
 
       <section className="oem-section">
         <div className="oem-section-head">
-          <span className="section-kicker">WHY WORK WITH SUNRISE</span>
-          <h2>Export-focused plastic manufacturing support without diluting the core portable toilet business.</h2>
+          <span className="section-kicker">WHY BUYERS USE SUNRISE</span>
+          <h2>Why Buyers Use Sunrise for Selected OEM Projects</h2>
         </div>
-        <div className="oem-trust-list">
-          {trustPoints.map((point) => (
-            <span key={point}>{point}</span>
+        <div className="oem-card-grid">
+          {buyerReasons.map((reason) => (
+            <article key={reason.title}>
+              <h3>{reason.title}</h3>
+              <p>{reason.text}</p>
+            </article>
           ))}
         </div>
       </section>
 
       <section className="oem-section oem-split">
         <div>
-          <span className="section-kicker">BUYER REQUIREMENTS</span>
-          <h2>What we need to review an OEM plastic product inquiry.</h2>
+          <span className="section-kicker">PROJECT REVIEW</span>
+          <h2>How We Review Your Project</h2>
           <p>
-            Clear project inputs help the factory judge whether the item fits rotational
-            molding or blow molding capabilities before quoting tooling, MOQ or container supply.
+            These details help us judge process fit, tooling feasibility, MOQ, packing
+            method and quotation direction.
           </p>
         </div>
-        <div className="oem-list">
-          {buyerInputs.map((item) => (
-            <div key={item}>{item}</div>
+        <div className="oem-review-grid">
+          {reviewGroups.map((group) => (
+            <article key={group.title}>
+              <h3>{group.title}</h3>
+              <ul>
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </section>
 
+      <section className="oem-fit-note">
+        <span className="section-kicker">PROJECT FIT MATTERS</span>
+        <h2>Project Fit Matters</h2>
+        <p>
+          OEM inquiries are reviewed based on product size, molding process, tooling
+          feasibility, order quantity and export requirements. Sunrise is usually a better
+          fit for large HDPE outdoor products than small precision plastic parts.
+        </p>
+      </section>
+
       <SectionCta
-        title="Send your OEM plastic product inquiry."
-        text="Share your drawing, sample photo or product idea. Sunrise will review whether it fits rotational molding or blow molding production capabilities."
-        primaryLabel="Contact Sales Team"
-        secondaryLabel="Send Product Drawing"
-        secondaryHref="/contact"
+        kicker="OEM PROJECT REVIEW"
+        title="Have a suitable HDPE plastic product project?"
+        text="Send your drawing, sample photo or product idea. Our team will review whether the project fits our rotational molding or blow molding capabilities."
+        primaryLabel="Discuss OEM Project"
+        secondaryLabel="View Portable Toilet Range"
+        secondaryHref="/products"
       />
       <SiteFooter />
     </main>

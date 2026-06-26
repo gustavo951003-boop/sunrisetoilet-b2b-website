@@ -49,21 +49,6 @@ const factoryVideoHighlights = [
   },
 ];
 
-const factoryReviewMaterials = [
-  {
-    title: "Factory video",
-    text: "Review workshop environment, assembly process and export preparation.",
-  },
-  {
-    title: "Production photos",
-    text: "Product and workshop images can support supplier evaluation and project discussions.",
-  },
-  {
-    title: "Supplier assessment files",
-    text: "Third-party supplier review files can be shared to support vendor qualification.",
-  },
-];
-
 export default function FactoryPage() {
   return (
     <main className="placeholder-page">
@@ -121,19 +106,6 @@ export default function FactoryPage() {
         title="Compliance Documents Available for Review"
         subtitle="Intertek, SGS, RoHS and Australian market reference documents can be shared to support distributor, rental fleet and project purchasing review."
       />
-
-      <section className="asset-map-section factory-review-materials" aria-label="Factory review materials">
-        <div className="factory-review-materials-head">
-          <span className="section-kicker">FACTORY PROOF</span>
-          <h2>Factory Review Materials Available</h2>
-        </div>
-        {factoryReviewMaterials.map((item) => (
-          <article key={item.title}>
-            <h2>{item.title}</h2>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </section>
 
       <SectionCta
         kicker="PROJECT SUPPORT"

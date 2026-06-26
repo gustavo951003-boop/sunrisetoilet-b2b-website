@@ -1,33 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const homepageCases = [
-  {
-    title: "Buyer Visit & Product Review",
-    image: "/images/site/case-buyers.webp",
-    alt: "Overseas buyers reviewing Sunrise portable toilet products at the factory",
-    text: "Buyers can review product structure, accessories, certificates and packing details before bulk orders.",
-  },
-  {
-    title: "Project Discussion & Export Support",
-    image: "/images/site/case-team.webp",
-    alt: "Sunrise team discussing portable toilet export project with overseas buyers",
-    text: "Sunrise supports model selection, container loading planning, spare parts preparation and export documentation.",
-  },
-];
-
-const factoryCases = [
-  {
-    ...homepageCases[0],
-    title: "Factory Visit & Product Inspection",
-    text: "Buyers can review product structure, accessories, workshop conditions and inspection details before confirming bulk supply.",
-  },
-  {
-    ...homepageCases[1],
-    title: "Packing Review & Export Planning",
-    text: "Sunrise supports packing review, container loading planning, spare parts coordination and export documentation for B2B orders.",
-  },
-];
+import { visibleExportCases } from "@/data/exportCases";
 
 const proofPoints = [
   "Factory visits and product review support",
@@ -41,11 +14,10 @@ type ExportCasesProps = {
 
 export function ExportCases({ variant = "home" }: ExportCasesProps) {
   const isFactory = variant === "factory";
-  const cases = isFactory ? factoryCases : homepageCases;
-  const title = isFactory ? "Buyer Visits & Export Support" : "Export Cases & Buyer Visits";
-  const subtitle = isFactory
-    ? "Factory visits, product inspection, packing review and export support help procurement buyers confirm portable toilet orders with clearer evidence."
-    : "Real buyer visits, product reviews and export support for portable toilet distributors, rental fleets and project buyers.";
+  const cases = visibleExportCases.filter((caseStudy) => caseStudy.type === "case");
+  const title = "Buyer Visits & Export Support";
+  const subtitle =
+    "Factory visits, product inspection, packing review and export support help procurement buyers confirm portable toilet orders with clearer evidence.";
   const secondaryCta = isFactory
     ? { label: "View Product Range", href: "/products" }
     : { label: "View Factory Capability", href: "/factory" };
@@ -77,21 +49,39 @@ export function ExportCases({ variant = "home" }: ExportCasesProps) {
           </div>
         </div>
 
-        <div className="export-case-mosaic" data-reveal={!isFactory ? true : undefined}>
-          {cases.map((caseStudy, index) => (
-            <article className="export-case-card" key={caseStudy.image}>
-              <div className="export-case-image">
-                <Image
-                  src={caseStudy.image}
-                  alt={caseStudy.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+        <div className="export-case-grid" data-reveal={!isFactory ? true : undefined}>
+          {cases.map((caseStudy) => (
+            <article
+              className={
+                caseStudy.type === "cta"
+                  ? "export-case-card export-case-cta-card"
+                  : "export-case-card"
+              }
+              key={caseStudy.id}
+            >
+              <div className="export-case-media">
+                {caseStudy.image && caseStudy.alt ? (
+                  <Image
+                    src={caseStudy.image}
+                    alt={caseStudy.alt}
+                    fill
+                    sizes="(max-width: 720px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div className="export-case-reference-art" aria-hidden="true">
+                    <span>SR</span>
+                  </div>
+                )}
               </div>
-              <div className="export-case-caption">
-                <span>{index === 0 ? "Buyer review" : "Export support"}</span>
+              <div className="export-case-body">
+                <span>{caseStudy.kicker}</span>
                 <h3>{caseStudy.title}</h3>
-                <p>{caseStudy.text}</p>
+                <p>{caseStudy.description}</p>
+                {caseStudy.href ? (
+                  <Link className="export-case-link" href={caseStudy.href}>
+                    Discuss Your Project
+                  </Link>
+                ) : null}
               </div>
             </article>
           ))}
