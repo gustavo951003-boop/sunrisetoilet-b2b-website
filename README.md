@@ -33,11 +33,13 @@ SMTP_SECURE=true
 SMTP_USER=your-verified-sender@sunrise-moulding.com
 SMTP_PASS=your-email-smtp-password-or-authorization-code
 CONTACT_FROM_EMAIL=your-verified-sender@sunrise-moulding.com
+CONTACT_TO_EMAIL=gus@sunrise-moulding.com
 ```
 
 Notes:
 
-- Website inquiries are sent to `Sales@sunrise-moulding.com`.
+- Website inquiries are sent to `gus@sunrise-moulding.com` by default.
+- The email sender is displayed as `Sunrise Website`, while the actual sender mailbox comes from `CONTACT_FROM_EMAIL`.
 - `CONTACT_FROM_EMAIL` must be a sender address verified by the SMTP mailbox provider.
 - Customer replies use the submitted email address through the message `Reply-To` header.
 - `.env.local` is for local development only and must not be committed.

@@ -43,7 +43,6 @@ type ContactEmailFields = {
   email: string;
   country: string;
   countryCode: string;
-  ipAddress: string;
   whatsapp: string;
   message: string;
   submittedAt: string;
@@ -69,7 +68,6 @@ function escapeHtml(value: string) {
 function buildEmailHtml(fields: ContactEmailFields) {
   const rows = [
     ["Country Code", fields.countryCode],
-    ["IP Address", fields.ipAddress],
     ["Name", fields.name || "Not provided"],
     ["Email", fields.email],
     ["Country", fields.country],
@@ -107,7 +105,6 @@ function buildEmailText(fields: ContactEmailFields) {
     "You received a new message from your website contact form.",
     "",
     `Country Code: ${fields.countryCode}`,
-    `IP Address: ${fields.ipAddress}`,
     `Name: ${fields.name || "Not provided"}`,
     `Email: ${fields.email}`,
     `Country: ${fields.country}`,
@@ -133,23 +130,25 @@ function getFirstHeaderValue(headers: Headers, names: string[]) {
   return undefined;
 }
 
-function getClientIp(headers: Headers) {
-  const ipHeader = getFirstHeaderValue(headers, [
-    "x-forwarded-for",
-    "x-real-ip",
-    "cf-connecting-ip",
-    "true-client-ip",
-    "x-client-ip",
-    "fastly-client-ip",
+function getIpCountryCode(headers: Headers) {
+  const countryHeader = getFirstHeaderValue(headers, [
+    "x-vercel-ip-country",
+    "cf-ipcountry",
+    "cloudfront-viewer-country",
+    "x-country-code",
+    "x-appengine-country",
+    "fastly-client-country",
   ]);
 
-  const rawIp = ipHeader?.value.split(",")[0]?.trim();
+  const rawCountryCode = countryHeader?.value.split(",")[0]?.trim().toUpperCase();
 
-  if (!rawIp) {
+  if (!rawCountryCode) {
     return "Not available";
   }
 
-  return rawIp.replace(/[^\d.a-fA-F:]/g, "").slice(0, 80) || "Not available";
+  const matchedCountry = findCountryByInput(rawCountryCode);
+
+  return matchedCountry?.code ?? "Not available";
 }
 
 function extractEmailAddress(value: string) {
@@ -317,7 +316,7 @@ export async function POST(request: Request) {
   };
   const matchedCountry = findCountryByInput(fields.country);
   const matchedCountryCode = findCountryByInput(fields.countryCode);
-  const ipAddress = getClientIp(request.headers);
+  const ipCountryCode = getIpCountryCode(request.headers);
 
   const isInvalid =
     !fields.email ||
@@ -343,8 +342,7 @@ export async function POST(request: Request) {
   const normalizedFields = {
     ...fields,
     country: matchedCountry.name,
-    countryCode: matchedCountry.code,
-    ipAddress,
+    countryCode: ipCountryCode,
   };
 
   const smtpHost = process.env.SMTP_HOST || "smtp.exmail.qq.com";
@@ -353,7 +351,8 @@ export async function POST(request: Request) {
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
   const fromEmail = process.env.CONTACT_FROM_EMAIL || smtpUser;
-  const toEmail = "Sales@sunrise-moulding.com";
+  const fromAddress = `Sunrise Website <${extractEmailAddress(fromEmail ?? "")}>`;
+  const toEmail = process.env.CONTACT_TO_EMAIL || "gus@sunrise-moulding.com";
   const subject = normalizedFields.country
     ? `New customer message from Sunrise website - ${normalizedFields.country}`
     : "New customer message from Sunrise website";
@@ -364,7 +363,8 @@ export async function POST(request: Request) {
     !fromEmail ||
     !Number.isFinite(smtpPort) ||
     smtpPort <= 0 ||
-    !isValidEmail(extractEmailAddress(fromEmail))
+    !isValidEmail(extractEmailAddress(fromEmail)) ||
+    !isValidEmail(extractEmailAddress(toEmail))
   ) {
     return NextResponse.json(
       { success: false, error: "Message could not be sent." },
@@ -380,7 +380,7 @@ export async function POST(request: Request) {
       secure: smtpSecure,
       user: smtpUser,
       pass: smtpPass,
-      from: fromEmail,
+      from: fromAddress,
       to: toEmail,
       replyTo: normalizedFields.email,
       subject,
