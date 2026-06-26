@@ -30,25 +30,37 @@ export const metadata: Metadata = {
   },
 };
 
-const facts = [
-  "Rotational molding experience for HDPE portable toilet cabins and large plastic products",
-  "Blow molding and selected plastic component support for compatible OEM projects",
-  "Container loading, export packing and document preparation",
-  "Spare parts planning for rental fleets, distributors and repeat orders",
+const factoryVideoHighlights = [
+  {
+    title: "Workshop Environment",
+    text: "A quick view of our production floor, assembly area and factory workflow.",
+  },
+  {
+    title: "Portable Toilet Assembly",
+    text: "Review HDPE cabin structure, fittings installation and product preparation.",
+  },
+  {
+    title: "Export Packing Support",
+    text: "Understand how Sunrise prepares bulk orders, packing data and shipment documents.",
+  },
+  {
+    title: "Spare Parts Planning",
+    text: "Support for pumps, locks, hinges, fittings and repeat rental fleet orders.",
+  },
 ];
 
-const assetPlacement = [
+const factoryReviewMaterials = [
   {
     title: "Factory video",
-    text: "Review the workshop flow, assembly process and export preparation before supplier qualification.",
+    text: "Review workshop environment, assembly process and export preparation.",
   },
   {
-    title: "Factory screenshots",
-    text: "Use production-line and finished-unit images for procurement review, distributor files and project discussions.",
+    title: "Production photos",
+    text: "Product and workshop images can support supplier evaluation and project discussions.",
   },
   {
-    title: "Supplier assessment",
-    text: "Download third-party supplier review files to support compliance checks and internal vendor approval.",
+    title: "Supplier assessment files",
+    text: "Third-party supplier review files can be shared to support vendor qualification.",
   },
 ];
 
@@ -80,11 +92,17 @@ export default function FactoryPage() {
             review our manufacturing environment before requesting specifications or a
             factory quote.
           </p>
-          <ul className="factory-video-points">
-            <li>HDPE portable toilet production and assembly</li>
-            <li>Product structure, fittings and quality checks</li>
-            <li>Packing support for bulk container shipments</li>
-          </ul>
+          <div className="factory-video-review">
+            <h3>What buyers can review in this factory video</h3>
+            <div className="factory-video-highlight-grid">
+              {factoryVideoHighlights.map((item) => (
+                <article key={item.title}>
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
           <div className="factory-video-actions">
             <Link className="button button-primary" href="/contact">
               Request Factory Quote
@@ -96,22 +114,20 @@ export default function FactoryPage() {
         </div>
       </section>
 
-      <section className="placeholder-list" aria-label="Factory capability">
-        {facts.map((fact) => (
-          <div key={fact}>{fact}</div>
-        ))}
-      </section>
-
       <ExportCases variant="factory" />
 
       <CertificationStrip
         variant="panel"
-        title="Third-party verification files available for buyer review"
-        subtitle="Intertek, SGS, RoHS and Australian market reference documentation can support distributor, rental fleet and project procurement review."
+        title="Compliance Documents Available for Review"
+        subtitle="Intertek, SGS, RoHS and Australian market reference documents can be shared to support distributor, rental fleet and project purchasing review."
       />
 
-      <section className="asset-map-section" aria-label="Factory asset placement">
-        {assetPlacement.map((item) => (
+      <section className="asset-map-section factory-review-materials" aria-label="Factory review materials">
+        <div className="factory-review-materials-head">
+          <span className="section-kicker">FACTORY PROOF</span>
+          <h2>Factory Review Materials Available</h2>
+        </div>
+        {factoryReviewMaterials.map((item) => (
           <article key={item.title}>
             <h2>{item.title}</h2>
             <p>{item.text}</p>
@@ -120,8 +136,9 @@ export default function FactoryPage() {
       </section>
 
       <SectionCta
+        kicker="PROJECT SUPPORT"
         title="Review factory capability before confirming a container order."
-        text="Ask for production details, packing data, compliance files and shipment planning support for your portable toilet procurement."
+        text="Ask for production details, packing data, compliance files and shipment planning support for your portable toilet order."
         primaryLabel="Request Factory Quote"
         secondaryLabel="View Portable Toilet Range"
         secondaryHref="/products"
