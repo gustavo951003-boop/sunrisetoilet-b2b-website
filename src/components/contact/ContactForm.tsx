@@ -3,14 +3,6 @@
 import { type ChangeEvent, type FormEvent, type KeyboardEvent, useMemo, useState } from "react";
 import { countryOptions } from "@/data/countries";
 
-type GoogleTagParams = Record<string, string | number | boolean | undefined>;
-
-declare global {
-  interface Window {
-    gtag?: (command: "event", eventName: string, params?: GoogleTagParams) => void;
-  }
-}
-
 type ContactFormValues = {
   name: string;
   email: string;
@@ -30,28 +22,6 @@ const initialValues: ContactFormValues = {
   message: "",
   companyWebsite: "",
 };
-
-const googleAdsId = "AW-11142818750";
-const googleAdsFormConversionLabel = process.env.NEXT_PUBLIC_GOOGLE_ADS_FORM_CONVERSION_LABEL;
-
-function trackLeadFormConversion() {
-  if (typeof window === "undefined" || typeof window.gtag !== "function") {
-    return;
-  }
-
-  window.gtag("event", "generate_lead", {
-    event_category: "lead",
-    event_label: "contact_form_submit",
-  });
-
-  if (!googleAdsFormConversionLabel) {
-    return;
-  }
-
-  window.gtag("event", "conversion", {
-    send_to: `${googleAdsId}/${googleAdsFormConversionLabel}`,
-  });
-}
 
 export function ContactForm() {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
@@ -173,7 +143,6 @@ export function ContactForm() {
       }
 
       setStatus("success");
-      trackLeadFormConversion();
       setValues(initialValues);
     } catch (error) {
       setStatus("error");
