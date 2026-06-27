@@ -188,7 +188,14 @@ export function ContactForm() {
   const isSending = status === "sending";
 
   return (
-    <form className="contact-form-card" onSubmit={handleSubmit}>
+    <form
+      id="contact-inquiry-form"
+      name="contact-inquiry-form"
+      className="contact-form-card"
+      method="post"
+      action="/api/contact"
+      onSubmit={handleSubmit}
+    >
       <div className="contact-form-head">
         <span className="section-kicker">INQUIRY FORM</span>
         <h2>Send your product inquiry</h2>
