@@ -34,6 +34,7 @@ SMTP_USER=your-verified-sender@sunrise-moulding.com
 SMTP_PASS=your-email-smtp-password-or-authorization-code
 CONTACT_FROM_EMAIL=your-verified-sender@sunrise-moulding.com
 CONTACT_TO_EMAIL=gus@sunrise-moulding.com
+NEXT_PUBLIC_GOOGLE_ADS_FORM_CONVERSION_LABEL=your-google-ads-form-conversion-label
 ```
 
 Notes:
@@ -42,6 +43,7 @@ Notes:
 - The email sender is displayed as `Sunrise Website`, while the actual sender mailbox comes from `CONTACT_FROM_EMAIL`.
 - `CONTACT_FROM_EMAIL` must be a sender address verified by the SMTP mailbox provider.
 - Customer replies use the submitted email address through the message `Reply-To` header.
+- Google Ads form conversions fire after a successful contact form submission. Add only the conversion label part after `AW-11142818750/` to `NEXT_PUBLIC_GOOGLE_ADS_FORM_CONVERSION_LABEL`.
 - `.env.local` is for local development only and must not be committed.
 
 ## Learn More
