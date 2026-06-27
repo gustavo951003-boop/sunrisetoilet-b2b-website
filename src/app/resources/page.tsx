@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Catalogs, Certificates & Buyer Documents | Sunrise Portable Toilets",
+  title: "Catalogs, Certificates & Buyer Documents",
   description:
     "Download Sunrise portable toilet catalogs, RoHS documents, SGS material test reports, waste tank reports and supplier assessment files for distributor review, rental fleet purchasing and project quotation.",
   alternates: {

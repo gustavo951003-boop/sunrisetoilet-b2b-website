@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Contact Sunrise Portable Toilets | Request Factory Quote",
+  title: "Contact Sales | Request Factory Quote",
   description:
     "Contact Sunrise for HDPE portable toilet specifications, factory quotations, catalog downloads, packing data and export support for rental fleets, distributors and project buyers.",
   alternates: {
@@ -28,8 +28,8 @@ export default function ContactPage() {
     <main className="contact-page">
       <SiteHeader />
       <PageHero
-        kicker="CONTACT SUNRISE"
-        title="Request a Factory Quote"
+        kicker="Contact Sunrise"
+        title="Request A Factory Quote"
         description="Send your product inquiry, model requirements or project details. Our sales team will review your message and reply with available specifications, packing data and quotation support."
         backgroundImage="/images/site/case-buyers.webp"
         breadcrumbs={[

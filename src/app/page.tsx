@@ -78,7 +78,7 @@ const procurementSteps = [
 ];
 
 const oemCapabilities = [
-  "Rotational molded HDPE products",
+  "Rotational molded plastic products",
   "Blow molded tanks and containers",
   "Custom color, logo and fittings",
   "Export packing and container loading support",
@@ -129,11 +129,11 @@ export default function Home() {
         <div className="hero-overlay" />
 
         <div className="hero-content" data-reveal>
-          <span className="eyebrow">PORTABLE TOILET MANUFACTURER IN CHINA</span>
-          <h1 id="hero-title">Factory-direct HDPE portable toilets for rental fleets.</h1>
+          <span className="eyebrow">Portable Toilet Manufacturer in China</span>
+          <h1 id="hero-title">Factory-Direct HDPE Portable Toilets For Rental Fleets.</h1>
           <p>
             Manufactured in Ningbo for distributors, site-service companies and project buyers
-            across Australia, the UK, the US and global markets.
+            across Australia, Europe, the US and global markets.
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/contact">
@@ -246,8 +246,8 @@ export default function Home() {
           <span className="eyebrow">FACTORY CAPABILITY</span>
           <h2>From HDPE molded cabins to export-ready bulk supply.</h2>
           <p>
-            Sunrise supports portable toilet factory China sourcing with model selection,
-            accessory planning, inspection files, spare parts and shipment preparation.
+            Sunrise supports model selection, accessory planning, inspection files, spare parts
+            and container shipment preparation.
           </p>
           <div className="process-grid">
             {procurementSteps.map((item, index) => (
@@ -293,7 +293,7 @@ export default function Home() {
             <h2>OEM plastic manufacturing capabilities</h2>
             <p>
               In addition to portable toilet manufacturing, Sunrise supports selected OEM
-              plastic projects based on rotational molding, blow molding and large HDPE
+              plastic projects based on rotational molding, blow molding and large plastic
               product development.
             </p>
           </div>

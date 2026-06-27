@@ -30,7 +30,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${category.title} | Sunrise Product Catalog`,
+    title: `${category.title} Product Catalog`,
     description: category.description,
     alternates: {
       canonical: `/products/category/${category.slug}`,

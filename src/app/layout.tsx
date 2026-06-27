@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Sunrise Portable Toilets",
   },
   description:
-    "Sunrise manufactures HDPE portable toilets for rental fleets, distributors and project buyers. Factory-direct portable toilet supply for Australia, UK, US and global markets.",
+    "Sunrise manufactures HDPE portable toilets for rental fleets, distributors and project buyers. Factory-direct portable toilet supply for Australia, Europe, US and global markets.",
   keywords: [
     "portable toilet manufacturer",
     "portable toilet supplier",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Portable Toilet Manufacturer in China | Sunrise Portable Toilets",
     description:
-      "Factory-direct HDPE portable toilets for rental fleets, distributors and project buyers in Australia, UK, US and global markets.",
+      "Factory-direct HDPE portable toilets for rental fleets, distributors and project buyers in Australia, Europe, US and global markets.",
     url: "https://sunrisetoilet.com",
     siteName: "Sunrise Portable Toilets",
     locale: "en_US",

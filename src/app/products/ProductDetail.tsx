@@ -60,6 +60,47 @@ function getRelatedProducts(product: Product) {
   ].slice(0, 3);
 }
 
+function getProductSummaryOptions(product: Product) {
+  const productText = [
+    product.name,
+    product.category,
+    product.cardDescription,
+    product.description,
+    ...product.cardSpecs,
+    ...product.keySpecifications,
+    ...product.advantages,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  const summaryOptions = [
+    {
+      label: "Hand wash option",
+      pattern: /hand[- ]?wash|hand washing|sink|washbasin/,
+    },
+    {
+      label: "Foot pump",
+      pattern: /foot[- ]?pump/,
+    },
+    {
+      label: "Plastic skid",
+      pattern: /plastic skid/,
+    },
+    {
+      label: "Urinal option",
+      pattern: /urinal/,
+    },
+    {
+      label: "Waterless setup option",
+      pattern: /waterless|dry toilet/,
+    },
+  ];
+
+  return summaryOptions
+    .filter((option) => option.pattern.test(productText))
+    .map((option) => option.label);
+}
+
 const buyerDocuments = [
   "Certification documents available on request",
   "Packing data and container loading plan",
@@ -83,14 +124,9 @@ export function ProductDetail({ product }: { product: Product }) {
       : "See model configuration",
     categoryLabel.includes("waste"),
   );
-  const mainOptions = getUniqueItems([
-    ...product.cardSpecs,
-    ...product.keySpecifications.filter((item) =>
-      /option|available|custom|skid|flush|hand wash|pump|connection|dual|waterless|sewer|tank/i.test(item),
-    ),
-  ]).slice(0, 5);
+  const summaryOptions = getProductSummaryOptions(product);
   const configurationOptions = getUniqueItems([
-    ...mainOptions,
+    ...product.cardSpecs,
     ...product.advantages,
     ...product.keySpecifications,
   ]).slice(0, 6);
@@ -103,7 +139,7 @@ export function ProductDetail({ product }: { product: Product }) {
     ["Waste tank", wasteTank],
     ["Weight", product.weight],
     ["Structure", product.keySpecifications[0]],
-    ["Main options", mainOptions.join(" / ")],
+    ...(summaryOptions.length ? [["Main options", summaryOptions.join(" / ")]] : []),
   ];
 
   return (
@@ -159,10 +195,18 @@ export function ProductDetail({ product }: { product: Product }) {
               <dt>Weight</dt>
               <dd>{product.weight}</dd>
             </div>
-            <div>
-              <dt>Options</dt>
-              <dd>{mainOptions.join(" / ")}</dd>
-            </div>
+            {summaryOptions.length ? (
+              <div>
+                <dt>Options</dt>
+                <dd>
+                  <span className="product-summary-options">
+                    {summaryOptions.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </span>
+                </dd>
+              </div>
+            ) : null}
           </dl>
           <div className="quote-panel-actions">
             <Link className="button button-primary" href="/contact">

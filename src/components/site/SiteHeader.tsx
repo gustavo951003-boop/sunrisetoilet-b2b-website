@@ -31,7 +31,20 @@ export function BrandMark({ light = false }: { light?: boolean }) {
 export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
   const isTransparent = variant === "transparent";
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileNav, setIsMobileNav] = useState(false);
   const isLightHeader = isTransparent && !isScrolled;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 860px)");
+    const updateNavMode = () => setIsMobileNav(mediaQuery.matches);
+
+    updateNavMode();
+    mediaQuery.addEventListener("change", updateNavMode);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateNavMode);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isTransparent) {
@@ -83,7 +96,11 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
       >
         <div className="header-inner">
           <BrandMark light={isLightHeader} />
-          <nav className="desktop-nav" aria-label="Primary navigation">
+          <nav
+            className="desktop-nav"
+            aria-label="Primary navigation"
+            aria-hidden={isMobileNav ? "true" : undefined}
+          >
             {mainNavigation.map((item) =>
               item.href === "/products" ? (
                 <div className="nav-dropdown" key={item.href}>
@@ -109,7 +126,7 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
           <Link className="header-cta" href="/contact">
             Request Factory Quote
           </Link>
-          <details className="mobile-menu">
+          <details className="mobile-menu" aria-hidden={isMobileNav ? undefined : "true"}>
             <summary title="Open navigation" aria-label="Open navigation">
               <span />
               <span />

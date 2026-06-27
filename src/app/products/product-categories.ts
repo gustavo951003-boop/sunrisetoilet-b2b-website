@@ -19,7 +19,7 @@ export const productCategories: ProductCategory[] = [
     slug: "portable-toilets",
     title: "Portable Toilets",
     menuLabel: "Portable Toilets",
-    heroTitle: "Portable Toilets for Rental Fleets and Project Supply",
+    heroTitle: "Portable Toilets For Rental Fleets And Project Supply",
     description:
       "HDPE portable toilet cabins for rental fleets, construction sites, events, public projects and distributor stock.",
     shortNote: "Core HDPE portable toilets for fleet and distributor supply.",
@@ -48,7 +48,7 @@ export const productCategories: ProductCategory[] = [
     slug: "accessible-toilets",
     title: "Accessible Toilets",
     menuLabel: "Accessible Toilets",
-    heroTitle: "Accessible Portable Toilets for Events and Public Projects",
+    heroTitle: "Accessible Portable Toilets For Events And Public Projects",
     description:
       "Accessible portable toilets for public events, project procurement and inclusive temporary sanitation planning.",
     shortNote: "Wide-entry accessible units for public and project buyers.",
@@ -67,7 +67,7 @@ export const productCategories: ProductCategory[] = [
     slug: "portable-showers",
     title: "Portable Showers",
     menuLabel: "Portable Showers",
-    heroTitle: "Portable Showers and Hygiene Units",
+    heroTitle: "Portable Showers And Hygiene Units",
     description:
       "Mobile shower cabins for temporary camps, construction sites, disaster relief and outdoor sanitation projects.",
     shortNote: "Mobile shower cabins for camps, projects and outdoor facilities.",
@@ -86,7 +86,7 @@ export const productCategories: ProductCategory[] = [
     slug: "hand-wash-stations",
     title: "Hand Wash Stations",
     menuLabel: "Hand Wash Stations",
-    heroTitle: "Hand Wash Stations for Events and Construction Sites",
+    heroTitle: "Hand Wash Stations For Events And Construction Sites",
     description:
       "Single and dual portable hand wash stations for events, rental fleets and hygiene support at temporary sites.",
     shortNote: "Single and dual hand wash stations for hygiene support.",
@@ -109,7 +109,7 @@ export const productCategories: ProductCategory[] = [
     slug: "waste-tanks",
     title: "Waste Tanks",
     menuLabel: "Waste Tanks",
-    heroTitle: "Portable Waste Tanks for Temporary Sanitation Projects",
+    heroTitle: "Portable Waste Tanks For Temporary Sanitation Projects",
     description:
       "Portable polyethylene waste tanks for temporary sanitation projects where sewer connection is unavailable.",
     shortNote: "Large waste storage for sites without sewer connection.",

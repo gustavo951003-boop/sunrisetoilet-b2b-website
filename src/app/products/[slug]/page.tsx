@@ -9,14 +9,14 @@ export function generateStaticParams() {
 
 function getProductMetaTitle(slug: string, model: string, name: string) {
   if (slug === "pt-370-portable-toilet") {
-    return "PT-370 Portable Toilet with Hand Wash | Sunrise";
+    return "PT-370 Portable Toilet with Hand Wash";
   }
 
   if (slug === "accessible-portable-toilet") {
-    return "Accessible Portable Toilet Supplier | PDT-100 Sunrise";
+    return "Accessible Portable Toilet Supplier | PDT-100";
   }
 
-  return `${model} ${name} | Sunrise`;
+  return `${model} ${name}`;
 }
 
 export async function generateMetadata({

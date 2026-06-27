@@ -5,9 +5,9 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Custom Rotational & Blow Molding Support for Large HDPE Products | Sunrise",
+  title: "Custom Rotational & Blow Molding Support for Large Plastic Products",
   description:
-    "Sunrise supports selected OEM plastic projects for overseas buyers who need durable HDPE tanks, containers, outdoor housings and large molded plastic components using rotational molding and blow molding.",
+    "Sunrise supports selected OEM plastic projects for overseas buyers who need durable plastic tanks, containers, outdoor housings and large molded plastic components using rotational molding and blow molding.",
   alternates: {
     canonical: "/oem-plastic-molding",
   },
@@ -21,8 +21,8 @@ const capabilityTags = [
 
 const supportCapabilities = [
   {
-    title: "Rotational Molded HDPE Products",
-    text: "Large hollow plastic structures, outdoor housings, tanks and durable HDPE cabins for outdoor and rental-market applications.",
+    title: "Rotational Molded Plastic Products",
+    text: "Large hollow plastic structures, outdoor housings, tanks and durable plastic cabins for outdoor and rental-market applications.",
   },
   {
     title: "Blow Molded Tanks & Containers",
@@ -35,7 +35,7 @@ const supportCapabilities = [
 ];
 
 const suitableProjects = [
-  "Large hollow HDPE plastic products",
+  "Large hollow plastic products",
   "Water and waste tanks",
   "Outdoor plastic housings and enclosures",
   "Portable sanitation components",
@@ -44,8 +44,8 @@ const suitableProjects = [
 
 const buyerReasons = [
   {
-    title: "Experience with HDPE outdoor products",
-    text: "Portable toilets and related outdoor products give Sunrise practical experience with durable HDPE structures and repeated handling.",
+    title: "Experience with outdoor plastic products",
+    text: "Portable toilets and related outdoor products give Sunrise practical experience with durable plastic structures and repeated handling.",
   },
   {
     title: "Export packing and container planning",
@@ -85,9 +85,9 @@ export default function OemPlasticMoldingPage() {
     <main className="oem-page">
       <SiteHeader />
       <PageHero
-        kicker="OEM CAPABILITIES"
-        title="Custom Rotational & Blow Molding Support for Large HDPE Products"
-        description="Sunrise supports selected OEM plastic projects for overseas buyers who need durable HDPE tanks, housings, containers and outdoor molded components. Projects are reviewed based on drawings, sample photos, material, quantity and export feasibility."
+        kicker="OEM Capabilities"
+        title="Custom Rotational & Blow Molding Support For Large Plastic Products"
+        description="Sunrise supports selected OEM plastic projects for overseas buyers who need durable plastic tanks, housings, containers and outdoor molded components. Projects are reviewed based on drawings, sample photos, material, quantity and export feasibility."
         backgroundImage="/images/site/factory-workshop.webp"
         breadcrumbs={[
           { label: "Home", href: "/" },
@@ -102,7 +102,7 @@ export default function OemPlasticMoldingPage() {
           <span className="section-kicker">WHAT WE CAN SUPPORT</span>
           <h2>Selected OEM plastic molding support for compatible B2B projects.</h2>
           <p>
-            Custom rotational and blow molding support is available for large HDPE
+            Custom rotational and blow molding support is available for large plastic
             products where the product size, material, tooling feasibility, quantity and
             export requirements fit Sunrise capabilities.
           </p>
@@ -127,7 +127,7 @@ export default function OemPlasticMoldingPage() {
           <span className="section-kicker">SUITABLE OEM PROJECTS</span>
           <h2>Suitable OEM Project Types</h2>
           <p>
-            Sunrise is a better fit for large HDPE outdoor products than small precision
+            Sunrise is a better fit for large outdoor plastic products than small precision
             plastic parts.
           </p>
         </div>
@@ -182,13 +182,13 @@ export default function OemPlasticMoldingPage() {
         <p>
           OEM inquiries are reviewed based on product size, molding process, tooling
           feasibility, order quantity and export requirements. Sunrise is usually a better
-          fit for large HDPE outdoor products than small precision plastic parts.
+          fit for large outdoor plastic products than small precision plastic parts.
         </p>
       </section>
 
       <SectionCta
         kicker="OEM PROJECT REVIEW"
-        title="Have a suitable HDPE plastic product project?"
+        title="Have a suitable plastic product project?"
         text="Send your drawing, sample photo or product idea. Our team will review whether the project fits our rotational molding or blow molding capabilities."
         primaryLabel="Discuss OEM Project"
         secondaryLabel="View Portable Toilet Range"

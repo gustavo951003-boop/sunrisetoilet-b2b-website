@@ -55,7 +55,7 @@ export default function FactoryPage() {
       <SiteHeader />
       <PageHero
         kicker="Factory Capability"
-        title="Portable toilet factory capability."
+        title="Portable Toilet Factory Capability."
         description="Sunrise uses factory video, production images and third-party assessment files to help B2B buyers review manufacturing capability before quotation."
         backgroundImage="/images/site/factory-line.webp"
         breadcrumbs={[

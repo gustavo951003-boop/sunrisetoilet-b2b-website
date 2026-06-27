@@ -1623,12 +1623,24 @@ p {
   margin-top: 26px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  align-items: start;
+  column-gap: 22px;
+  row-gap: 20px;
 }
 
 .form-field {
   display: grid;
+  align-content: start;
+  grid-auto-rows: max-content;
   gap: 8px;
+}
+
+.form-field label,
+.form-field input,
+.form-field textarea,
+.form-hint,
+.country-combobox {
+  align-self: start;
 }
 
 .form-field-full {
@@ -1642,6 +1654,7 @@ p {
 }
 
 .form-hint {
+  max-width: 360px;
   color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
@@ -1792,10 +1805,15 @@ p {
 
 .hidden-honeypot {
   position: absolute;
-  left: -9999px;
   width: 1px;
   height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
   overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .factory-location-section {
@@ -2856,6 +2874,22 @@ p {
   font-size: 13px;
   line-height: 1.5;
   font-weight: 800;
+}
+
+.product-summary-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.product-summary-options span {
+  padding: 5px 8px;
+  background: #eef5f1;
+  border-radius: 999px;
+  color: var(--green-dark);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 850;
 }
 
 .quote-panel-actions {

@@ -43,7 +43,7 @@ export default function ProductsPage() {
       <SiteHeader />
       <PageHero
         kicker="Product Catalog"
-        title="Portable Toilet Product Range for B2B Buyers"
+        title="Portable Toilet Product Range For B2B Buyers"
         description="Compare HDPE portable toilets, accessible units, shower cabins, hand wash stations and waste tanks for rental fleets, distributors and project supply."
         backgroundImage="/images/site/hero-yard.webp"
         breadcrumbs={[
