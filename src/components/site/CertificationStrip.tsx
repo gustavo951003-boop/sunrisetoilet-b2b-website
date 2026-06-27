@@ -28,6 +28,9 @@ export function CertificationStrip({
           <span className="section-kicker">TRUSTED DOCUMENTATION</span>
           <h2>{title}</h2>
           <p>{subtitle}</p>
+          <Link className="button button-primary certification-proof-button" href="/resources">
+            View Documents
+          </Link>
         </div>
         <div className="certification-logo-row" aria-label="Certification and compliance references">
           {certificationBadges.map((badge) => (
