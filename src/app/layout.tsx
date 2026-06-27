@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const googleAdsId = "AW-11142818750";
+const googleAdsContactConversionId = "AW-11142818750/ADfXCOOtxMYcEL7Xp8Ep";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sunrisetoilet.com"),
@@ -75,6 +76,28 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${googleAdsId}');
+          `}
+        </Script>
+        <Script id="google-ads-contact-conversion" strategy="afterInteractive">
+          {`
+            window.gtag_report_conversion = function(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+
+              if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                  'send_to': '${googleAdsContactConversionId}',
+                  'event_callback': callback
+                });
+              } else {
+                callback();
+              }
+
+              return false;
+            };
           `}
         </Script>
         {children}

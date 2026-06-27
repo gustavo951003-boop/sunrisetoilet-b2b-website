@@ -3,6 +3,12 @@
 import { type ChangeEvent, type FormEvent, type KeyboardEvent, useMemo, useState } from "react";
 import { countryOptions } from "@/data/countries";
 
+declare global {
+  interface Window {
+    gtag_report_conversion?: (url?: string) => false;
+  }
+}
+
 type ContactFormValues = {
   name: string;
   email: string;
@@ -22,6 +28,14 @@ const initialValues: ContactFormValues = {
   message: "",
   companyWebsite: "",
 };
+
+function reportContactFormConversion() {
+  if (typeof window.gtag_report_conversion !== "function") {
+    return;
+  }
+
+  window.gtag_report_conversion();
+}
 
 export function ContactForm() {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
@@ -143,6 +157,7 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      reportContactFormConversion();
       setValues(initialValues);
     } catch (error) {
       setStatus("error");
