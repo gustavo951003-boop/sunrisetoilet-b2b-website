@@ -68,9 +68,9 @@ export default function RootLayout({
       <body>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-ads-tag" strategy="afterInteractive">
+        <Script id="google-ads-tag" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -78,7 +78,7 @@ export default function RootLayout({
             gtag('config', '${googleAdsId}');
           `}
         </Script>
-        <Script id="google-ads-contact-conversion" strategy="afterInteractive">
+        <Script id="google-ads-contact-conversion" strategy="lazyOnload">
           {`
             window.gtag_report_conversion = function(url) {
               var callback = function () {

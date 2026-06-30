@@ -1,47 +1,35 @@
-"use client";
+export function initScrollReveal() {
+  const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
 
-import { useEffect } from "react";
+  if (!elements.length) {
+    return undefined;
+  }
 
-export function ScrollReveal() {
-  useEffect(() => {
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal]"),
-    );
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (!elements.length) {
-      return;
-    }
+  if (prefersReducedMotion) {
+    elements.forEach((element) => element.classList.add("is-visible"));
+    return undefined;
+  }
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
 
-    if (prefersReducedMotion) {
-      elements.forEach((element) => element.classList.add("is-visible"));
-      return;
-    }
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: "0px 0px -12% 0px",
+    },
+  );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
+  elements.forEach((element) => observer.observe(element));
 
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.16,
-        rootMargin: "0px 0px -12% 0px",
-      },
-    );
-
-    elements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, []);
-
-  return null;
+  return () => observer.disconnect();
 }

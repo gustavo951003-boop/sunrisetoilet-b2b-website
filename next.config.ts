@@ -191,7 +191,13 @@ const legacyRedirects = [
   },
 ];
 
+const staticAssetCacheControl = "public, max-age=604800, stale-while-revalidate=2592000";
+const downloadCacheControl = "public, max-age=86400, stale-while-revalidate=604800";
+
 const nextConfig: NextConfig = {
+  images: {
+    minimumCacheTTL: 604800,
+  },
   async redirects() {
     return legacyRedirects.flatMap(({ source, destination }) => [
       {
@@ -205,6 +211,46 @@ const nextConfig: NextConfig = {
         statusCode: 301,
       },
     ]);
+  },
+  async headers() {
+    return [
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: staticAssetCacheControl,
+          },
+        ],
+      },
+      {
+        source: "/videos/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: staticAssetCacheControl,
+          },
+        ],
+      },
+      {
+        source: "/downloads/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: downloadCacheControl,
+          },
+        ],
+      },
+      ...["/favicon.ico", "/icon.png", "/apple-icon.png"].map((source) => ({
+        source,
+        headers: [
+          {
+            key: "Cache-Control",
+            value: staticAssetCacheControl,
+          },
+        ],
+      })),
+    ];
   },
 };
 

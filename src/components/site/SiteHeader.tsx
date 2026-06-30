@@ -1,18 +1,16 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { mainNavigation } from "@/data/navigation";
 import { productCategories } from "@/app/products/product-categories";
+import { mainNavigation } from "@/data/navigation";
+import { HeaderScrollState } from "./HeaderScrollState";
 
 type SiteHeaderProps = {
   variant?: "transparent" | "solid";
 };
 
-export function BrandMark({ light = false }: { light?: boolean }) {
+export function BrandMark() {
   return (
-    <Link className={light ? "brand brand-light" : "brand"} href="/" aria-label="Sunrise home">
+    <Link className="brand" href="/" aria-label="Sunrise home">
       <Image
         className="brand-logo"
         src="/images/brand/sunrise-symbol-tight.png"
@@ -30,77 +28,22 @@ export function BrandMark({ light = false }: { light?: boolean }) {
 
 export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
   const isTransparent = variant === "transparent";
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileNav, setIsMobileNav] = useState(false);
-  const isLightHeader = isTransparent && !isScrolled;
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 860px)");
-    const updateNavMode = () => setIsMobileNav(mediaQuery.matches);
-
-    updateNavMode();
-    mediaQuery.addEventListener("change", updateNavMode);
-
-    return () => {
-      mediaQuery.removeEventListener("change", updateNavMode);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isTransparent) {
-      return undefined;
-    }
-
-    let ticking = false;
-    let animationFrameId: number | null = null;
-
-    const updateHeaderState = () => {
-      const nextScrolled = window.scrollY > 24;
-
-      setIsScrolled((current) => (current === nextScrolled ? current : nextScrolled));
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (ticking) {
-        return;
-      }
-
-      ticking = true;
-      animationFrameId = window.requestAnimationFrame(updateHeaderState);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-
-      if (animationFrameId !== null) {
-        window.cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, [isTransparent]);
 
   return (
     <>
       <header
+        data-site-header={isTransparent ? "home" : undefined}
         className={[
           "site-header",
-          isLightHeader ? "site-header-transparent" : "site-header-solid",
+          isTransparent ? "site-header-transparent" : "site-header-solid",
           isTransparent ? "site-header-home" : "",
-          isScrolled ? "site-header-scrolled" : "",
         ]
           .filter(Boolean)
           .join(" ")}
       >
         <div className="header-inner">
-          <BrandMark light={isLightHeader} />
-          <nav
-            className="desktop-nav"
-            aria-label="Primary navigation"
-            aria-hidden={isMobileNav ? "true" : undefined}
-          >
+          <BrandMark />
+          <nav className="desktop-nav" aria-label="Primary navigation">
             {mainNavigation.map((item) =>
               item.href === "/products" ? (
                 <div className="nav-dropdown" key={item.href}>
@@ -126,7 +69,7 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
           <Link className="header-cta" href="/contact">
             Request Factory Quote
           </Link>
-          <details className="mobile-menu" aria-hidden={isMobileNav ? undefined : "true"}>
+          <details className="mobile-menu">
             <summary title="Open navigation" aria-label="Open navigation">
               <span />
               <span />
@@ -158,6 +101,7 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
           </details>
         </div>
       </header>
+      {isTransparent ? <HeaderScrollState /> : null}
     </>
   );
 }

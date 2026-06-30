@@ -11,6 +11,9 @@ import {
   productCategories,
 } from "../../product-categories";
 
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return productCategories.map((category) => ({
     category: category.slug,

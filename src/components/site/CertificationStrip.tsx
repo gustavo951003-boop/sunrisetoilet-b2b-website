@@ -12,8 +12,8 @@ type CertificationStripProps = {
 export function CertificationStrip({
   compact = false,
   variant = "band",
-  title = "Compliance Documents Available for Review",
-  subtitle = "Intertek, SGS, RoHS and Australian market reference documents can be shared to support distributor, rental fleet and project purchasing review.",
+  title = "Certification & Compliance Documents for Buyer Review",
+  subtitle = "CE, Intertek, SGS, RoHS and Australian market reference files are available to support distributor, rental fleet and project procurement review.",
 }: CertificationStripProps) {
   if (variant === "band") {
     return (
@@ -25,7 +25,7 @@ export function CertificationStrip({
         }
       >
         <div className="certification-proof-copy">
-          <span className="section-kicker">TRUSTED DOCUMENTATION</span>
+          <span className="section-kicker">CERTIFICATION SUPPORT</span>
           <h2>{title}</h2>
           <p>{subtitle}</p>
           <Link className="button button-primary certification-proof-button" href="/resources">
@@ -55,7 +55,7 @@ export function CertificationStrip({
       }
     >
       <div className="certification-panel-head">
-        <span className="section-kicker">BUYER VERIFICATION</span>
+        <span className="section-kicker">CERTIFICATION SUPPORT</span>
         <h2>{title}</h2>
         <p>{subtitle}</p>
       </div>

@@ -1,5 +1,13 @@
 export const certificationBadges = [
   {
+    name: "CE Conformity Reference",
+    image: "/images/certifications/ce-conformity.png",
+    alt: "CE conformity mark for buyer compliance review",
+    width: 121,
+    height: 97,
+    note: "CE-related conformity documents can be shared for applicable products and buyer review.",
+  },
+  {
     name: "Intertek Total Quality Assured",
     image: "/images/certifications/intertek-quality-assured.png",
     alt: "Intertek Total Quality Assured certification mark",

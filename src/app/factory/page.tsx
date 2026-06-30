@@ -103,8 +103,8 @@ export default function FactoryPage() {
 
       <CertificationStrip
         variant="panel"
-        title="Compliance Documents Available for Review"
-        subtitle="Intertek, SGS, RoHS and Australian market reference documents can be shared to support distributor, rental fleet and project purchasing review."
+        title="Certification & Compliance Documents for Buyer Review"
+        subtitle="CE, Intertek, SGS, RoHS and Australian market reference files are available to support distributor, rental fleet and project procurement review."
       />
 
       <SectionCta

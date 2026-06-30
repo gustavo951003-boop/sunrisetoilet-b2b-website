@@ -15,14 +15,6 @@ export const metadata: Metadata = {
   },
 };
 
-const requestItems = [
-  "Product model or category",
-  "Estimated quantity",
-  "Destination country or port",
-  "Required options such as hand wash, urinal, shower, waste tank or accessible unit",
-  "Any packing, certificate or project document requirements",
-];
-
 export default function ContactPage() {
   return (
     <main className="contact-page">
@@ -59,15 +51,6 @@ export default function ContactPage() {
             />
           </div>
 
-          <div className="buyer-guidance-card">
-            <span className="section-kicker">BUYER GUIDANCE</span>
-            <h2>What to include in your inquiry</h2>
-            <ul>
-              {requestItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <ContactForm />

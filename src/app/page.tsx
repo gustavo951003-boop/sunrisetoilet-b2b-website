@@ -1,70 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CertificationStrip } from "@/components/site/CertificationStrip";
-import { CountUpStat } from "@/components/site/CountUpStat";
 import { ExportCases } from "@/components/site/ExportCases";
+import { HomeHeroMedia } from "@/components/site/HomeHeroMedia";
 import { ProductCard } from "@/components/site/ProductCard";
 import { SectionCta } from "@/components/site/SectionCta";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
-import { categoryNavigationAssets } from "@/data/categoryNavigation";
-import { productCategories } from "./products/product-categories";
 import { featuredProductSlugs, products } from "./products/product-data";
-import { ScrollReveal } from "./ScrollReveal";
+import { HomeScrollReveal } from "./HomeScrollReveal";
+
+export const dynamic = "force-static";
 
 const heroSlides = [
   {
     image: "/images/site/hero-yard.webp",
     alt: "Sunrise HDPE portable toilets prepared for export in the factory yard",
+    width: 2400,
+    height: 1600,
   },
   {
     image: "/images/site/finished-units.webp",
     alt: "Finished Sunrise portable toilet units ready for buyer inspection",
+    width: 1672,
+    height: 941,
   },
   {
     image: "/images/site/factory-line.webp",
     alt: "Sunrise portable toilet production line for HDPE molded cabins",
+    width: 1672,
+    height: 941,
   },
 ];
 
-const heroTrustStats: Array<
-  | {
-      kind: "count";
-      end: number;
-      suffix: string;
-      duration: number;
-      label: string;
-      ariaLabel: string;
-    }
-  | {
-      kind: "text";
-      value: string;
-      label: string;
-    }
-> = [
+const heroTrustStats = [
   {
-    kind: "count",
-    end: 20,
-    suffix: "+",
-    duration: 900,
+    value: "20+",
     label: "Years manufacturing",
-    ariaLabel: "20 plus years manufacturing",
   },
   {
-    kind: "count",
-    end: 1100,
-    suffix: "+",
-    duration: 1400,
+    value: "1,100+",
     label: "Global B2B customers",
-    ariaLabel: "1,100 plus global B2B customers",
   },
   {
-    kind: "text",
     value: "AU / EU / US",
     label: "Export support",
   },
   {
-    kind: "text",
     value: "Documents",
     label: "Certificates & packing data",
   },
@@ -105,7 +87,7 @@ export default function Home() {
 
   return (
     <main id="top">
-      <ScrollReveal />
+      <HomeScrollReveal />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -113,22 +95,10 @@ export default function Home() {
       <SiteHeader variant="transparent" />
 
       <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-media">
-          {heroSlides.map((slide, index) => (
-            <Image
-              className={`hero-image hero-image-${index + 1}`}
-              src={slide.image}
-              alt={slide.alt}
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              key={slide.image}
-            />
-          ))}
-        </div>
+        <HomeHeroMedia slides={heroSlides} />
         <div className="hero-overlay" />
 
-        <div className="hero-content" data-reveal>
+        <div className="hero-content">
           <span className="eyebrow">Portable Toilet Manufacturer in China</span>
           <h1 id="hero-title">Factory-Direct HDPE Portable Toilets For Rental Fleets.</h1>
           <p>
@@ -145,22 +115,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-metrics" aria-label="B2B buyer trust points" data-reveal>
+        <div className="hero-metrics" aria-label="B2B buyer trust points">
           {heroTrustStats.map((item) => (
             <div className="hero-metric" key={item.label}>
-              <strong>
-                {item.kind === "count" ? (
-                  <CountUpStat
-                    end={item.end}
-                    suffix={item.suffix}
-                    duration={item.duration}
-                    label={item.label}
-                    ariaLabel={item.ariaLabel}
-                  />
-                ) : (
-                  item.value
-                )}
-              </strong>
+              <strong>{item.value}</strong>
               <span>{item.label}</span>
             </div>
           ))}
@@ -168,49 +126,6 @@ export default function Home() {
       </section>
 
       <CertificationStrip />
-
-      <section className="section home-category-section">
-        <div className="section-inner">
-          <div className="section-head" data-reveal>
-            <div>
-              <span className="section-kicker">PRODUCT CATEGORIES</span>
-              <h2>Start with the right temporary sanitation category.</h2>
-            </div>
-            <p>
-              Choose a product category, then request model specifications, packing data and
-              container loading advice for your market.
-            </p>
-          </div>
-
-          <div className="home-category-grid">
-            {productCategories.map((category, index) => (
-              <Link
-                className="home-category-card"
-                href={`/products/category/${category.slug}`}
-                data-reveal
-                style={{ transitionDelay: `${index * 60}ms` }}
-                key={category.slug}
-              >
-                <span className="home-category-art">
-                  <Image
-                    src={categoryNavigationAssets[category.slug]?.image ?? category.image}
-                    alt={categoryNavigationAssets[category.slug]?.alt ?? category.menuLabel}
-                    fill
-                    sizes="(max-width: 560px) 44vw, (max-width: 980px) 28vw, 190px"
-                  />
-                </span>
-                <div className="home-category-content">
-                  <span className="home-category-label">CATEGORY</span>
-                  <strong className="home-category-title">{category.menuLabel}</strong>
-                  <span className="home-category-copy">
-                    {categoryNavigationAssets[category.slug]?.copy ?? category.shortNote}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="section products-section" id="products">
         <div className="section-inner">

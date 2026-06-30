@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="section-inner site-footer-grid">
         <div className="site-footer-brand">
-          <BrandMark light />
+          <BrandMark />
           <p>
             Sunrise manufactures HDPE portable toilets for rental fleets, distributors,
             construction projects and event supply from Ningbo, China.

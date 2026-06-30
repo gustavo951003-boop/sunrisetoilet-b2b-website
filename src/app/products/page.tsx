@@ -11,6 +11,8 @@ import { categoryNavigationAssets } from "@/data/categoryNavigation";
 import { getProductsByCategorySlug, productCategories } from "./product-categories";
 import { featuredProductSlugs, products } from "./product-data";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Portable Toilet Product Range | HDPE Portable Toilet Supplier",
   description:

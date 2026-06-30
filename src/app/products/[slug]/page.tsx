@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { ProductDetail } from "../ProductDetail";
 import { getProductBySlug, products } from "../product-data";
 
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
 }
