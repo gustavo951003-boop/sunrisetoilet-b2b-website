@@ -42,6 +42,10 @@ export function SiteFooter() {
           <span>Ningbo, China</span>
         </div>
       </div>
+      <p className="site-footer-copyright">
+        Copyright © Ningbo Sunrise Environmental Protection Solution CO.,LTD 2026. All rights
+        reserved.
+      </p>
     </footer>
   );
 }

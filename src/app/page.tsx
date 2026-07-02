@@ -20,10 +20,10 @@ const heroSlides = [
     height: 1600,
   },
   {
-    image: "/images/site/finished-units.webp",
-    alt: "Finished Sunrise portable toilet units ready for buyer inspection",
-    width: 1672,
-    height: 941,
+    image: "/images/site/hero-verified-workshop-nosub.webp",
+    alt: "Sunrise portable toilet buyer verification workshop visit",
+    width: 1920,
+    height: 1080,
   },
   {
     image: "/images/site/factory-line.webp",

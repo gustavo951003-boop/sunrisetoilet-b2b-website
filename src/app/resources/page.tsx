@@ -122,7 +122,7 @@ export default function ResourcesPage() {
         kicker="Resources"
         title="Catalogs, Certificates & Buyer Documents"
         description="Download Sunrise product catalogs, compliance documents, material test reports and supplier assessment files for distributor review, rental fleet purchasing and project quotation."
-        backgroundImage="/images/site/hero-verified-workshop.webp"
+        backgroundImage="/images/site/hero-verified-workshop-nosub.webp"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources" },

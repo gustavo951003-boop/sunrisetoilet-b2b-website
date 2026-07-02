@@ -28,9 +28,6 @@ export function CertificationStrip({
           <span className="section-kicker">CERTIFICATION SUPPORT</span>
           <h2>{title}</h2>
           <p>{subtitle}</p>
-          <Link className="button button-primary certification-proof-button" href="/resources">
-            View Documents
-          </Link>
         </div>
         <div className="certification-logo-row" aria-label="Certification and compliance references">
           {certificationBadges.map((badge) => (
@@ -44,6 +41,9 @@ export function CertificationStrip({
             />
           ))}
         </div>
+        <Link className="text-link certification-proof-link" href="/resources">
+          View compliance documents
+        </Link>
       </section>
     );
   }
