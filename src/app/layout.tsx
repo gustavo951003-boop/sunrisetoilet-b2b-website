@@ -6,6 +6,8 @@ import "./globals.css";
 
 const googleAdsId = "AW-11142818750";
 const googleAdsContactConversionId = "AW-11142818750/ADfXCOOtxMYcEL7Xp8Ep";
+const googleAdsEmailClickConversionId = "AW-11142818750/a8qYCPT03tAcEL7Xp8Ep";
+const googleAdsWhatsAppClickConversionId = "AW-11142818750/KqgoCJuH39AcEL7Xp8Ep";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sunrisetoilet.com"),
@@ -65,6 +67,42 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener("load", function () {
+                document.querySelectorAll('a[href*="mailto"]').forEach(function (link) {
+                  link.addEventListener("click", function () {
+                    if (typeof gtag === "function") {
+                      gtag("event", "conversion", {
+                        'send_to': "${googleAdsEmailClickConversionId}",
+                      });
+                    }
+                  });
+                });
+              });
+            `,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener("load", function () {
+                document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
+                  link.addEventListener("click", function () {
+                    if (typeof gtag === "function") {
+                      gtag("event", "conversion", {
+                        'send_to': "${googleAdsWhatsAppClickConversionId}",
+                      });
+                    }
+                  });
+                });
+              });
+            `,
+          }}
+        />
+      </head>
       <body>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
