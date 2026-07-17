@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalyticsPageView } from "@/components/site/GoogleAnalyticsPageView";
 import "./globals.css";
 
 const googleAdsId = "AW-11142818750";
+const ga4MeasurementId = "G-PE774SH1Q5";
 const googleAdsContactConversionId = "AW-11142818750/ADfXCOOtxMYcEL7Xp8Ep";
 const googleAdsEmailClickConversionId = "AW-11142818750/a8qYCPT03tAcEL7Xp8Ep";
 const googleAdsWhatsAppClickConversionId = "AW-11142818750/KqgoCJuH39AcEL7Xp8Ep";
@@ -112,10 +114,13 @@ export default function RootLayout({
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
             gtag('js', new Date());
             gtag('config', '${googleAdsId}');
+            gtag('config', '${ga4MeasurementId}', { send_page_view: false });
           `}
         </Script>
+        <GoogleAnalyticsPageView />
         <Script id="google-ads-contact-conversion" strategy="lazyOnload">
           {`
             window.gtag_report_conversion = function(url) {
