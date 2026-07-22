@@ -36,6 +36,8 @@ export function SiteFooter() {
         </div>
         <div>
           <h2>Buyer Resources</h2>
+          <Link href="/blog">Portable toilet buyer guides</Link>
+          <Link href="/oem-plastic-molding">OEM plastic molding capabilities</Link>
           <Link href="/downloads/Sunrise-Catalog-2026.pdf">Download 2026 catalog</Link>
           <Link href="/resources">Certificates and test reports</Link>
           <Link href="/contact">Get product specifications</Link>

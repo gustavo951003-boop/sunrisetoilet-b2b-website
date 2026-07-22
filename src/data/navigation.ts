@@ -2,9 +2,26 @@ export const mainNavigation = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
   { label: "Factory", href: "/factory" },
-  { label: "OEM Capabilities", href: "/oem-plastic-molding" },
   { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" },
+];
+
+export const resourceNavigation = [
+  {
+    label: "Buyer Documents",
+    href: "/resources",
+    note: "Catalogs, certificates and test reports",
+  },
+  {
+    label: "OEM Plastic Molding",
+    href: "/oem-plastic-molding",
+    note: "Rotational molding and custom plastic projects",
+  },
+  {
+    label: "Buyer Guides",
+    href: "/blog",
+    note: "Portable sanitation selection and procurement articles",
+  },
 ];
 
 export const footerProductLinks = [

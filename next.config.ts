@@ -197,6 +197,12 @@ const downloadCacheControl = "public, max-age=86400, stale-while-revalidate=6048
 const nextConfig: NextConfig = {
   images: {
     minimumCacheTTL: 604800,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
   },
   async redirects() {
     return legacyRedirects.flatMap(({ source, destination }) => [

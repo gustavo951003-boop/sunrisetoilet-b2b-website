@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { productCategories } from "@/app/products/product-categories";
-import { mainNavigation } from "@/data/navigation";
+import { mainNavigation, resourceNavigation } from "@/data/navigation";
 import { HeaderScrollState } from "./HeaderScrollState";
 
 type SiteHeaderProps = {
@@ -59,6 +59,20 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
                     ))}
                   </div>
                 </div>
+              ) : item.href === "/resources" ? (
+                <div className="nav-dropdown" key={item.href}>
+                  <Link className="nav-dropdown-trigger" href={item.href}>
+                    {item.label}
+                  </Link>
+                  <div className="nav-dropdown-panel" aria-label="Buyer resources">
+                    {resourceNavigation.map((resource) => (
+                      <Link href={resource.href} key={resource.href}>
+                        <strong>{resource.label}</strong>
+                        <span>{resource.note}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ) : (
                 <Link href={item.href} key={item.href}>
                   {item.label}
@@ -87,6 +101,15 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
                         key={category.slug}
                       >
                         {category.menuLabel}
+                      </Link>
+                    ))}
+                  </div>
+                ) : item.href === "/resources" ? (
+                  <div className="mobile-nav-group" key={item.href}>
+                    <Link href={item.href}>{item.label}</Link>
+                    {resourceNavigation.map((resource) => (
+                      <Link className="mobile-sub-link" href={resource.href} key={resource.href}>
+                        {resource.label}
                       </Link>
                     ))}
                   </div>
