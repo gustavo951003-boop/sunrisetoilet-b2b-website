@@ -1,4 +1,5 @@
 import { sanityConfig, sanityRevalidateSeconds } from "./config";
+import { getSanityReadToken } from "./token";
 import type { BlogPost, BlogPostSummary, BlogSitemapEntry } from "./types";
 
 const defineQuery = <const Query extends string>(query: Query) => query;
@@ -135,6 +136,37 @@ async function fetchSanity<Result>(
   return payload.result;
 }
 
+async function fetchSanityPreview<Result>(
+  query: string,
+  params: Record<string, string | number | boolean> = {},
+): Promise<Result> {
+  const { apiVersion, dataset, projectId } = sanityConfig;
+  const url = new URL(
+    `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}`,
+  );
+
+  url.searchParams.set("query", query);
+  url.searchParams.set("perspective", "drafts");
+  Object.entries(params).forEach(([key, value]) => {
+    url.searchParams.set(`$${key}`, JSON.stringify(value));
+  });
+
+  const response = await fetch(url, {
+    cache: "no-store",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${getSanityReadToken()}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Sanity preview query failed with status ${response.status}.`);
+  }
+
+  const payload = (await response.json()) as { result: Result };
+  return payload.result;
+}
+
 export function getEnglishPosts() {
   return fetchSanity<BlogPostSummary[]>(englishPostsQuery, {
     tags: ["blog-posts"],
@@ -146,6 +178,10 @@ export function getEnglishPost(slug: string) {
     params: { slug },
     tags: ["blog-posts", `blog-post:${slug}`],
   });
+}
+
+export function getEnglishPreviewPost(slug: string) {
+  return fetchSanityPreview<BlogPost | null>(englishPostQuery, { slug });
 }
 
 export async function getEnglishPostSlugs() {

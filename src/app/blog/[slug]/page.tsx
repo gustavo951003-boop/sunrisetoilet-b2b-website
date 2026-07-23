@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 import { SanityImage } from "@/components/blog/SanityImage";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
-import { getEnglishPost, getEnglishPostSlugs } from "@/sanity/queries";
+import {
+  getEnglishPost,
+  getEnglishPostSlugs,
+  getEnglishPreviewPost,
+} from "@/sanity/queries";
 import type { BlogPost, SanityFaqBlock, SanityTextBlock } from "@/sanity/types";
 
 export const revalidate = 60;
@@ -55,14 +61,14 @@ function serializeJsonLd(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
-async function loadPost(slug: string) {
+const loadPost = cache(async (slug: string, preview: boolean) => {
   try {
-    return await getEnglishPost(slug);
+    return await (preview ? getEnglishPreviewPost(slug) : getEnglishPost(slug));
   } catch (error) {
-    console.error(`Unable to load Sanity post: ${slug}`, error);
+    console.error(`Unable to load Sanity ${preview ? "preview" : "published"} post: ${slug}`, error);
     return null;
   }
-}
+});
 
 export async function generateStaticParams() {
   try {
@@ -76,9 +82,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await loadPost(slug);
+  const isPreview = (await draftMode()).isEnabled;
+  const post = await loadPost(slug, isPreview);
 
-  if (!post) return {};
+  if (!post) {
+    return isPreview ? { robots: { index: false, follow: false } } : {};
+  }
 
   const title = post.seoTitle || post.title;
   const description = post.metaDescription || post.excerpt;
@@ -90,7 +99,11 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     alternates: {
       canonical: normalizeCanonicalUrl(post.canonicalUrl, post.slug),
     },
-    robots: post.noIndex ? { index: false, follow: true } : { index: true, follow: true },
+    robots: isPreview
+      ? { index: false, follow: false, noarchive: true }
+      : post.noIndex
+        ? { index: false, follow: true }
+        : { index: true, follow: true },
     openGraph: {
       type: "article",
       title,
@@ -117,7 +130,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await loadPost(slug);
+  const isPreview = (await draftMode()).isEnabled;
+  const post = await loadPost(slug, isPreview);
 
   if (!post) notFound();
 
@@ -168,6 +182,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <main className="blog-post-page">
       <SiteHeader />
+
+      {isPreview ? (
+        <div className="draft-preview-bar" role="status">
+          <span>You are previewing unpublished Sanity content.</span>
+          <a href={`/api/draft-mode/disable?redirect=/blog/${encodeURIComponent(slug)}`}>
+            Exit preview
+          </a>
+        </div>
+      ) : null}
 
       <header className="article-hero">
         <div className="article-hero-inner">
@@ -285,15 +308,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
-      />
-      {faqJsonLd ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
-        />
+      {!isPreview ? (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
+          />
+          {faqJsonLd ? (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
+            />
+          ) : null}
+        </>
       ) : null}
       <SiteFooter />
     </main>
